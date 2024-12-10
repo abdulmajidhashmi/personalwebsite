@@ -20,7 +20,7 @@ const Video =()=>{
         <h1>video</h1>
         <div className="liveviddiv">
             <div className="liveviddiv2">
-            <video  className="livevid" ref={videoRef}></video>
+            <video  className="livevid" ref={videoRef} muted></video>
             </div>
         </div>
         
