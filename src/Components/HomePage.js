@@ -43,7 +43,7 @@ const HomePage = () => {
         </div>
 
         <i
-          class="fa-solid fa-bars nav-bar"
+          className="fa-solid fa-bars nav-bar"
           onClick={() => setnavbarstate(true)}
         ></i>
         <div
@@ -69,7 +69,7 @@ const HomePage = () => {
             <h2>Neuro-pyschiatrist</h2>
           </div>
           <div className="right-side-div">
-            <img
+            <img alt="imagej"
               className="main-img"
               src="https://clipart-library.com/img/782967.png"
             />
