@@ -56,9 +56,14 @@
 .disease{
 
     flex-direction: column;
-    width: 100%;
+    justify-content: space-evenly;
+    width: 80%;
     margin-left: 4px;
     margin-right: 4px;
+}
+.disease:nth-child(even){
+
+    flex-direction: column;
 }
 
 }

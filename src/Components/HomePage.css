@@ -87,12 +87,36 @@
   transform: translateX(0px);
   overflow: hidden;
 }
+.userend{
+
+  
+  font-size: 20px;
+  
+}
+
+.userenddiv{
+  
+  border-radius: 50%;
+  border: 1px solid black;
+  height: 35px;
+  width: 35px;
+  position: absolute;
+  right: 20px;
+  top:75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media only screen and (max-width: 700px) {
   .main-img {
     width: 150px;
     height: 150px;
   }
+.userenddiv{
 
+  display: none;
+}
   .content-sub-div {
     flex-direction: column-reverse;
     justify-content: center;

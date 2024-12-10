@@ -32,12 +32,15 @@ const HomePage = () => {
         <h1>Dr.Hashmi Abdul Wase</h1>
       </div>
       <div className="content-div">
+       
         <ul className="ul-li-div">
           <li className="ul-li">Home</li>
           <li className="ul-li">About</li>
           <li className="ul-li">treatments</li>
           <li className="ul-li">patients</li>
         </ul>
+       <div className="userenddiv"><i class="fa-regular fa-user userend"></i></div> 
+        
         <div className="strike-line">
           <hr className="line" />
         </div>
@@ -61,7 +64,9 @@ const HomePage = () => {
             <li className="ul-li2">About</li>
             <li className="ul-li2">treatments</li>
             <li className="ul-li2">patients</li>
+            <li className="ul-li2">Login</li>
           </ul>
+         
         </div>
         <div className="content-sub-div">
           <div className="left-side-div">
