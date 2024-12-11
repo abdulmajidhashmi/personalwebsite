@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./HomePage.css";
 import { useEffect, useRef, useState } from "react";
 const HomePage = () => {
@@ -28,8 +29,10 @@ const HomePage = () => {
 
   return (
     <div className="main-div">
+        
       <div className="headings">
-        <h1>Dr.Hashmi Abdul Wase</h1>
+      <i class="fa-solid fa-staff-snake snake"></i> 
+   <h1 className="head">Dr.Hashmi Abdul Wase</h1>
       </div>
       <div className="content-div">
        
@@ -39,7 +42,7 @@ const HomePage = () => {
           <li className="ul-li">treatments</li>
           <li className="ul-li">patients</li>
         </ul>
-       <div className="userenddiv"><i class="fa-regular fa-user userend"></i></div> 
+       <Link to="/login"><div className="userenddiv"><i class="fa-regular fa-user userend"></i></div> </Link>
         
         <div className="strike-line">
           <hr className="line" />
@@ -64,7 +67,7 @@ const HomePage = () => {
             <li className="ul-li2">About</li>
             <li className="ul-li2">treatments</li>
             <li className="ul-li2">patients</li>
-            <li className="ul-li2">Login</li>
+            <Link to="/login"><li className="ul-li2">Login</li></Link>
           </ul>
          
         </div>

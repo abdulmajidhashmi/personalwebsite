@@ -15,18 +15,40 @@
     
     
 }
+.link-reset{
+
+
+        
+   
+        all: unset;
+        margin: 10px 20px 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        width: 45%;
+        height: 300px;
+        flex-direction: inherit;
+        cursor: pointer;
+        padding: 10px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 8px rgba(128, 128, 128, 0.5);
+    color:green;
+      
+}
+
 
 .disease{
-    color:green;
-    height: 300px;
-    width: 45%;
+    
+    height: 100%;
+    width: 100%;
     display: flex;
-    margin: 10px 20px 10px 20px;
-    box-shadow: 1px 1px 8px rgba(128, 128, 128, 0.5);
+    /* margin: 10px 20px 10px 20px;  */
+    /* box-shadow: 1px 1px 8px rgba(128, 128, 128, 0.5); */
     display: flex;
+    flex-direction: inherit;
+    color: inherit;
     justify-content: space-between;
-    padding: 10px;
-    border-radius: 10px;
+    /* padding: 10px;
+    border-radius: 10px; */
 }
 
 
@@ -37,12 +59,13 @@
     object-fit: cover;
 }
 
-.disease:nth-child(even){
 
+.link-reset:nth-child(even){
+
+    color: blue;
+    display: flex;
     flex-direction: row-reverse;
-    color:blue;
 }
-
 
 
 @media only screen and (max-width:700px){
@@ -55,15 +78,21 @@
 
 .disease{
 
+    flex-direction: inherit;
+    justify-content: inherit;
+    
+}
+.link-reset:nth-child(even){
+
+    flex-direction: column;
+}
+.link-reset{
+    width: 80%;
     flex-direction: column;
     justify-content: space-evenly;
     width: 80%;
     margin-left: 4px;
     margin-right: 4px;
-}
-.disease:nth-child(even){
-
-    flex-direction: column;
 }
 
 }
