@@ -15,6 +15,7 @@ import Ld from "./Components/Ld";
 import Gad from "./Components/Gad";
 import Pd from "./Components/Psd";
 import Login from "./Components/Login";
+import Signup from "./Components/Signup";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
            <Route path="/Sad" element={<> <Sad /> </>   }/> 
             <Route path='/login' element={<><Login/></>}/>
            <Route path="/BipolarDisorder" element={<> <BiploarDisorder /> </>   }/> 
+           <Route path='/signup' element={<><Signup/></>}/>
             
           
         </Routes>

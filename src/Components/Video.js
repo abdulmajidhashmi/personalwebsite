@@ -5,7 +5,7 @@ const Video =()=>{
     const videoRef = useRef();
 
     useEffect(()=>{
-
+        
         navigator.mediaDevices.getUserMedia({video:true,audio:true})
         .then((stream)=>{
 

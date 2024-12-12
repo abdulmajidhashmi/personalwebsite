@@ -1,21 +1,26 @@
-.login-maindiv{
-height: 100vh;
-width: 100%;
-background-color: khaki;
-display: flex;
-justify-content: center;
-align-items: center;
+.signup-maindiv{
 
+width: 100%;
+height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
 }
-.login-div{
+
+.signup-div{
+
+
     height: 400px;
-    width: 30%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.login-inp {
+
+.signup-inp{
+
+
     width: 270px;
     margin: 10px;
     height: 35px;
@@ -23,23 +28,35 @@ align-items: center;
     border:2px solid grey;
     padding-left: 10px;
     box-sizing: border-box;
-
-}
-.login-inp:hover{
-cursor: pointer;
-background-color: rgb(222, 190, 190);
-
 }
 
-.login-click{
+.signup-button{
+
     width: 270px;
     height: 40px;
-    background-color:rgb(5, 8, 157);
+    background-color:rgb(6, 196, 6);
     color:white;
     justify-content: center;
     align-items: center;
     display: flex;
     border-radius: 6px;
     margin-top: 5px;
+}
 
+.signup-button:hover{
+
+    background-color:rgb(3, 164, 3);
+    cursor: pointer;
+}
+.already-user{
+
+    text-decoration: underline;
+    color: blue;
+   
+}
+
+.already-userdiv{
+
+    display: inline-flex;
+    margin-top: 10px;
 }
