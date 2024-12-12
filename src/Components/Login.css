@@ -1,45 +1,118 @@
 .login-maindiv{
 height: 100vh;
 width: 100%;
-background-color: khaki;
 display: flex;
 justify-content: center;
 align-items: center;
+background-color:rgb(171, 191, 241);
 
 }
 .login-div{
     height: 400px;
-    width: 30%;
+    width: 400px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    background-color: white;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, .3), 0px 8px 16px rgba(0, 0, 0, .3);
 }
 .login-inp {
-    width: 270px;
+    /* width: 270px;
     margin: 10px;
-    height: 35px;
+    height: 42px;
     border-radius: 6px;
-    border:2px solid grey;
+    border:2px solid rgb(39, 38, 38);
     padding-left: 10px;
-    box-sizing: border-box;
+    box-sizing: border-box; */
 
+    border-radius: 6px;
+    width: 330px;
+    height: 22px;
+    border: 1px solid #dddfe2;
+    padding: 14px 16px;
+    font-size: 17px;
+    color: #1d2129;
+    margin: 6px;
+
+}
+
+.inp-cont{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    
+}
+.l-head{
+margin-top: 10px;
+font-size: 20px;
+  color: #1c1e21;
+  font-weight: 600;
+   
 }
 .login-inp:hover{
 cursor: pointer;
-background-color: rgb(222, 190, 190);
+
 
 }
 
 .login-click{
-    width: 270px;
-    height: 40px;
-    background-color:rgb(5, 8, 157);
+    width: 324px;
+    height: 50px;
+    background-color:rgb(6, 196, 6);
     color:white;
     justify-content: center;
     align-items: center;
     display: flex;
     border-radius: 6px;
     margin-top: 5px;
+    font-size: 20px;
+    padding: 0px 20px;
 
+}
+.login-click:hover{
+
+    cursor: pointer;
+    background-color:rgb(3, 164, 3);
+
+}
+
+.signup-here{
+
+    text-decoration: underline;
+    color:blue ;
+   
+}
+
+.signuphere-div{
+
+
+    display: inline-flex;
+    margin-top: 20px;
+}
+.cross-mark{
+
+    position: absolute;
+    top:10px;
+    right: 10px;
+}
+
+@media only screen and (max-width:500px){
+
+    .login-div{
+
+
+        width: 97%;
+    }
+    .login-inp{
+
+        width: 300px;
+    }
+    .login-click{
+        width: 294px;
+    }
+    
 }
