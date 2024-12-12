@@ -8,7 +8,7 @@ background-color:rgb(171, 191, 241);
 
 }
 .login-div{
-    height: 400px;
+    height: 360px;
     width: 400px;
     display: flex;
     flex-direction: column;
@@ -105,14 +105,14 @@ cursor: pointer;
     .login-div{
 
 
-        width: 97%;
+        width: 93%;
     }
     .login-inp{
 
-        width: 300px;
+        width: 280px;
     }
     .login-click{
-        width: 294px;
+        width: 274px;
     }
     
 }

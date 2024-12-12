@@ -11,7 +11,7 @@ background-color:rgb(171, 191, 241);
 .signup-div{
 
 
-    height: 420px;
+    height: 450px;
     width: 400px;
     display: flex;
     flex-direction: column;
@@ -98,14 +98,14 @@ background-color:rgb(171, 191, 241);
     .signup-div{
 
 
-        width: 97%;
+        width: 94%;
     }
     .signup-inp{
 
-        width: 300px;
+        width: 280px;
     }
     .signup-button{
 
-        width: 294px;
+        width: 274px;
     }
 }
