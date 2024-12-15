@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import io from 'socket.io-client';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-const socket =  io('https://personalwebsitebe.vercel.app');
+
 const Test = ()=>{
 
     const data = useSelector(state => state.User.value);
@@ -12,6 +12,7 @@ const Test = ()=>{
     const [messageData,setmessageData] =  useState([]);
 
 useEffect(()=>{
+    const socket =  io('https://personalwebsitebe.vercel.app');
 
     if(data.number){
 socket.emit('joinRoom',data.number);
