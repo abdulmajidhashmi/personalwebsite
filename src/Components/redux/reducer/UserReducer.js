@@ -4,7 +4,7 @@ const UserSlice = createSlice({
   name: "user",
   initialState: {
     value:{
-     number:"no user",
+     
     },},
 
   reducers: {
