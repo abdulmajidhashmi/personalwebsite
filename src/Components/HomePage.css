@@ -48,7 +48,17 @@
 
 .ul-li {
   margin: 15px 0px 15px 0px;
+  
+  transition: 0.4s;
+  
+}
+.ul-li:hover{
+
+  color: rgb(34, 47, 63);
+  transform: scale(1.15);
   cursor: pointer;
+  
+  
 }
 .strike-line {
   width: 100%;
@@ -111,7 +121,7 @@
 .userenddiv{
   
   border-radius: 50%;
-  border: 2px solid black;
+  border: 2px solid white;
   height: 35px;
   width: 35px;
   position: absolute;
@@ -120,6 +130,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
+  transition: 0.4s;
+}
+.userenddiv:hover{
+  color: rgb(34, 47, 63);
+  transform: scale(1.15);
+  cursor: pointer;
+  border-color: rgb(34, 47, 63);
+
 }
 
 @media only screen and (max-width: 700px) {

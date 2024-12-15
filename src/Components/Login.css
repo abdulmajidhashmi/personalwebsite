@@ -60,6 +60,7 @@ cursor: pointer;
 }
 
 .login-click{
+    all:unset;
     width: 324px;
     height: 50px;
     background-color:rgb(6, 196, 6);

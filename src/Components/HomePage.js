@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
 import "./HomePage.css";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 const HomePage = () => {
   const [navbarstate, setnavbarstate] = useState(false);
   const closeRef = useRef();
 
+  const userdata = useSelector((state)=>state.User.value);
+
   useEffect(() => {
+
+    console.log(userdata);
     if (navbarstate) {
       document.body.style.overflow = "hidden";
     } else {
@@ -25,14 +30,15 @@ const HomePage = () => {
     return () => {
       document.removeEventListener("mousedown", handleclickoutside);
     };
-  }, [navbarstate]);
+  }, [navbarstate,userdata]);
 
   return (
     <div className="main-div">
         
       <div className="headings">
-      <i class="fa-solid fa-staff-snake snake"></i> 
+      <i className="fa-solid fa-staff-snake snake"></i> 
    <h1 className="head">Dr.Hashmi Abdul Wase</h1>
+   
       </div>
       <div className="content-div">
        
@@ -42,7 +48,7 @@ const HomePage = () => {
           <li className="ul-li">treatments</li>
           <li className="ul-li">patients</li>
         </ul>
-       <Link to="/login"><div className="userenddiv"><i class="fa-regular fa-user userend"></i></div> </Link>
+       <Link to="/login"><div className="userenddiv"><i className="fa-regular fa-user userend"></i></div> </Link>
         
         <div className="strike-line">
           <hr className="line" />
@@ -59,7 +65,7 @@ const HomePage = () => {
           }`}
         >
           <i
-            class="fa-solid fa-xmark cut"
+            className="fa-solid fa-xmark cut"
             onClick={() => setnavbarstate(false)}
           ></i>
           <ul className="ul-li-div2">
@@ -84,6 +90,8 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+
+       <h1>{userdata.number}</h1> 
     </div>
   );
 };

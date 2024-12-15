@@ -1,27 +1,86 @@
-import './Signup.css';
-import { Link } from 'react-router-dom';
-const Signup = ()=>{
+import axios from "axios";
+import "./Signup.css";
+import { Link } from "react-router-dom";
+import axiosInstance from "./api/axiosInstance";
+const Signup = () => {
+  const submitform = (event) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
 
+    const userData = {};
+    for (let [key, value] of form.entries()) {
 
-    return (
-        <div className='signup-maindiv'>
-        <div className='signup-div'>
-        
-        <h1 className='s-head'>Sign up here</h1>
+      if(key === "number"){
 
-        <div className='s-inp-div'>
-       <Link to="/"><i class="fa-solid fa-xmark cross-mark"></i></Link> 
+userData[key]  =Number(value);
+      }else{
+      userData[key] = value;
+    }
+  }
 
-        <input className='signup-inp' placeholder='Enter Name'/>
-        <input className='signup-inp' placeholder='Enter Email'/>
-        <input className='signup-inp' type='password' placeholder='Enter Password'/>
-        <input className='signup-inp'type='password' placeholder='Confirm your password'/>
-        <div className='signup-button'>Sign Up</div>
-        <Link to="/login"><div className='already-userdiv'><p>Already a user?</p><p className='already-user'>Login here</p></div></Link>
+    signupcall(userData);
+
+    console.log(userData);
+  };
+
+  const signupcall = async (userData) => {
+    try {
+      const resdata = await axiosInstance.post("/user/signup", userData);
+
+      console.log(resdata);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  return (
+    <div className="signup-maindiv">
+      <div className="signup-div">
+        <h1 className="s-head">Sign up here</h1>
+
+        <div>
+          <Link to="/">
+            <i className="fa-solid fa-xmark cross-mark"></i>
+          </Link>
+          <form onSubmit={submitform} className="s-inp-div">
+            <input
+              className="signup-inp"
+              name="name"
+              placeholder="Enter Name"
+            />
+            <input
+              className="signup-inp"
+              name="number"
+              placeholder="Enter Number"
+              type="tel"
+            />
+            <input
+              className="signup-inp"
+              name="password"
+              type="password"
+              placeholder="Enter Password"
+            />
+            <input
+              className="signup-inp"
+              name="confirmPassword"
+              type="password"
+              placeholder="Confirm your password"
+            />
+
+            <button className="signup-button" type="submit">
+              Sign Up
+            </button>
+            <Link to="/login">
+              <div className="already-userdiv">
+                <p>Already a user?</p>
+                <p className="already-user">Login here</p>
+              </div>
+            </Link>
+          </form>
         </div>
-        </div>
-        </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
 export default Signup;
