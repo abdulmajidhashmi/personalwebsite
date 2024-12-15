@@ -60,9 +60,9 @@ setmessage(hi);
 
             
         </h1>
-
-        <input placeholder='Enter a number ' onKeyDown={sending}/>
         <input placeholder='write a message' onChange={sendingMessage}/>
+        <input placeholder='Enter a number ' onKeyDown={sending}/>
+       
 
         {messageData.map((dat, index) => (
   <p key={index}>{dat}</p>
