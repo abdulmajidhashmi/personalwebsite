@@ -2,7 +2,10 @@ import axios from "axios";
 import "./Signup.css";
 import { Link } from "react-router-dom";
 import axiosInstance from "./api/axiosInstance";
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
+
+  const navigate = useNavigate();
   const submitform = (event) => {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
@@ -28,6 +31,8 @@ userData[key]  =Number(value);
       const resdata = await axiosInstance.post("/user/signup", userData);
 
       console.log(resdata);
+      navigate('/login');
+      
     } catch (err) {
       console.log(err);
     }

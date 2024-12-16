@@ -3,20 +3,25 @@ import io from "socket.io-client";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import axiosInstance from "./api/axiosInstance";
+import { useNavigate } from "react-router-dom";
 import "./Test.css";
 const socket =  io('https://personalwebsitebackend-ntzy.onrender.com');
 // const socket = io("http://localhost:4020");
 
 const Test = () => {
+    const navigate=useNavigate();
   const data = useSelector((state) => state.User.value);
 
   const [messageData, setmessageData] = useState([]);
   const [updatedata, setupdatedata] = useState([]);
   const [touserId, settouserId] = useState("");
+  const [local,setlocal]= useState({});
 
   const alluserdata = async () => {
     try {
-      const userdata = await axiosInstance.get("/user/all");
+       const localdata = JSON.parse(localStorage.getItem('user'));
+    //   const userdata = await axiosInstance.post("/user/all",data);
+      const userdata = await axiosInstance.post("/user/all",localdata);
       console.log(userdata);
       setupdatedata(userdata.data.data);
     } catch (err) {
@@ -25,12 +30,21 @@ const Test = () => {
   };
 
   useEffect(() => {
+
+    const localdatamain =JSON.parse(localStorage.getItem('user'));
+    setlocal(localdatamain);
+    if(!localdatamain){
+navigate('/login');
+
+    }
     alluserdata();
 
     if (data.number) {
       socket.emit("joinRoom", data.number);
     }
     socket.on("recieveMessage", (data) => {
+        
+        console.log(data);
       setmessageData((prev) => [...prev, data.message]);
       console.log(data.message);
     });
@@ -64,14 +78,13 @@ const Test = () => {
     <>
       {updatedata ? (
         updatedata.map((dat, index) =>
-          dat.number === data.number ? null : (
+          dat.number === local.number ? null : (
             <div
               key={index}
               onClick={(event) => sendNumber(dat.number, event)}
               className="users-div"
             >
               <h3>{dat.name}</h3>
-              <h3>{dat.number}</h3>
             </div>
           )
         )

@@ -31,6 +31,7 @@ const Login = () => {
 
       console.log(resdata.data.data);
       dispatch(adddata(resdata.data.data));
+      localStorage.setItem('user',JSON.stringify(resdata.data.data));
       if(resdata.data.success===true){
       navigate('/');
       }
