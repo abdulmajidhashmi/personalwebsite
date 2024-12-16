@@ -32,7 +32,7 @@ const Login = () => {
       console.log(resdata.data.data);
       dispatch(adddata(resdata.data.data));
       if(resdata.data.success===true){
-      navigate('/test');
+      navigate('/');
       }
 
     }catch(err){

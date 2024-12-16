@@ -1,78 +1,92 @@
-import { useEffect } from 'react';
-import io from 'socket.io-client';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useRef } from "react";
+import io from "socket.io-client";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import axiosInstance from "./api/axiosInstance";
+import "./Test.css";
 const socket =  io('https://personalwebsitebackend-ntzy.onrender.com');
+// const socket = io("http://localhost:4020");
 
-const Test = ()=>{
+const Test = () => {
+  const data = useSelector((state) => state.User.value);
 
-    const data = useSelector(state => state.User.value);
+  const [messageData, setmessageData] = useState([]);
+  const [updatedata, setupdatedata] = useState([]);
+  const [touserId, settouserId] = useState("");
 
-    const [up,setup] = useState();
-    const [message,setmessage] = useState('');
-    const [messageData,setmessageData] =  useState([]);
+  const alluserdata = async () => {
+    try {
+      const userdata = await axiosInstance.get("/user/all");
+      console.log(userdata);
+      setupdatedata(userdata.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-useEffect(()=>{
-    
+  useEffect(() => {
+    alluserdata();
 
-    if(data.number){
-socket.emit('joinRoom',data.number);
+    if (data.number) {
+      socket.emit("joinRoom", data.number);
+    }
+    socket.on("recieveMessage", (data) => {
+      setmessageData((prev) => [...prev, data.message]);
+      console.log(data.message);
+    });
+    // return()=>{
 
-}
-    socket.on('recieveMessage',(data)=>{
+    //     socket.disconnect();
+    // }
+  }, [data.number]);
 
-        
-        setmessageData((prev) =>[...prev,data.message]);
-        console.log(data.message);
-        
-        })
-        // return()=>{
+  const sendingMessage = (event) => {
+    if (event.key === "Enter") {
+      const message = event.target.value;
 
-        //     socket.disconnect();
-        // }
-},[data.number])
-   
-const sending= (event)=>{
-if(event.key ==="Enter"){
-console.log(event.target.value);
-const touserId = event.target.value;
-console.log(message);
+      console.log(message);
 
-    socket.emit('sendMessage',{touserId,message});
-}
+      socket.emit("sendMessage", { touserId, message });
+    }
+  };
 
-    
-}
+  const sendNumber = (touserId, event) => {
+    console.log(touserId);
+    settouserId(touserId);
+    const allDivs = document.querySelectorAll(".users-div");
+    allDivs.forEach((div) => {
+      div.style.border = ""; // Remove border
+    });
 
-const sendingMessage = (event)=>{
+    event.currentTarget.style.border = "3px solid grey";
+  };
+  return (
+    <>
+      {updatedata ? (
+        updatedata.map((dat, index) =>
+          dat.number === data.number ? null : (
+            <div
+              key={index}
+              onClick={(event) => sendNumber(dat.number, event)}
+              className="users-div"
+            >
+              <h3>{dat.name}</h3>
+              <h3>{dat.number}</h3>
+            </div>
+          )
+        )
+      ) : (
+        <h1>no users here</h1>
+      )}
 
-    const hi = event.target.value;
-    console.log(message);
+      <h1></h1>
+      <input placeholder="write a message" onKeyDown={sendingMessage} />
 
-setmessage(hi);
-    
-}
-
-
-    return (
-
-        <>
-
-        <h1>
-
-            
-        </h1>
-        <input placeholder='write a message' onChange={sendingMessage}/>
-        <input placeholder='Enter a number ' onKeyDown={sending}/>
-       
-
-        {messageData.map((dat, index) => (
-  <p key={index}>{dat}</p>
-))}
-
-        
-        </>
-    )
-}
+      {messageData
+        ? messageData.map((dat, index) => <p key={index}>{dat}</p>)
+        : ""}
+    </>
+  );
+};
 
 export default Test;

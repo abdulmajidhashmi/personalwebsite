@@ -17,6 +17,7 @@ import Pd from "./Components/Psd";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import Test from "./Components/Test";
+import Chat from "./Components/Chat";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             element={
               <>
                 <HomePage />
+                <Chat/>
                 <DataCards />
                 {/* <Video/> */}
               </>
@@ -52,7 +54,7 @@ function App() {
             <Route path='/login' element={<><Login/></>}/>
            <Route path="/BipolarDisorder" element={<> <BiploarDisorder /> </>   }/> 
            <Route path='/signup' element={<><Signup/></>}/>
-            <Route path="/test" element={<><Test/></>}/>
+            <Route path="/chat" element={<><Test/></>}/>
           
         </Routes>
       </BrowserRouter>
