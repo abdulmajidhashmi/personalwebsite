@@ -44,7 +44,7 @@ navigate('/login');
     }
     socket.on("recieveMessage", ({message}) => {
         
-       
+       console.log(message);
         
       setmessageData((prev) => [...prev, message]);
       
@@ -53,7 +53,7 @@ navigate('/login');
 
     //     socket.disconnect();
     // }
-  }, [data.number]);
+  }, [local.number]);
 
   const sendingMessage = (event) => {
     if (event.key === "Enter") {
