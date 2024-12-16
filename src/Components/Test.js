@@ -39,14 +39,15 @@ navigate('/login');
     }
     alluserdata();
 
-    if (data.number) {
-      socket.emit("joinRoom", data.number);
+    if (local.number) {
+      socket.emit("joinRoom", local.number);
     }
-    socket.on("recieveMessage", (data) => {
+    socket.on("recieveMessage", ({message}) => {
         
-        console.log(data);
-      setmessageData((prev) => [...prev, data.message]);
-      console.log(data.message);
+       
+        
+      setmessageData((prev) => [...prev, message]);
+      
     });
     // return()=>{
 
@@ -76,6 +77,7 @@ navigate('/login');
   };
   return (
     <>
+    <h1>i am {local.name}</h1>
       {updatedata ? (
         updatedata.map((dat, index) =>
           dat.number === local.number ? null : (
