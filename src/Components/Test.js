@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import io from 'socket.io-client';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+const socket =  io('https://4dc390f7-db81-4473-9d73-250f619a9050-00-vkw4gy9hdbxr.pike.replit.dev');
 
 const Test = ()=>{
 
@@ -12,7 +13,7 @@ const Test = ()=>{
     const [messageData,setmessageData] =  useState([]);
 
 useEffect(()=>{
-    const socket =  io('https://4dc390f7-db81-4473-9d73-250f619a9050-00-vkw4gy9hdbxr.pike.replit.dev');
+    
 
     if(data.number){
 socket.emit('joinRoom',data.number);
