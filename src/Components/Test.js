@@ -16,6 +16,23 @@ const Test = () => {
   const [updatedata, setupdatedata] = useState([]);
   const [touserId, settouserId] = useState("");
   const [local,setlocal]= useState({});
+  const room  ="docroom";
+  const [status,setstatus] = useState([]);
+  const [you,setyou] =useState([]);
+
+
+  useEffect(()=>{
+
+    const localdatamain =JSON.parse(localStorage.getItem('user'));
+    setlocal(localdatamain);
+  
+    if(!localdatamain){
+navigate('/login');
+
+    }
+  },[navigate])
+  
+  
 
   const alluserdata = async () => {
     try {
@@ -30,18 +47,23 @@ const Test = () => {
   };
 
   useEffect(() => {
-
-    const localdatamain =JSON.parse(localStorage.getItem('user'));
-    setlocal(localdatamain);
-    if(!localdatamain){
-navigate('/login');
-
-    }
+    
     alluserdata();
 
     if (local.number) {
-      socket.emit("joinRoom", local.number);
+      socket.connect();
+      socket.emit("joinRoom",local.number, room);
+      console.log("socket connected");
     }
+    socket.on("isOnline",(is)=>{
+
+      console.log(is);
+      setstatus((prev)=> [...prev,is])
+    })
+    socket.on("userLeft",(message)=>{
+
+      setstatus((prev)=> [...prev,message])
+    })
     socket.on("recieveMessage", ({message}) => {
         
        console.log(message);
@@ -49,10 +71,11 @@ navigate('/login');
       setmessageData((prev) => [...prev, message]);
       
     });
-    // return()=>{
-
-    //     socket.disconnect();
-    // }
+    return () => {
+      // console.log("Disconnecting socket...");
+      socket.emit('leaveRoom',local.number,room);
+      socket.disconnect();
+    };
   }, [local.number]);
 
   const sendingMessage = (event) => {
@@ -61,6 +84,7 @@ navigate('/login');
 
       console.log(message);
 
+setyou((prev)=>[...prev,message]);
       socket.emit("sendMessage", { touserId, message });
     }
   };
@@ -97,9 +121,18 @@ navigate('/login');
       <h1></h1>
       <input placeholder="write a message" onKeyDown={sendingMessage} />
 
+      {you.map((dat)=>< div className="rightit-div">
+      
+      <p>{dat}</p></div>)}
       {messageData
-        ? messageData.map((dat, index) => <p key={index}>{dat}</p>)
+        ? messageData.map((dat, index) => <><p key={index}>{dat}</p></>)
         : ""}
+
+        {/* {status.map((dat,index)=><div key={index}>
+<p>{dat.userId}</p>
+<p>{dat.status}</p></div>
+
+        )} */}
     </>
   );
 };

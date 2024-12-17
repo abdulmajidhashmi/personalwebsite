@@ -6,3 +6,11 @@
     margin: 10px;
     border-radius: 9px;
 }
+
+.rightit-div{
+
+
+   display: flex;
+   justify-content: end;
+   
+}
