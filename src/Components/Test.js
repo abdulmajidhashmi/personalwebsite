@@ -15,6 +15,7 @@ const Test = () => {
   const recievedRef = useRef();
   const deliveredRef = useRef();
   const chatsubdivRef = useRef();
+  const statusreducer = useSelector((state)=>state.Online.value);
 
   const [status, setstatus] = useState([]);
   const [updatedata, setupdatedata] = useState([]);
@@ -27,6 +28,8 @@ const Test = () => {
   const [msg, setmsg] = useState("");
 
   useEffect(() => {
+    console.log(statusreducer);
+
     const localdatamain = JSON.parse(localStorage.getItem("user"));
     setlocal(localdatamain);
 
@@ -60,13 +63,20 @@ const Test = () => {
     if (local.name && local.name !== "Abdul Wase Hashmi") {
       socket.connect();
       const userId = String(local.number);
-      socket.emit("joinRoom", userId);
+      const selfid=local.number;
+      socket.emit("joinRoom", {selfid,userId});
       console.log("socket connected");
     
     
     if (local.name !== "Abdul Wase Hashmi") {
       socket.on("recieveMessage", ({ message }) => {
         console.log(message);
+        const recievenotification = document.getElementById('message-notification');
+    
+console.log(recievenotification)
+    recievenotification.play().catch((error) => {
+      console.error('Error plammmying sound:', error);
+    });
 
         const recievedElement = document.createElement("div");
         recievedElement.classList.add("recieved-text-div");
@@ -74,10 +84,15 @@ const Test = () => {
         deliveredRef.current.appendChild(recievedElement);
         chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
       });
+
+      
     }
     return () => {
       if (socket.connected) {
         console.log("Disconnecting socket...");
+        const status = "offline";
+        const localnumber =local.number;
+        socket.emit('leaveRoom',{localnumber,status});
        socket.disconnect();
       }
     
@@ -139,6 +154,12 @@ const Test = () => {
     console.log(msg);
     const use = String(local.number);
     socket.emit("sendMessage", { use, msg });
+    const sendnotification = document.getElementById('send-notification');
+
+    sendnotification.play().catch((err)=>{
+
+console.log(err);
+    })
     
   };
   const sendclick = () => {
@@ -169,6 +190,9 @@ const Test = () => {
 
   
   return (
+
+    <><audio id="message-notification" src='https://cdn.uppbeat.io/audio-files/550fafd5d5403a2f6e11b6feefd0899e/5813248995dfa6aca7fce524188eb5d7/d5b64c2af9644f381f878b6041cfaf56/STREAMING-pop-up-bubble-gfx-sounds-1-00-00.mp3' preload="auto"></audio>
+    <audio id="send-notification" src="https://cdn.uppbeat.io/audio-files/13a6d3c9e914de5ab3fb451786993718/2ec11eb913fad21b859105c510f56d4d/1e1c89bd9921c412363a66f3a6ab8366/STREAMING-notification-muffled-pop-smartsound-fx-1-00-00.mp3" preload="auto"></audio>
     <div className="chat-enter-maindiv">
       <div className={`chat-enterdiv ${updatedata?'full':''}`} ref={chatsubdivRef}>
         <div className={`boxing ${iskeyboardopen?'keyboard-open':''}`}>DR. Abdul Wase Hashmi</div>
@@ -216,6 +240,7 @@ const Test = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

@@ -5,7 +5,6 @@ import socket from "./api/Socket";
 import axiosInstance from "./api/axiosInstance";
 
 
-
 const SingleUser = () => {
 
   
@@ -16,6 +15,7 @@ const SingleUser = () => {
  const [username,setusername] = useState('');
   const [msg, setmsg] = useState("");
   const [local, setlocal] = useState({});
+  const [isStatus,setisStatus] = useState(false);
   const params =useParams();
   const use =params.id;
 
@@ -38,6 +38,8 @@ try{
   }
     
   useEffect(() => {
+
+    
     
     if(use){    getusername();}
     
@@ -54,9 +56,24 @@ try{
       
       socket.connect();
       const userId = String(use);
-      socket.emit("joinRoom", userId);
+      const selfid =local.number;
+      socket.emit("joinRoom",{selfid, userId});
       console.log("socket connected");
     }
+
+    socket.on('status',({status,who})=>{
+
+console.log(status);
+console.log(who);
+if(local.number){
+if(status==='online' ){
+
+  setisStatus(true);
+}else if(status ==="offline"){
+
+  setisStatus(false);
+}}
+    })
     socket.on("isOnline", (is) => {
       console.log(is);
       setstatus((prev) => [...prev, is]);
@@ -65,6 +82,13 @@ try{
       setstatus((prev) => [...prev, message]);
     });
     socket.on("recieveMessage", ({ message }) => {
+
+      const recievenotification = document.getElementById('message-notification');
+    
+console.log(recievenotification)
+    recievenotification.play().catch((error) => {
+      console.error('Error plammmying sound:', error);
+    });
       console.log(message);
 console.log(deliveredRef);
 if(deliveredRef.current){
@@ -80,7 +104,7 @@ if(deliveredRef.current){
     
       if (socket.connected) {
         console.log("Disconnecting socket...");
-        socket.disconnect();
+        socket.disconnect(local.number);
       }
       
     
@@ -120,12 +144,21 @@ if(deliveredRef.current){
     console.log(msg);
      
     socket.emit("sendMessage", { use, msg });
+    const sendnotification = document.getElementById('send-notification');
+
+    sendnotification.play().catch((err)=>{
+
+console.log(err);
+    })
   };
   return (
     <>
+
+<audio id="message-notification" src='https://cdn.uppbeat.io/audio-files/550fafd5d5403a2f6e11b6feefd0899e/5813248995dfa6aca7fce524188eb5d7/d5b64c2af9644f381f878b6041cfaf56/STREAMING-pop-up-bubble-gfx-sounds-1-00-00.mp3' preload="auto"></audio>
+<audio id="send-notification" src="https://cdn.uppbeat.io/audio-files/13a6d3c9e914de5ab3fb451786993718/2ec11eb913fad21b859105c510f56d4d/1e1c89bd9921c412363a66f3a6ab8366/STREAMING-notification-muffled-pop-smartsound-fx-1-00-00.mp3" preload="auto"></audio>
       <div className="chat-enter-maindiv">
         <div className="chat-enterdiv" ref={chatsubdivRef}>
-          <div className="boxing">{username}</div>
+          <div className="boxing">{isStatus?<div className="online-status"></div>:<div className="offline-status"></div>}{username}</div>
 
           
         
