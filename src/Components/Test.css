@@ -109,7 +109,7 @@ top:0;
   overflow: hidden;
 }
 .chat-enterdiv {
-  padding-top: 65px;
+  /* padding-top: 65px; */
   padding-bottom: 5px;
   box-sizing: border-box;
   width: 400px;
@@ -120,7 +120,7 @@ top:0;
 }
 
 .boxing {
-  position: fixed;
+  position: sticky;
   top: 0;
   height: 65px;
   width: 400px;
