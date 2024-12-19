@@ -90,9 +90,11 @@ const Test = () => {
       const height =window.innerHeight;
       if(height<500){
 
-        setiskeyboardopen(true);
+        
+        document.querySelector('.boxing').style.position = 'absolute';
       }else{
-        setiskeyboardopen(false);
+      
+        document.querySelector('.boxing').style.position = 'fixed';
       }
 
     }
