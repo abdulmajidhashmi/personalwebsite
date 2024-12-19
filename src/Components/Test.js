@@ -128,7 +128,13 @@ const Test = () => {
 
     deliveredRef.current.appendChild(messageElement);
 
-    chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
+   
+    if (chatsubdivRef.current) {
+      // Scroll to bottom only if the message container has not reached the input div
+      if (chatsubdivRef.current.scrollHeight - chatsubdivRef.current.scrollTop > chatsubdivRef.current.clientHeight) {
+        chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
+      }
+    }
 
     console.log(msg);
     const use = String(local.number);
@@ -164,7 +170,7 @@ const Test = () => {
   
   return (
     <div className="chat-enter-maindiv">
-      <div className="chat-enterdiv" ref={chatsubdivRef}>
+      <div className={`chat-enterdiv ${updatedata?'full':''}`} ref={chatsubdivRef}>
         <div className={`boxing ${iskeyboardopen?'keyboard-open':''}`}>DR. Abdul Wase Hashmi</div>
         {updatedata ? (
           updatedata.map((dat, index) =>

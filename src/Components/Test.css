@@ -109,18 +109,23 @@ top:0;
   overflow: hidden;
 }
 .chat-enterdiv {
-  /* padding-top: 65px; */
+  padding-top: 65px;
   padding-bottom: 5px;
   box-sizing: border-box;
   width: 400px;
-  height: calc(100% - 55px);
+  height: calc(100vh - 55px);
   background-color: rgb(249, 252, 253);
   position: relative;
   overflow-y: auto;
 }
 
+.chat-enterdiv.full{
+
+  height: 100vh;
+}
+
 .boxing {
-  position: sticky;
+  position: fixed;
   top: 0;
   height: 65px;
   width: 400px;
