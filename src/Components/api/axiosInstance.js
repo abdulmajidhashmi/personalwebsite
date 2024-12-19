@@ -1,10 +1,11 @@
 import axios from 'axios';
+import BaseURL from './BaseURL';
 
 
 const axiosInstance =axios.create({
 
-    // baseURL:"http://localhost:4020",
-    baseURL:"https://personalwebsitebackend-ntzy.onrender.com"
+    
+    baseURL:BaseURL
 })
 
 export default axiosInstance;

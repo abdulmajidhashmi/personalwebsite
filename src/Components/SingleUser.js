@@ -2,6 +2,7 @@ import "./Test.css";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate ,useParams } from "react-router-dom";
 import socket from "./api/Socket";
+import axiosInstance from "./api/axiosInstance";
 
 
 
@@ -12,14 +13,33 @@ const SingleUser = () => {
   const chatsubdivRef = useRef();
   const deliveredRef = useRef();
   const [status, setstatus] = useState([]);
- 
+ const [username,setusername] = useState('');
   const [msg, setmsg] = useState("");
   const [local, setlocal] = useState({});
   const params =useParams();
   const use =params.id;
+
+  const getusername=async()=>{
+try{
+
+  const obj = {
+    id:use
+  }
+  const data = await axiosInstance.post('/user/oneuserdetail',obj);
+  console.log(data);
+  setusername(data.data.data);
+
+}catch(err){
+
+  console.log(err);
+}
+
+
+  }
     
   useEffect(() => {
     
+    if(use){    getusername();}
     
     
     const localdatamain = JSON.parse(localStorage.getItem("user"));
@@ -105,7 +125,7 @@ if(deliveredRef.current){
     <>
       <div className="chat-enter-maindiv">
         <div className="chat-enterdiv" ref={chatsubdivRef}>
-          <div className="boxing">DR. Abdul Wase Hashmi</div>
+          <div className="boxing">{username}</div>
 
           
         
