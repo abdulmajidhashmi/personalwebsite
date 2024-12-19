@@ -11,11 +11,38 @@
   background-color: #aeacac;
 }
 .users-div {
-  background-color: pink;
-  height: 200px;
-  width: 200px;
-  margin: 10px;
-  border-radius: 9px;
+  
+  height: 70px;
+  width: 100%;
+ 
+  display: flex;
+  align-items: center;
+ 
+  
+}
+.users-div:hover{
+
+    background-color: rgb(234, 240, 242);
+}
+.img-user-chat{
+
+    height: 40px;
+    
+}
+.user-name{
+
+    margin-left: 12px;
+}
+.img-chat-user-div{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 7px;
+    background-color: rgb(223, 218, 218);
+    
 }
 .isend {
   width: 100%;
@@ -39,25 +66,30 @@
 }
 .send-text-div {
   background-color: rgb(34, 187, 116);
-  padding: 10px;
-  border-radius: 8px;
+  padding: 7px;
+  border-radius: 10px;
   margin-right: 10px;
-  margin: 10px;
+  margin: 5px;
   color: rgb(228, 214, 214);
-  width: 70%;
+  width: 55%;
   align-self: flex-end;
+  font-size: 13px;
+  font-weight: 400;
   
   
 }
 .recieved-text-div {
     background-color: rgb(109, 124, 209);
-  padding: 10px;
-  border-radius: 8px;
+  padding: 7px;
+  border-radius: 10px;
   margin-left: 10px;
-  margin: 10px;
+  margin: 5px;
   color: white;
-  width: 70%;
+  width: 55%;
   align-self: flex-start;
+  font-size: 13px;
+  font-weight: 400;
+  
 }
 
 .chat-enter-maindiv {
@@ -67,7 +99,8 @@
   justify-content: center;
 }
 .chat-enterdiv {
-  padding-top: 50px;
+  padding-top: 65px;
+  padding-bottom: 5px;
   box-sizing: border-box;
   width: 400px;
   height: calc(100vh - 45px);
@@ -79,7 +112,7 @@
 .boxing {
   position: fixed;
   top: 0;
-  height: 50px;
+  height: 65px;
   width: 400px;
   background-color: rgb(183, 0, 199);
   padding-left: 40px;

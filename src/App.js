@@ -18,6 +18,7 @@ import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import Test from "./Components/Test";
 import Chat from "./Components/Chat";
+import SingleUser from "./Components/SingleUser";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
            <Route path="/BipolarDisorder" element={<> <BiploarDisorder /> </>   }/> 
            <Route path='/signup' element={<><Signup/></>}/>
             <Route path="/chat" element={<><Test/></>}/>
+            <Route path='/test/:id' element={<><SingleUser/></>}/>
           
         </Routes>
       </BrowserRouter>

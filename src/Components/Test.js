@@ -1,27 +1,28 @@
 import { useEffect, useRef } from "react";
-import io from "socket.io-client";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import axiosInstance from "./api/axiosInstance";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import socket from "./api/Socket";
 import "./Test.css";
- const socket =  io('https://personalwebsitebackend-ntzy.onrender.com');
-//const socket = io("http://localhost:4020");
+
 
 const Test = () => {
+ 
   const navigate = useNavigate();
   const data = useSelector((state) => state.User.value);
   const recievedRef = useRef();
   const deliveredRef = useRef();
   const chatsubdivRef = useRef();
 
-  const [messageData, setmessageData] = useState([]);
+  const [status, setstatus] = useState([]);
   const [updatedata, setupdatedata] = useState([]);
   const [touserId, settouserId] = useState("");
   const [local, setlocal] = useState({});
-  const room = "docroom";
-  const [status, setstatus] = useState([]);
-  const [you, setyou] = useState([]);
+
+  const [show, setshow] = useState(true);
+
+  const [msg, setmsg] = useState("");
 
   useEffect(() => {
     const localdatamain = JSON.parse(localStorage.getItem("user"));
@@ -38,9 +39,11 @@ const Test = () => {
       //   const userdata = await axiosInstance.post("/user/all",data);
       const userdata = await axiosInstance.post("/user/all", localdata);
       console.log(userdata);
-      console.log(userdata.data.data.name);
+
       if (userdata.data.data.name === "Doctor") {
         settouserId(userdata.data.data.number);
+
+        setshow(false);
       } else {
         setupdatedata(userdata.data.data);
       }
@@ -52,64 +55,77 @@ const Test = () => {
   useEffect(() => {
     alluserdata();
 
-    if (local.number) {
+    if (local.name && local.name !== "Abdul Wase Hashmi") {
       socket.connect();
-      socket.emit("joinRoom", local.number, room);
+      const userId = String(local.number);
+      socket.emit("joinRoom", userId);
       console.log("socket connected");
-    }
-    socket.on("isOnline", (is) => {
-      console.log(is);
-      setstatus((prev) => [...prev, is]);
-    });
-    socket.on("userLeft", (message) => {
-      setstatus((prev) => [...prev, message]);
-    });
-    socket.on("recieveMessage", ({ message }) => {
-      console.log(message);
+    
+    
+    if (local.name !== "Abdul Wase Hashmi") {
+      socket.on("recieveMessage", ({ message }) => {
+        console.log(message);
 
-      const recievedElement = document.createElement("div");
-      recievedElement.classList.add("recieved-text-div");
-      recievedElement.innerHTML = `<p className="recieved-text">${message}</p>`;
-      deliveredRef.current.appendChild(recievedElement);
-      chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
-    });
+        const recievedElement = document.createElement("div");
+        recievedElement.classList.add("recieved-text-div");
+        recievedElement.innerHTML = `<p className="recieved-text">${message}</p>`;
+        deliveredRef.current.appendChild(recievedElement);
+        chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
+      });
+    }
     return () => {
-      // console.log("Disconnecting socket...");
-      socket.emit("leaveRoom", local.number, room);
-      socket.disconnect();
-    };
+      if (socket.connected) {
+        console.log("Disconnecting socket...");
+       socket.disconnect();
+      }
+    
+      
+    };}
   }, [local.number]);
 
   const sendingMessage = (event) => {
-    if (event.key === "Enter") {
-      const message = event.target.value;
+    if (
+      event.key === "Enter" &&
+      event.target.value !== "" &&
+      local.name !== "Abdul Wase Hashmi"
+    ) {
+      messagefn();
 
-      console.log(message);
-      const messageElement = document.createElement("div");
-      messageElement.classList.add("send-text-div");
-      messageElement.innerHTML = `<p className="delivered-text">${message}</p>`;
-      console.log(messageElement);
-
-      deliveredRef.current.appendChild(messageElement);
-
-      chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
-
-      setyou((prev) => [...prev, message]);
-      socket.emit("sendMessage", { touserId, message });
       event.target.value = "";
+    }
+  };
+
+  const messagefn = () => {
+    const messageElement = document.createElement("div");
+    messageElement.classList.add("send-text-div");
+    messageElement.innerHTML = `<p className="delivered-text">${msg}</p>`;
+    console.log(messageElement);
+
+    deliveredRef.current.appendChild(messageElement);
+
+    chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
+
+    console.log(msg);
+    const use = String(local.number);
+    socket.emit("sendMessage", { use, msg });
+    
+  };
+  const sendclick = () => {
+    if (local.name !== "Abdul Wase Hashmi") {
+      messagefn();
+      setmsg("");
     }
   };
 
   const sendNumber = (touserId, event) => {
     console.log(touserId);
     settouserId(touserId);
+    navigate(`/test/${touserId}`);
+  };
 
-    const allDivs = document.querySelectorAll(".users-div");
-    allDivs.forEach((div) => {
-      div.style.border = ""; // Remove border
-    });
-
-    event.currentTarget.style.border = "3px solid grey";
+  const changeMessage = (event) => {
+    const val = event.target.value;
+    setmsg(val);
   };
 
   return (
@@ -125,7 +141,13 @@ const Test = () => {
                 onClick={(event) => sendNumber(dat.number, event)}
                 className="users-div"
               >
-                <h3>{dat.name}</h3>
+                <div className="img-chat-user-div">
+                  <img
+                    src="https://www.webiconio.com/_upload/255/image_255.svg"
+                    className="img-user-chat"
+                  />
+                </div>{" "}
+                <h3 className="user-name">{dat.name}</h3>
               </div>
             )
           )
@@ -133,21 +155,25 @@ const Test = () => {
           <h1>no users here</h1>
         )}
 
-        <div className="isend">
-          {/* {" "}
-          <div className="recieved" ref={recievedRef}></div>{" "} */}
-          <div className="rightit-div" ref={deliveredRef}></div>
-        </div>
-        <div className="inpchat-div">
-          <input
-            className="inp-chat"
-            placeholder="Message"
-            onKeyDown={sendingMessage}
-          />
-          <div className="send-div">
-            <i class="fa-solid fa-circle-chevron-right send"></i>
-          </div>
-        </div>
+        {show ? null : (
+          <>
+            <div className="isend">
+              <div className="rightit-div" ref={deliveredRef}></div>
+            </div>
+            <div className="inpchat-div">
+              <input
+                className="inp-chat"
+                placeholder="Message"
+                value={msg}
+                onChange={changeMessage}
+                onKeyDown={sendingMessage}
+              />
+              <div onClick={sendclick} className="send-div">
+                <i class="fa-solid fa-circle-chevron-right send"></i>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
