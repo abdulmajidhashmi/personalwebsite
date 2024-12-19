@@ -5,10 +5,11 @@ import axiosInstance from "./api/axiosInstance";
 import { Navigate, useNavigate } from "react-router-dom";
 import socket from "./api/Socket";
 import "./Test.css";
+import { useLocation } from 'react-router-dom';
 
 
 const Test = () => {
- 
+  const location = useLocation();
   const navigate = useNavigate();
   const data = useSelector((state) => state.User.value);
   const recievedRef = useRef();
@@ -152,6 +153,15 @@ const Test = () => {
     setmsg(val);
   };
 
+  useEffect(() => {
+    if (location.pathname === '/chat') {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+  }, [location]);
+
+  
   return (
     <div className="chat-enter-maindiv">
       <div className="chat-enterdiv" ref={chatsubdivRef}>
