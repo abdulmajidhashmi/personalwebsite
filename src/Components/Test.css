@@ -65,30 +65,30 @@
   width: 50%;
 }
 .send-text-div {
-  background-color: rgb(34, 187, 116);
-  padding: 7px;
+  background-color: rgb(2, 200, 108);
+  padding: 10px;
   border-radius: 10px;
   margin-right: 10px;
   margin: 5px;
-  color: rgb(228, 214, 214);
-  width: 55%;
+  color: rgb(246, 233, 233);
+  width: 60%;
   align-self: flex-end;
-  font-size: 13px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 500;
   
   
 }
 .recieved-text-div {
-    background-color: rgb(109, 124, 209);
-  padding: 7px;
+    background-color: rgb(134, 149, 235);
+  padding: 10px;
   border-radius: 10px;
   margin-left: 10px;
   margin: 5px;
   color: white;
-  width: 55%;
+  width: 60%;
   align-self: flex-start;
-  font-size: 13px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 500;
   
 }
 
@@ -99,7 +99,7 @@
   justify-content: center;
 }
 .chat-enterdiv {
-  padding-top: 65px;
+  /* padding-top: 65px; */
   padding-bottom: 5px;
   box-sizing: border-box;
   width: 400px;
@@ -110,7 +110,7 @@
 }
 
 .boxing {
-  position: fixed;
+  position: sticky;
   top: 0;
   height: 65px;
   width: 400px;
@@ -122,6 +122,7 @@
   font-size: 20px;
   color: white;
   font-weight: 700;
+  user-select: none;
 }
 .inpchat-div {
   position: fixed;

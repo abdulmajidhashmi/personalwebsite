@@ -74,10 +74,14 @@ if(deliveredRef.current){
   const sendingMessage = (event) => {
     if (event.key === "Enter" && event.target.value !== "") {
       messagefn();
+      event.target.value='';
     }
   };
   const sendclick = () => {
+    if(msg!==''){
     messagefn();
+    setmsg('');
+  }
   };
   const messagefn = () => {
     const messageElement = document.createElement("div");
