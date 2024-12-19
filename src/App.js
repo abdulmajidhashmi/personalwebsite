@@ -19,8 +19,37 @@ import Signup from "./Components/Signup";
 import Test from "./Components/Test";
 import Chat from "./Components/Chat";
 import SingleUser from "./Components/SingleUser";
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useEffect } from "react";
 
 function App() {
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Store the scroll position before leaving the page
+    const handleBeforeUnload = () => {
+      sessionStorage.setItem('scrollPosition', window.scrollY);
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [location]);
+
+  useEffect(() => {
+    // Scroll to the top when navigating to a new page
+    window.scrollTo(0, 0);
+
+    // Restore the scroll position when coming back to the page
+    const savedPosition = sessionStorage.getItem('scrollPosition');
+    if (savedPosition) {
+      window.scrollTo(0, savedPosition);
+    }
+  }, [location]);
   return (
     <>
       <BrowserRouter>
