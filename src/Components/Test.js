@@ -84,28 +84,28 @@ const Test = () => {
     };}
   }, [local.number]);
 
-  useEffect(()=>{
+  // useEffect(()=>{
 
-    const handleresize=()=>{
-      const height =window.innerHeight;
-      if(height<500){
+  //   const handleresize=()=>{
+  //     const height =window.innerHeight;
+  //     if(height<500){
 
         
-        document.querySelector('.boxing').style.position = 'absolute';
-      }else{
+  //       document.querySelector('.boxing').style.position = 'absolute';
+  //     }else{
       
-        document.querySelector('.boxing').style.position = 'fixed';
-      }
+  //       document.querySelector('.boxing').style.position = 'fixed';
+  //     }
 
-    }
+  //   }
 
-    window.addEventListener('resize',handleresize)
+  //   window.addEventListener('resize',handleresize)
 
-    return(()=>{
+  //   return(()=>{
 
-      window.removeEventListener('resize',handleresize)
-    })
-  },[])
+  //     window.removeEventListener('resize',handleresize)
+  //   })
+  // },[])
 
   const sendingMessage = (event) => {
     if (
