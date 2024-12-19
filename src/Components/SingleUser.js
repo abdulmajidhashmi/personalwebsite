@@ -89,6 +89,7 @@ if(deliveredRef.current){
     messageElement.innerHTML = `<p className="delivered-text">${msg}</p>`;
     console.log(messageElement);
 
+    deliveredRef.current.appendChild(messageElement);
     if (chatsubdivRef.current) {
       // Scroll to bottom only if the message container has not reached the input div
       if (chatsubdivRef.current.scrollHeight - chatsubdivRef.current.scrollTop > chatsubdivRef.current.clientHeight) {
