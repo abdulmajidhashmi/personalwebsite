@@ -5,15 +5,13 @@
 .chat-enterdiv::-webkit-scrollbar-thumb {
   background-color: #d2cfcf;
   border-radius: 10px;
+  height: var(100vh - 55px);
 }
 
 .chat-enterdiv::-webkit-scrollbar-thumb:hover {
   background-color: #aeacac;
 }
-.chat-enterdiv::-webkit-scrollbar-track{
 
-  height: var(100vh - 55px);
-}
 .users-div {
   
   height: 70px;
