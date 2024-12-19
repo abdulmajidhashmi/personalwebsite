@@ -19,6 +19,7 @@ const Test = () => {
   const [updatedata, setupdatedata] = useState([]);
   const [touserId, settouserId] = useState("");
   const [local, setlocal] = useState({});
+  const [iskeyboardopen,setiskeyboardopen] = useState(false);
 
   const [show, setshow] = useState(true);
 
@@ -83,6 +84,27 @@ const Test = () => {
     };}
   }, [local.number]);
 
+  useEffect(()=>{
+
+    const handleresize=()=>{
+      const height =window.innerHeight;
+      if(height<500){
+
+        setiskeyboardopen(true);
+      }else{
+        setiskeyboardopen(false);
+      }
+
+    }
+
+    window.addEventListener('resize',handleresize)
+
+    return(()=>{
+
+      window.removeEventListener('resize',handleresize)
+    })
+  },[])
+
   const sendingMessage = (event) => {
     if (
       event.key === "Enter" &&
@@ -131,7 +153,7 @@ const Test = () => {
   return (
     <div className="chat-enter-maindiv">
       <div className="chat-enterdiv" ref={chatsubdivRef}>
-        <div className="boxing">DR. Abdul Wase Hashmi</div>
+        <div className={`boxing ${iskeyboardopen?'keyboard-open':''}`}>DR. Abdul Wase Hashmi</div>
         {updatedata ? (
           updatedata.map((dat, index) =>
             dat.number === local.number ? null : dat.name ===

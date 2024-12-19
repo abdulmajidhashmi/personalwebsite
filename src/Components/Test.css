@@ -78,6 +78,10 @@
   
   
 }
+.boxing.keyboard-open{
+top:0;
+
+}
 .recieved-text-div {
     background-color: rgb(134, 149, 235);
   padding: 10px;
