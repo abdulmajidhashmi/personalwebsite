@@ -28,6 +28,14 @@ const Test = () => {
   const [msg, setmsg] = useState("");
 
   useEffect(() => {
+    if (chatsubdivRef.current) {
+      // Scroll to the bottom of the chat container
+      chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
+    }
+  }, [storemsg]);
+  
+
+  useEffect(() => {
     console.log(statusreducer);
 
     const localdatamain = JSON.parse(localStorage.getItem("user"));
@@ -86,17 +94,7 @@ const Test = () => {
             });
 
             setstoremsg((prev) => [...prev,{place:'left',message:message}]);
-            if (chatsubdivRef.current) {
-              // Scroll to bottom only if the message container has not reached the input div
-              if (
-                chatsubdivRef.current.scrollHeight -
-                  chatsubdivRef.current.scrollTop >
-                chatsubdivRef.current.clientHeight
-              ) {
-                chatsubdivRef.current.scrollTop =
-                  chatsubdivRef.current.scrollHeight;
-              }
-            }
+           
           
         });
       }
@@ -129,15 +127,7 @@ const Test = () => {
     if (msg) {
       setstoremsg((prev) => [...prev,{place:'right',message:msg}]);
 
-      if (chatsubdivRef.current) {
-        // Scroll to bottom only if the message container has not reached the input div
-        if (
-          chatsubdivRef.current.scrollHeight - chatsubdivRef.current.scrollTop >
-          chatsubdivRef.current.clientHeight
-        ) {
-          chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
-        }
-      }
+     
 
       console.log(msg);
       const use = String(local.number);
@@ -220,13 +210,13 @@ const Test = () => {
 
           {show ? null : (
             <>
-              <div className="isend">
+              {/* <div className="isend"> */}
               <div className="rightit-div" ref={deliveredRef}>{storemsg.map((dat)=>(<>
 
 <div className={`${dat.place==="right"?'send-text-div':'recieved-text-div'}`}><p className={`${dat.place==="left"?'send-text':'recieved-text'}`}>{dat.message}</p></div ></>
             ))}
           </div>
-              </div>
+              {/* </div> */}
               <div className="inpchat-div">
                 <input
                   className="inp-chat"

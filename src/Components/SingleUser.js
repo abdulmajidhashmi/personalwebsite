@@ -18,6 +18,14 @@ const SingleUser = () => {
   const [isRefsready, setisRefsready] = useState(false);
   const [storemsg,setstoremsg] = useState([]);
 
+  useEffect(() => {
+    if (chatsubdivRef.current) {
+      // Scroll to the bottom of the chat container
+      chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
+    }
+  }, [storemsg]);
+  
+
   const getusername = async () => {
     try {
       const obj = {
@@ -81,17 +89,7 @@ const SingleUser = () => {
 
         if (local.name === "Abdul Wase Hashmi") {
          
-          if (chatsubdivRef.current) {
-            // Scroll to bottom only if the message container has not reached the input div
-            if (
-              chatsubdivRef.current.scrollHeight -
-                chatsubdivRef.current.scrollTop >
-              chatsubdivRef.current.clientHeight
-            ) {
-              chatsubdivRef.current.scrollTop =
-                chatsubdivRef.current.scrollHeight;
-            }
-          }
+          
         }
     
     });
@@ -122,15 +120,7 @@ const SingleUser = () => {
   
    
 
-      if (chatsubdivRef.current) {
-        // Scroll to bottom only if the message container has not reached the input div
-        if (
-          chatsubdivRef.current.scrollHeight - chatsubdivRef.current.scrollTop >
-          chatsubdivRef.current.clientHeight
-        ) {
-          chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
-        }
-      }
+      
 
       console.log(msg);
       use = String(use);
@@ -170,12 +160,13 @@ if(msg){
             {username}
           </div>
 
-          <div className="isend">
+          {/* <div className="isend"> */}
             <div className="rightit-div" ref={deliveredRef}>{storemsg.map((dat)=>(<>
 
 <div className={`${dat.place==="right"?'send-text-div':'recieved-text-div'}`}><p className={`${dat.place==="left"?'send-text':'recieved-text'}`}>{dat.message}</p></div ></>
             ))}
-          </div></div>
+          {/* </div> */}
+          </div>
           <div className="inpchat-div">
             <input
               className="inp-chat"
