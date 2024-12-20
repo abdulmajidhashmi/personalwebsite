@@ -18,6 +18,7 @@ const SingleUser = () => {
   const [isStatus,setisStatus] = useState(false);
   const params =useParams();
   let use =params.id;
+  const [isRefsready,setisRefsready] = useState(false);
 
   const getusername=async()=>{
 try{
@@ -39,7 +40,10 @@ try{
     
   useEffect(() => {
 
-    
+    if(deliveredRef.current){
+
+      setisRefsready(true);
+    }
     
     if(use){    getusername();}
     
@@ -83,6 +87,8 @@ if(status==='online' ){
     });
     socket.on("recieveMessage", ({ message }) => {
 
+      if(isRefsready){
+
       const recievenotification = document.getElementById('message-notification');
     
 console.log(recievenotification)
@@ -91,7 +97,7 @@ console.log(recievenotification)
     });
       console.log(message);
 console.log(deliveredRef);
-if(deliveredRef.current){
+
       if (local.name === "Abdul Wase Hashmi") {
         const recievedElement = document.createElement("div");
         recievedElement.classList.add("recieved-text-div");
@@ -128,7 +134,7 @@ if(deliveredRef.current){
   }
   };
   const messagefn = () => {
-    if(deliveredRef.current){
+    if(isRefsready){
     const messageElement = document.createElement("div");
     messageElement.classList.add("send-text-div");
     messageElement.innerHTML = `<p className="delivered-text">${msg}</p>`;

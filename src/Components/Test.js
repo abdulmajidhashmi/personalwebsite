@@ -21,7 +21,7 @@ const Test = () => {
   const [touserId, settouserId] = useState("");
   const [local, setlocal] = useState({});
   const [iskeyboardopen, setiskeyboardopen] = useState(false);
-
+  const [isRefsready,setisRefsready] = useState(false);
   const [show, setshow] = useState(true);
 
   const [msg, setmsg] = useState("");
@@ -57,6 +57,11 @@ const Test = () => {
   };
 
   useEffect(() => {
+    if(deliveredRef.current){
+
+      setisRefsready(true);
+    }
+    
     alluserdata();
 
     if (local.name && local.name !== "Abdul Wase Hashmi") {
@@ -71,7 +76,7 @@ const Test = () => {
         socket.on("recieveMessage", ({ message }) => {
           console.log(message);
 
-          if(deliveredRef.current){
+          if(isRefsready){
           const recievenotification = document.getElementById(
             "message-notification"
           );
@@ -117,7 +122,7 @@ const Test = () => {
   };
 
   const messagefn = () => {
-    if (deliveredRef.current) {
+    if (isRefsready) {
       const messageElement = document.createElement("div");
       messageElement.classList.add("send-text-div");
       messageElement.innerHTML = `<p className="delivered-text">${msg}</p>`;
