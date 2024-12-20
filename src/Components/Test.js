@@ -122,7 +122,7 @@ const Test = () => {
   };
 
   const messagefn = () => {
-    if (isRefsready) {
+    if (isRefsready && msg) {
       const messageElement = document.createElement("div");
       messageElement.classList.add("send-text-div");
       messageElement.innerHTML = `<p className="delivered-text">${msg}</p>`;
