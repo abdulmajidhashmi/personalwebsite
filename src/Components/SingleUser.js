@@ -17,7 +17,7 @@ const SingleUser = () => {
   const [local, setlocal] = useState({});
   const [isStatus,setisStatus] = useState(false);
   const params =useParams();
-  const use =params.id;
+  let use =params.id;
 
   const getusername=async()=>{
 try{
@@ -128,12 +128,14 @@ if(deliveredRef.current){
   }
   };
   const messagefn = () => {
+    if(deliveredRef.current){
     const messageElement = document.createElement("div");
     messageElement.classList.add("send-text-div");
     messageElement.innerHTML = `<p className="delivered-text">${msg}</p>`;
     console.log(messageElement);
 
     deliveredRef.current.appendChild(messageElement);
+    }
     if (chatsubdivRef.current) {
       // Scroll to bottom only if the message container has not reached the input div
       if (chatsubdivRef.current.scrollHeight - chatsubdivRef.current.scrollTop > chatsubdivRef.current.clientHeight) {
@@ -142,8 +144,9 @@ if(deliveredRef.current){
     }
 
     console.log(msg);
+    use = String(use);
      
-    socket.emit("sendMessage", { use, msg });
+    socket.emit("sendMessage", {use, msg });
     const sendnotification = document.getElementById('send-notification');
 
     sendnotification.play().catch((err)=>{
