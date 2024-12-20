@@ -67,6 +67,7 @@ const Test = () => {
       console.log("socket connected");
 
       if (local.name !== "Abdul Wase Hashmi") {
+        if(deliveredRef.current){
         socket.on("recieveMessage", ({ message }) => {
           console.log(message);
           const recievenotification = document.getElementById(
@@ -77,14 +78,15 @@ const Test = () => {
           recievenotification.play().catch((error) => {
             console.error("Error plammmying sound:", error);
           });
-if(deliveredRef.current){
+
           const recievedElement = document.createElement("div");
           recievedElement.classList.add("recieved-text-div");
           recievedElement.innerHTML = `<p className="recieved-text">${message}</p>`;
           deliveredRef.current.appendChild(recievedElement);
           chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
-}
+
         });
+      }
       }
       return () => {
         if (socket.connected) {
