@@ -135,7 +135,7 @@ if(deliveredRef.current){
     console.log(messageElement);
 
     deliveredRef.current.appendChild(messageElement);
-    }
+    
     if (chatsubdivRef.current) {
       // Scroll to bottom only if the message container has not reached the input div
       if (chatsubdivRef.current.scrollHeight - chatsubdivRef.current.scrollTop > chatsubdivRef.current.clientHeight) {
@@ -152,7 +152,7 @@ if(deliveredRef.current){
     sendnotification.play().catch((err)=>{
 
 console.log(err);
-    })
+    })}
   };
   return (
     <>

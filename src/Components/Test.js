@@ -98,27 +98,7 @@ if(deliveredRef.current){
     }
   }, [local.number]);
 
-  // useEffect(()=>{
-
-  //   const handleresize=()=>{
-  //     const height =window.innerHeight;
-  //     if(height<500){
-
-  //       document.querySelector('.boxing').style.position = 'absolute';
-  //     }else{
-
-  //       document.querySelector('.boxing').style.position = 'fixed';
-  //     }
-
-  //   }
-
-  //   window.addEventListener('resize',handleresize)
-
-  //   return(()=>{
-
-  //     window.removeEventListener('resize',handleresize)
-  //   })
-  // },[])
+ 
 
   const sendingMessage = (event) => {
     if (
@@ -140,7 +120,7 @@ if(deliveredRef.current){
       console.log(messageElement);
 
       deliveredRef.current.appendChild(messageElement);
-    }
+    
 
     if (chatsubdivRef.current) {
       // Scroll to bottom only if the message container has not reached the input div
@@ -159,7 +139,7 @@ if(deliveredRef.current){
 
     sendnotification.play().catch((err) => {
       console.log(err);
-    });
+    });}
   };
   const sendclick = () => {
     if (local.name !== "Abdul Wase Hashmi") {
