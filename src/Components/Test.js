@@ -21,7 +21,7 @@ const Test = () => {
   const [touserId, settouserId] = useState("");
   const [local, setlocal] = useState({});
   const [iskeyboardopen, setiskeyboardopen] = useState(false);
-  const [isRefsready,setisRefsready] = useState(false);
+  const [isRefsready, setisRefsready] = useState(false);
   const [show, setshow] = useState(true);
 
   const [msg, setmsg] = useState("");
@@ -57,11 +57,10 @@ const Test = () => {
   };
 
   useEffect(() => {
-    if(deliveredRef.current){
-
+    if (deliveredRef.current) {
       setisRefsready(true);
     }
-    
+
     alluserdata();
 
     if (local.name && local.name !== "Abdul Wase Hashmi") {
@@ -72,28 +71,36 @@ const Test = () => {
       console.log("socket connected");
 
       if (local.name !== "Abdul Wase Hashmi") {
-       
         socket.on("recieveMessage", ({ message }) => {
           console.log(message);
 
-          if(isRefsready){
-          const recievenotification = document.getElementById(
-            "message-notification"
-          );
+          if (isRefsready) {
+            const recievenotification = document.getElementById(
+              "message-notification"
+            );
 
-          console.log(recievenotification);
-          recievenotification.play().catch((error) => {
-            console.error("Error plammmying sound:", error);
-          });
+            console.log(recievenotification);
+            recievenotification.play().catch((error) => {
+              console.error("Error plammmying sound:", error);
+            });
 
-          const recievedElement = document.createElement("div");
-          recievedElement.classList.add("recieved-text-div");
-          recievedElement.innerHTML = `<p className="recieved-text">${message}</p>`;
-          deliveredRef.current.appendChild(recievedElement);
-          chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
-        }
+            const recievedElement = document.createElement("div");
+            recievedElement.classList.add("recieved-text-div");
+            recievedElement.innerHTML = `<p className="recieved-text">${message}</p>`;
+            deliveredRef.current.appendChild(recievedElement);
+            if (chatsubdivRef.current) {
+              // Scroll to bottom only if the message container has not reached the input div
+              if (
+                chatsubdivRef.current.scrollHeight -
+                  chatsubdivRef.current.scrollTop >
+                chatsubdivRef.current.clientHeight
+              ) {
+                chatsubdivRef.current.scrollTop =
+                  chatsubdivRef.current.scrollHeight;
+              }
+            }
+          }
         });
-     
       }
       return () => {
         if (socket.connected) {
@@ -105,9 +112,7 @@ const Test = () => {
         }
       };
     }
-  }, [local.number,isRefsready,deliveredRef]);
-
- 
+  }, [local.number, isRefsready, deliveredRef]);
 
   const sendingMessage = (event) => {
     if (
@@ -129,26 +134,26 @@ const Test = () => {
       console.log(messageElement);
 
       deliveredRef.current.appendChild(messageElement);
-    
 
-    if (chatsubdivRef.current) {
-      // Scroll to bottom only if the message container has not reached the input div
-      if (
-        chatsubdivRef.current.scrollHeight - chatsubdivRef.current.scrollTop >
-        chatsubdivRef.current.clientHeight
-      ) {
-        chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
+      if (chatsubdivRef.current) {
+        // Scroll to bottom only if the message container has not reached the input div
+        if (
+          chatsubdivRef.current.scrollHeight - chatsubdivRef.current.scrollTop >
+          chatsubdivRef.current.clientHeight
+        ) {
+          chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
+        }
       }
+
+      console.log(msg);
+      const use = String(local.number);
+      socket.emit("sendMessage", { use, msg });
+      const sendnotification = document.getElementById("send-notification");
+
+      sendnotification.play().catch((err) => {
+        console.log(err);
+      });
     }
-
-    console.log(msg);
-    const use = String(local.number);
-    socket.emit("sendMessage", { use, msg });
-    const sendnotification = document.getElementById("send-notification");
-
-    sendnotification.play().catch((err) => {
-      console.log(err);
-    });}
   };
   const sendclick = () => {
     if (local.name !== "Abdul Wase Hashmi") {
