@@ -16,6 +16,7 @@ const SingleUser = () => {
   const params = useParams();
   let use = params.id;
   const [isRefsready, setisRefsready] = useState(false);
+  const [storemsg,setstoremsg] = useState([]);
 
   const getusername = async () => {
     try {
@@ -31,9 +32,7 @@ const SingleUser = () => {
   };
 
   useEffect(() => {
-    if (deliveredRef.current) {
-      setisRefsready(true);
-    }
+   
 
     if (use) {
       getusername();
@@ -66,31 +65,22 @@ const SingleUser = () => {
         }
       }
     });
-    socket.on("isOnline", (is) => {
-      console.log(is);
-      setstatus((prev) => [...prev, is]);
-    });
-    socket.on("userLeft", (message) => {
-      setstatus((prev) => [...prev, message]);
-    });
+    
     socket.on("recieveMessage", ({ message }) => {
-      if (isRefsready) {
+      if(message){
         const recievenotification = document.getElementById(
           "message-notification"
         );
 
-        console.log(recievenotification);
+      
         recievenotification.play().catch((error) => {
           console.error("Error plammmying sound:", error);
-        });
+        });}
         console.log(message);
-        console.log(deliveredRef);
+        setstoremsg((prev) => [...prev,{place:'left',message:message}]);
 
         if (local.name === "Abdul Wase Hashmi") {
-          const recievedElement = document.createElement("div");
-          recievedElement.classList.add("recieved-text-div");
-          recievedElement.innerHTML = `<p className="recieved-text">${message}</p>`;
-          deliveredRef.current.appendChild(recievedElement);
+         
           if (chatsubdivRef.current) {
             // Scroll to bottom only if the message container has not reached the input div
             if (
@@ -103,7 +93,7 @@ const SingleUser = () => {
             }
           }
         }
-      }
+    
     });
     return () => {
       if (socket.connected) {
@@ -111,7 +101,7 @@ const SingleUser = () => {
         socket.disconnect(local.number);
       }
     };
-  }, [local.number, use, isRefsready, deliveredRef]);
+  }, [local.number, use]);
   const changeMessage = (event) => {
     const val = event.target.value;
     setmsg(val);
@@ -119,7 +109,7 @@ const SingleUser = () => {
   const sendingMessage = (event) => {
     if (event.key === "Enter" && event.target.value !== "") {
       messagefn();
-      event.target.value = "";
+      setmsg('');
     }
   };
   const sendclick = () => {
@@ -129,13 +119,8 @@ const SingleUser = () => {
     }
   };
   const messagefn = () => {
-    if (isRefsready && msg) {
-      const messageElement = document.createElement("div");
-      messageElement.classList.add("send-text-div");
-      messageElement.innerHTML = `<p className="delivered-text">${msg}</p>`;
-      console.log(messageElement);
-
-      deliveredRef.current.appendChild(messageElement);
+  
+   
 
       if (chatsubdivRef.current) {
         // Scroll to bottom only if the message container has not reached the input div
@@ -149,15 +134,19 @@ const SingleUser = () => {
 
       console.log(msg);
       use = String(use);
+if(msg){
 
+  setstoremsg((prev) => [...prev,{place:'right',message:msg}]);
       socket.emit("sendMessage", { use, msg });
       const sendnotification = document.getElementById("send-notification");
 
       sendnotification.play().catch((err) => {
         console.log(err);
       });
+    
     }
-  };
+    }
+  
   return (
     <>
       <audio
@@ -182,8 +171,11 @@ const SingleUser = () => {
           </div>
 
           <div className="isend">
-            <div className="rightit-div" ref={deliveredRef}></div>
-          </div>
+            <div className="rightit-div" ref={deliveredRef}>{storemsg.map((dat)=>(<>
+
+<div className={`${dat.place==="right"?'send-text-div':'recieved-text-div'}`}><p className={`${dat.place==="left"?'send-text':'recieved-text'}`}>{dat.message}</p></div ></>
+            ))}
+          </div></div>
           <div className="inpchat-div">
             <input
               className="inp-chat"
@@ -199,7 +191,8 @@ const SingleUser = () => {
         </div>
       </div>
     </>
+    
   );
-};
+           };
 
 export default SingleUser;

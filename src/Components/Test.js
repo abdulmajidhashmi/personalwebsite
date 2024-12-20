@@ -23,6 +23,7 @@ const Test = () => {
   const [iskeyboardopen, setiskeyboardopen] = useState(false);
   const [isRefsready, setisRefsready] = useState(false);
   const [show, setshow] = useState(true);
+  const [storemsg,setstoremsg] = useState([]);
 
   const [msg, setmsg] = useState("");
 
@@ -74,7 +75,7 @@ const Test = () => {
         socket.on("recieveMessage", ({ message }) => {
           console.log(message);
 
-          if (isRefsready) {
+          
             const recievenotification = document.getElementById(
               "message-notification"
             );
@@ -84,10 +85,7 @@ const Test = () => {
               console.error("Error plammmying sound:", error);
             });
 
-            const recievedElement = document.createElement("div");
-            recievedElement.classList.add("recieved-text-div");
-            recievedElement.innerHTML = `<p className="recieved-text">${message}</p>`;
-            deliveredRef.current.appendChild(recievedElement);
+            setstoremsg((prev) => [...prev,{place:'left',message:message}]);
             if (chatsubdivRef.current) {
               // Scroll to bottom only if the message container has not reached the input div
               if (
@@ -99,7 +97,7 @@ const Test = () => {
                   chatsubdivRef.current.scrollHeight;
               }
             }
-          }
+          
         });
       }
       return () => {
@@ -122,18 +120,14 @@ const Test = () => {
     ) {
       messagefn();
 
-      event.target.value = "";
+     setmsg('');
     }
   };
 
   const messagefn = () => {
-    if (isRefsready && msg) {
-      const messageElement = document.createElement("div");
-      messageElement.classList.add("send-text-div");
-      messageElement.innerHTML = `<p className="delivered-text">${msg}</p>`;
-      console.log(messageElement);
-
-      deliveredRef.current.appendChild(messageElement);
+   
+    if (msg) {
+      setstoremsg((prev) => [...prev,{place:'right',message:msg}]);
 
       if (chatsubdivRef.current) {
         // Scroll to bottom only if the message container has not reached the input div
@@ -227,7 +221,11 @@ const Test = () => {
           {show ? null : (
             <>
               <div className="isend">
-                <div className="rightit-div" ref={deliveredRef}></div>
+              <div className="rightit-div" ref={deliveredRef}>{storemsg.map((dat)=>(<>
+
+<div className={`${dat.place==="right"?'send-text-div':'recieved-text-div'}`}><p className={`${dat.place==="left"?'send-text':'recieved-text'}`}>{dat.message}</p></div ></>
+            ))}
+          </div>
               </div>
               <div className="inpchat-div">
                 <input
