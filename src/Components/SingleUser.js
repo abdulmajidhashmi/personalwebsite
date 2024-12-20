@@ -14,7 +14,7 @@ const SingleUser = () => {
   const [local, setlocal] = useState({});
   const [isStatus, setisStatus] = useState(false);
   const params = useParams();
-  let use = params.id;
+  let usee = params.id;
   const [isRefsready, setisRefsready] = useState(false);
   const [storemsg,setstoremsg] = useState([]);
 
@@ -29,7 +29,7 @@ const SingleUser = () => {
   const getusername = async () => {
     try {
       const obj = {
-        id: use,
+        id: usee,
       };
       const data = await axiosInstance.post("/user/oneuserdetail", obj);
       console.log(data);
@@ -42,7 +42,7 @@ const SingleUser = () => {
   useEffect(() => {
    
 
-    if (use) {
+    if (usee) {
       getusername();
     }
 
@@ -123,7 +123,7 @@ const SingleUser = () => {
       
 
       console.log(msg);
-      use = String(use);
+      const use = String(usee);
 if(msg){
 
   setstoremsg((prev) => [...prev,{place:'right',message:msg}]);
