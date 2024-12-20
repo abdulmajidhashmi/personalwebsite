@@ -56,7 +56,7 @@ const SingleUser = () => {
   useEffect(() => {
     if (local.name && local.name === "Abdul Wase Hashmi") {
       socket.connect();
-      const userId = String(use);
+      const userId = String(usee);
       const selfid = local.number;
       socket.emit("joinRoom", { selfid, userId });
       console.log("socket connected");
@@ -99,7 +99,7 @@ const SingleUser = () => {
         socket.disconnect(local.number);
       }
     };
-  }, [local.number, use]);
+  }, [local.number, usee]);
   const changeMessage = (event) => {
     const val = event.target.value;
     setmsg(val);
