@@ -105,7 +105,7 @@ const Test = () => {
         }
       };
     }
-  }, [local.number,isRefsready]);
+  }, [local.number,isRefsready,deliveredRef]);
 
  
 

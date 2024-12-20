@@ -116,7 +116,7 @@ console.log(deliveredRef);
     
     };
   
-  }, [local.number,use,isRefsready]);
+  }, [local.number,use,isRefsready,deliveredRef]);
   const changeMessage = (event) => {
     const val = event.target.value;
     setmsg(val);
