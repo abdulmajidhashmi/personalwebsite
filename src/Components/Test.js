@@ -67,9 +67,11 @@ const Test = () => {
       console.log("socket connected");
 
       if (local.name !== "Abdul Wase Hashmi") {
-        if(deliveredRef.current){
+       
         socket.on("recieveMessage", ({ message }) => {
           console.log(message);
+
+          if(deliveredRef.current){
           const recievenotification = document.getElementById(
             "message-notification"
           );
@@ -84,9 +86,9 @@ const Test = () => {
           recievedElement.innerHTML = `<p className="recieved-text">${message}</p>`;
           deliveredRef.current.appendChild(recievedElement);
           chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
-
+        }
         });
-      }
+     
       }
       return () => {
         if (socket.connected) {
