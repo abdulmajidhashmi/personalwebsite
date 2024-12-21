@@ -1,160 +1,105 @@
-import { useEffect, useRef } from "react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate, useLocation } from "react-router-dom";
+import { io } from "socket.io-client";
 import axiosInstance from "./api/axiosInstance";
-import { Navigate, useNavigate } from "react-router-dom";
-import socket from "./api/Socket";
 import "./Test.css";
-import { useLocation } from "react-router-dom";
+import baseURL from "./api/BaseURL";
 
 const Test = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const data = useSelector((state) => state.User.value);
-  const recievedRef = useRef();
-  const deliveredRef = useRef();
-  const chatsubdivRef = useRef();
   const statusreducer = useSelector((state) => state.Online.value);
 
-  const [status, setstatus] = useState([]);
-  const [updatedata, setupdatedata] = useState([]);
-  const [touserId, settouserId] = useState("");
-  const [local, setlocal] = useState({});
-  const [iskeyboardopen, setiskeyboardopen] = useState(false);
-  const [isRefsready, setisRefsready] = useState(false);
-  const [show, setshow] = useState(true);
-  const [storemsg,setstoremsg] = useState([]);
+  const chatsubdivRef = useRef();
+  const deliveredRef = useRef();
 
-  const [msg, setmsg] = useState("");
+  const [storemsg, setStoreMsg] = useState([]);
+  const [msg, setMsg] = useState("");
+  const [local, setLocal] = useState({});
+  const [updatedata, setUpdateData] = useState([]);
+  const [touserId, setToUserId] = useState("");
+  const [show, setShow] = useState(true);
 
-  useEffect(() => {
-    if (chatsubdivRef.current) {
-      // Scroll to the bottom of the chat container
-      chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
-    }
-  }, [storemsg]);
-  
+  const socket = useRef(null);
 
   useEffect(() => {
-    console.log(statusreducer);
+    const localData = JSON.parse(localStorage.getItem("user"));
+    setLocal(localData);
 
-    const localdatamain = JSON.parse(localStorage.getItem("user"));
-    setlocal(localdatamain);
-
-    if (!localdatamain) {
+    if (!localData) {
       navigate("/login");
     }
   }, [navigate]);
 
-  const alluserdata = async () => {
+  useEffect(() => {
+    if (chatsubdivRef.current) {
+      chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
+    }
+  }, [storemsg]);
+
+  const fetchUserData = async () => {
     try {
-      const localdata = JSON.parse(localStorage.getItem("user"));
-      //   const userdata = await axiosInstance.post("/user/all",data);
-      const userdata = await axiosInstance.post("/user/all", localdata);
-      console.log(userdata);
+      const localData = JSON.parse(localStorage.getItem("user"));
+      const response = await axiosInstance.post("/user/all", localData);
 
-      if (userdata.data.data.name === "Doctor") {
-        settouserId(userdata.data.data.number);
-
-        setshow(false);
+      if (response.data.data.name === "Doctor") {
+        setToUserId(response.data.data.number);
+        setShow(false);
       } else {
-        setupdatedata(userdata.data.data);
+        setUpdateData(response.data.data);
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
   useEffect(() => {
-    if (deliveredRef.current) {
-      setisRefsready(true);
-    }
-
-    alluserdata();
+    fetchUserData();
 
     if (local.name && local.name !== "Abdul Wase Hashmi") {
-      socket.connect();
-      const userId = String(local.number);
-      const selfid = local.number;
-      socket.emit("joinRoom", { selfid, userId });
-      console.log("socket connected");
+      socket.current = io(`${baseURL}`, {
+        query: { roomName: String(local.number) },
+      });
 
-      if (local.name !== "Abdul Wase Hashmi") {
-        socket.on("recieveMessage", ({ message }) => {
-          console.log(message);
+      socket.current.on("recieveMessage", ({ message }) => {
+        if (message) {
+          setStoreMsg((prev) => [...prev, { place: "left", message }]);
+          const notification = document.getElementById("message-notification");
+          notification?.play().catch((error) => console.error("Error playing sound:", error));
+        }
+      });
 
-          
-            const recievenotification = document.getElementById(
-              "message-notification"
-            );
-
-            console.log(recievenotification);
-            recievenotification.play().catch((error) => {
-              console.error("Error plammmying sound:", error);
-            });
-
-            setstoremsg((prev) => [...prev,{place:'left',message:message}]);
-           
-          
-        });
-      }
       return () => {
-        if (socket.connected) {
-          console.log("Disconnecting socket...");
-          const status = "offline";
-          const localnumber = local.number;
-          socket.emit("leaveRoom", { localnumber, status });
-          socket.disconnect();
+        if (socket.current?.connected) {
+          socket.current.emit("leaveRoom", { localnumber: local.number, status: "offline" });
+          socket.current.disconnect();
         }
       };
     }
-  }, [local.number, isRefsready, deliveredRef]);
+  }, [local]);
 
-  const sendingMessage = (event) => {
-    if (
-      event.key === "Enter" &&
-      event.target.value !== "" &&
-      local.name !== "Abdul Wase Hashmi"
-    ) {
-      messagefn();
+  const handleSendMessage = () => {
+    if (msg.trim() && local.name !== "Abdul Wase Hashmi") {
+      setStoreMsg((prev) => [...prev, { place: "right", message: msg }]);
 
-     setmsg('');
+      socket.current.emit("sendMessage", { use: String(local.number), msg });
+      const notification = document.getElementById("send-notification");
+      notification?.play().catch((err) => console.error(err));
+      setMsg("");
     }
   };
 
-  const messagefn = () => {
-   
-    if (msg) {
-      setstoremsg((prev) => [...prev,{place:'right',message:msg}]);
-
-     
-
-      console.log(msg);
-      const use = String(local.number);
-      socket.emit("sendMessage", { use, msg });
-      const sendnotification = document.getElementById("send-notification");
-
-      sendnotification.play().catch((err) => {
-        console.log(err);
-      });
-    }
-  };
-  const sendclick = () => {
-    if (local.name !== "Abdul Wase Hashmi") {
-      messagefn();
-      setmsg("");
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSendMessage();
     }
   };
 
-  const sendNumber = (touserId, event) => {
-    console.log(touserId);
-    settouserId(touserId);
-    navigate(`/test/${touserId}`);
-  };
-
-  const changeMessage = (event) => {
-    const val = event.target.value;
-    setmsg(val);
+  const handleUserClick = (userId) => {
+    setToUserId(userId);
+    navigate(`/test/${userId}`);
   };
 
   useEffect(() => {
@@ -178,55 +123,54 @@ const Test = () => {
         preload="auto"
       ></audio>
       <div className="chat-enter-maindiv">
-        <div
-          className={`chat-enterdiv ${updatedata ? "full" : ""}`}
-          ref={chatsubdivRef}
-        >
-          <div className={`boxing ${iskeyboardopen ? "keyboard-open" : ""}`}>
-            DR. Abdul Wase Hashmi
-          </div>
-          {updatedata ? (
-            updatedata.map((dat, index) =>
-              dat.number === local.number ? null : dat.name ===
-                "Doctor" ? null : (
+        <div className={`chat-enterdiv ${updatedata.length ? "full" : ""}`} ref={chatsubdivRef}>
+          <div className="boxing">DR. Abdul Wase Hashmi</div>
+
+          {updatedata.length ? (
+            updatedata.map((user, index) => (
+              user.number !== local.number && user.name !== "Doctor" && (
                 <div
                   key={index}
-                  onClick={(event) => sendNumber(dat.number, event)}
+                  onClick={() => handleUserClick(user.number)}
                   className="users-div"
                 >
                   <div className="img-chat-user-div">
                     <img
                       src="https://www.webiconio.com/_upload/255/image_255.svg"
+                      alt="User"
                       className="img-user-chat"
                     />
-                  </div>{" "}
-                  <h3 className="user-name">{dat.name}</h3>
+                  </div>
+                  <h3 className="user-name">{user.name}</h3>
                 </div>
               )
-            )
+            ))
           ) : (
-            <h1>no users here</h1>
+            <h1>No users here</h1>
           )}
 
-          {show ? null : (
+          {!show && (
             <>
-              {/* <div className="isend"> */}
-              <div className="rightit-div" ref={deliveredRef}>{storemsg.map((dat)=>(<>
-
-<div className={`${dat.place==="right"?'send-text-div':'recieved-text-div'}`}><p className={`${dat.place==="left"?'send-text':'recieved-text'}`}>{dat.message}</p></div ></>
-            ))}
-          </div>
-              {/* </div> */}
+              <div className="rightit-div" ref={deliveredRef}>
+                {storemsg.map((msg, index) => (
+                  <div
+                    key={index}
+                    className={msg.place === "right" ? "send-text-div" : "recieved-text-div"}
+                  >
+                    <p className={msg.place === "left" ? "send-text" : "recieved-text"}>{msg.message}</p>
+                  </div>
+                ))}
+              </div>
               <div className="inpchat-div">
                 <input
                   className="inp-chat"
                   placeholder="Message"
                   value={msg}
-                  onChange={changeMessage}
-                  onKeyDown={sendingMessage}
+                  onChange={(e) => setMsg(e.target.value)}
+                  onKeyDown={handleKeyPress}
                 />
-                <div onClick={sendclick} className="send-div">
-                  <i class="fa-solid fa-circle-chevron-right send"></i>
+                <div onClick={handleSendMessage} className="send-div">
+                  <i className="fa-solid fa-circle-chevron-right send"></i>
                 </div>
               </div>
             </>

@@ -1,142 +1,112 @@
 import "./Test.css";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import socket from "./api/Socket";
 import axiosInstance from "./api/axiosInstance";
+import { io } from "socket.io-client";
+import baseURL from "./api/BaseURL";
 
 const SingleUser = () => {
   const navigate = useNavigate();
   const chatsubdivRef = useRef();
-  const deliveredRef = useRef();
-  const [status, setstatus] = useState([]);
-  const [username, setusername] = useState("");
-  const [msg, setmsg] = useState("");
-  const [local, setlocal] = useState({});
-  const [isStatus, setisStatus] = useState(false);
-  const params = useParams();
-  let usee = params.id;
-  const [isRefsready, setisRefsready] = useState(false);
-  const [storemsg,setstoremsg] = useState([]);
+  const [username, setUsername] = useState("");
+  const [msg, setMsg] = useState("");
+  const [localUser, setLocalUser] = useState({});
+  const [isOnline, setIsOnline] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const { id: userId } = useParams();
+
+  const socket = useRef(null);
+
+  useEffect(() => {
+    const initializeSocket = () => {
+      if (localUser?.name === "Abdul Wase Hashmi" && userId) {
+        socket.current = io(`${baseURL}`, {
+          query: { roomName: String(userId) },
+        });
+
+        socket.current.on("status", ({ status }) => {
+          setIsOnline(status === "online");
+        });
+
+        socket.current.on("recieveMessage", ({ message }) => {
+          if (message) {
+            playAudio("message-notification");
+            setMessages((prev) => [...prev, { place: "left", message }]);
+          }
+        });
+
+        socket.current.connect();
+      }
+    };
+
+    initializeSocket();
+
+    return () => {
+      if (socket.current) {
+        socket.current.disconnect();
+      }
+    };
+  }, [localUser, userId]);
 
   useEffect(() => {
     if (chatsubdivRef.current) {
-      // Scroll to the bottom of the chat container
       chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
     }
-  }, [storemsg]);
-  
-
-  const getusername = async () => {
-    try {
-      const obj = {
-        id: usee,
-      };
-      const data = await axiosInstance.post("/user/oneuserdetail", obj);
-      console.log(data);
-      setusername(data.data.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  }, [messages]);
 
   useEffect(() => {
-   
-
-    if (usee) {
-      getusername();
-    }
-
-    const localdatamain = JSON.parse(localStorage.getItem("user"));
-    setlocal(localdatamain);
-
-    if (!localdatamain) {
-      navigate("/login");
-    }
-  }, [navigate]);
-  useEffect(() => {
-    if (local.name && local.name === "Abdul Wase Hashmi") {
-      socket.connect();
-      const userId = String(usee);
-      const selfid = local.number;
-      socket.emit("joinRoom", { selfid, userId });
-      console.log("socket connected");
-    }
-
-    socket.on("status", ({ status, who }) => {
-      console.log(status);
-      console.log(who);
-      if (local.number) {
-        if (status === "online") {
-          setisStatus(true);
-        } else if (status === "offline") {
-          setisStatus(false);
-        }
-      }
-    });
-    
-    socket.on("recieveMessage", ({ message }) => {
-      if(message){
-        const recievenotification = document.getElementById(
-          "message-notification"
-        );
-
-      
-        recievenotification.play().catch((error) => {
-          console.error("Error plammmying sound:", error);
-        });}
-        console.log(message);
-        setstoremsg((prev) => [...prev,{place:'left',message:message}]);
-
-        if (local.name === "Abdul Wase Hashmi") {
-         
-          
-        }
-    
-    });
-    return () => {
-      if (socket.connected) {
-        console.log("Disconnecting socket...");
-        socket.disconnect(local.number);
+    const fetchUserDetails = async () => {
+      try {
+        const { data } = await axiosInstance.post("/user/oneuserdetail", { id: userId });
+        setUsername(data?.data);
+      } catch (err) {
+        console.error(err);
       }
     };
-  }, [local.number, usee]);
-  const changeMessage = (event) => {
-    const val = event.target.value;
-    setmsg(val);
-  };
-  const sendingMessage = (event) => {
-    if (event.key === "Enter" && event.target.value !== "") {
-      messagefn();
-      setmsg('');
+
+    const localData = JSON.parse(localStorage.getItem("user"));
+    setLocalUser(localData);
+
+    if (!localData) {
+      navigate("/login");
+      return;
+    }
+
+    if (userId) {
+      fetchUserDetails();
+    }
+  }, [navigate, userId]);
+
+  const playAudio = (id) => {
+    const audio = document.getElementById(id);
+    if (audio) {
+      audio.play().catch((err) => console.error("Audio play error:", err));
     }
   };
-  const sendclick = () => {
-    if (msg !== "") {
-      messagefn();
-      setmsg("");
+
+  const handleInputChange = (event) => setMsg(event.target.value);
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" && msg.trim()) {
+      sendMessage();
     }
   };
-  const messagefn = () => {
-  
-   
 
-      
-
-      console.log(msg);
-      const use = String(usee);
-if(msg){
-
-  setstoremsg((prev) => [...prev,{place:'right',message:msg}]);
-      socket.emit("sendMessage", { use, msg });
-      const sendnotification = document.getElementById("send-notification");
-
-      sendnotification.play().catch((err) => {
-        console.log(err);
-      });
-    
+  const handleSendClick = () => {
+    if (msg.trim()) {
+      sendMessage();
     }
+  };
+
+  const sendMessage = () => {
+    if (socket.current && msg.trim()) {
+      setMessages((prev) => [...prev, { place: "right", message: msg }]);
+      socket.current.emit("sendMessage", { use: String(userId), msg });
+      playAudio("send-notification");
+      setMsg("");
     }
-  
+  };
+
   return (
     <>
       <audio
@@ -149,41 +119,40 @@ if(msg){
         src="https://cdn.uppbeat.io/audio-files/13a6d3c9e914de5ab3fb451786993718/2ec11eb913fad21b859105c510f56d4d/1e1c89bd9921c412363a66f3a6ab8366/STREAMING-notification-muffled-pop-smartsound-fx-1-00-00.mp3"
         preload="auto"
       ></audio>
+
       <div className="chat-enter-maindiv">
         <div className="chat-enterdiv" ref={chatsubdivRef}>
           <div className="boxing">
-            {isStatus ? (
-              <div className="online-status"></div>
-            ) : (
-              <div className="offline-status"></div>
-            )}
+            <div className={isOnline ? "online-status" : "offline-status"}></div>
             {username}
           </div>
-
-          {/* <div className="isend"> */}
-            <div className="rightit-div" ref={deliveredRef}>{storemsg.map((dat)=>(<>
-
-<div className={`${dat.place==="right"?'send-text-div':'recieved-text-div'}`}><p className={`${dat.place==="left"?'send-text':'recieved-text'}`}>{dat.message}</p></div ></>
+          <div className="rightit-div">
+            {messages.map(({ place, message }, index) => (
+              <div
+                key={index}
+                className={place === "right" ? "send-text-div" : "recieved-text-div"}
+              >
+                <p className={place === "right" ? "send-text" : "recieved-text"}>{message}</p>
+              </div>
             ))}
-          {/* </div> */}
           </div>
           <div className="inpchat-div">
             <input
               className="inp-chat"
               placeholder="Message"
               value={msg}
-              onChange={changeMessage}
-              onKeyDown={sendingMessage}
+              onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
             />
-            <div onClick={sendclick} className="send-div">
-              <i class="fa-solid fa-circle-chevron-right send"></i>
+            <div onClick={handleSendClick} className="send-div">
+              <i className="fa-solid fa-circle-chevron-right send"></i>
             </div>
           </div>
         </div>
       </div>
     </>
-    
   );
-           };
+};
 
 export default SingleUser;
+
