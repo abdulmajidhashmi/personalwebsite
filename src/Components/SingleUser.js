@@ -57,7 +57,9 @@ const SingleUser = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const { data } = await axiosInstance.post("/user/oneuserdetail", { id: userId });
+        const { data } = await axiosInstance.post("/user/oneuserdetail", {
+          id: userId,
+        });
         setUsername(data?.data);
       } catch (err) {
         console.error(err);
@@ -120,34 +122,128 @@ const SingleUser = () => {
         preload="auto"
       ></audio>
 
-      <div className="chat-enter-maindiv">
-        <div className="chat-enterdiv" ref={chatsubdivRef}>
-          <div className="boxing">
-            <div className={isOnline ? "online-status" : "offline-status"}></div>
-            {username}
-          </div>
-          <div className="rightit-div">
-            {messages.map(({ place, message }, index) => (
-              <div
-                key={index}
-                className={place === "right" ? "send-text-div" : "recieved-text-div"}
-              >
-                <p className={place === "right" ? "send-text" : "recieved-text"}>{message}</p>
-              </div>
-            ))}
-          </div>
-          <div className="inpchat-div">
-            <input
-              className="inp-chat"
-              placeholder="Message"
-              value={msg}
-              onChange={handleInputChange}
-              onKeyDown={handleKeyDown}
+      {/* <div className="chat-enter-maindiv">
+        <div className="chat-enterdiv" ref={chatsubdivRef}></div>
+      </div> */}
+
+      <div class="chat-container">
+        <div class="chat-header">
+          <div class="header-info">
+            <img
+              src="https://avatar.iran.liara.run/public"
+              alt="Current Chat"
+              class="chat-avatar"
             />
-            <div onClick={handleSendClick} className="send-div">
-              <i className="fa-solid fa-circle-chevron-right send"></i>
+            <div class="chat-user">
+              <h2 class="chat-username">{username}</h2>
+              <p class="chat-status">{isOnline ? "Online" : "Offline"}</p>
             </div>
           </div>
+          <div class="header-actions">
+            <button class="action-button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                />
+              </svg>
+            </button>
+            <button class="action-button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="chat-messages">
+          {messages.map(({ place, message }, index) => (
+            <>
+              <div
+                key={index}
+                className={
+                  place === "right" ? "message sent" : "message received"
+                }
+              >
+                {place === "right" ? null : (
+                  <img
+                    src="https://avatar.iran.liara.run/public"
+                    alt="Contact"
+                    class="message-avatar"
+                  />
+                )}
+
+                <div class="message-content">
+                  <div class="message-bubble">
+                    <p>{message}</p>
+                  </div>
+                  <span class="message-timestamp">10:30 AM</span>
+                </div>
+              </div>
+            </>
+          ))}
+        </div>
+
+        <div class="chat-input">
+          <button class="action-button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+              />
+            </svg>
+          </button>
+          <input
+            type="text"
+            placeholder="Type your message..."
+            class="message-input"
+            value={msg}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+          />
+          <button class="send-button" onClick={handleSendClick}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </>
@@ -155,4 +251,3 @@ const SingleUser = () => {
 };
 
 export default SingleUser;
-

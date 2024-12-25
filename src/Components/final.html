@@ -1,0 +1,3537 @@
+<!DOCTYPE >
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AI-generated website" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Performance optimization: Preload critical resources -->
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script" />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      as="style"
+    />
+
+    <!-- Core CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: "#f8f8f8",
+                100: "#e8e8e8",
+                200: "#d3d3d3",
+                300: "#a3a3a3",
+                400: "#737373",
+                500: "#525252",
+                600: "#404040",
+                700: "#262626",
+                800: "#171717",
+                900: "#0a0a0a",
+                950: "#030303",
+              },
+              secondary: {
+                50: "#f8f8f8",
+                100: "#e8e8e8",
+                200: "#d3d3d3",
+                300: "#a3a3a3",
+                400: "#737373",
+                500: "#525252",
+                600: "#404040",
+                700: "#262626",
+                800: "#171717",
+                900: "#0a0a0a",
+                950: "#030303",
+              },
+              accent: {
+                50: "#f8f8f8",
+                100: "#e8e8e8",
+                200: "#d3d3d3",
+                300: "#a3a3a3",
+                400: "#737373",
+                500: "#525252",
+                600: "#404040",
+                700: "#262626",
+                800: "#171717",
+                900: "#0a0a0a",
+                950: "#030303",
+              },
+            },
+            fontFamily: {
+              sans: [
+                "Inter",
+                "system-ui",
+                "-apple-system",
+                "BlinkMacSystemFont",
+                "Segoe UI",
+                "Roboto",
+                "Helvetica Neue",
+                "Arial",
+                "sans-serif",
+              ],
+              heading: ["Montserrat", "Inter", "system-ui", "sans-serif"],
+            },
+            spacing: {
+              18: "4.5rem",
+              22: "5.5rem",
+              30: "7.5rem",
+            },
+            maxWidth: {
+              "8xl": "88rem",
+              "9xl": "96rem",
+            },
+            animation: {
+              "fade-in": "fadeIn 0.5s ease-in",
+              "fade-out": "fadeOut 0.5s ease-out",
+              "slide-up": "slideUp 0.5s ease-out",
+              "slide-down": "slideDown 0.5s ease-out",
+              "slide-left": "slideLeft 0.5s ease-out",
+              "slide-right": "slideRight 0.5s ease-out",
+              "scale-in": "scaleIn 0.5s ease-out",
+              "scale-out": "scaleOut 0.5s ease-out",
+              "spin-slow": "spin 3s linear infinite",
+              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              "bounce-slow": "bounce 3s infinite",
+              float: "float 3s ease-in-out infinite",
+            },
+            keyframes: {
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+              fadeOut: {
+                "0%": { opacity: "1" },
+                "100%": { opacity: "0" },
+              },
+              slideUp: {
+                "0%": { transform: "translateY(20px)", opacity: "0" },
+                "100%": { transform: "translateY(0)", opacity: "1" },
+              },
+              slideDown: {
+                "0%": { transform: "translateY(-20px)", opacity: "0" },
+                "100%": { transform: "translateY(0)", opacity: "1" },
+              },
+              slideLeft: {
+                "0%": { transform: "translateX(20px)", opacity: "0" },
+                "100%": { transform: "translateX(0)", opacity: "1" },
+              },
+              slideRight: {
+                "0%": { transform: "translateX(-20px)", opacity: "0" },
+                "100%": { transform: "translateX(0)", opacity: "1" },
+              },
+              scaleIn: {
+                "0%": { transform: "scale(0.9)", opacity: "0" },
+                "100%": { transform: "scale(1)", opacity: "1" },
+              },
+              scaleOut: {
+                "0%": { transform: "scale(1.1)", opacity: "0" },
+                "100%": { transform: "scale(1)", opacity: "1" },
+              },
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
+            },
+            aspectRatio: {
+              portrait: "3/4",
+              landscape: "4/3",
+              ultrawide: "21/9",
+            },
+          },
+        },
+        variants: {
+          extend: {
+            opacity: ["disabled"],
+            cursor: ["disabled"],
+            backgroundColor: ["active", "disabled"],
+            textColor: ["active", "disabled"],
+          },
+        },
+      };
+    </script>
+
+    <!-- Utilities and Components -->
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.45.1/apexcharts.min.js"
+    ></script>
+
+    <!-- Optimized Font Loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Base Styles -->
+    <style>
+      * {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+
+      /* Webkit browsers like Chrome, Safari, newer Edge */
+      *::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 0px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #666;
+      }
+
+      /* Remove tap highlight on mobile */
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      /* Improve text rendering */
+      body {
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Focus outline styles */
+      :focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+      }
+
+      /* Print styles */
+      @media print {
+        .no-print {
+          display: none !important;
+        }
+
+        a[href]:after {
+          content: " (" attr(href) ")";
+        }
+      }
+    </style>
+
+    <!-- Enhanced Image Handler -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const imageObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                  const tempImage = new Image();
+                  tempImage.onload = () => {
+                    img.src = img.dataset.src;
+                    img.classList.remove("opacity-0");
+                    img.classList.add("opacity-100");
+                  };
+                  tempImage.src = img.dataset.src;
+                  img.removeAttribute("data-src");
+                  observer.unobserve(img);
+                }
+              }
+            });
+          },
+          {
+            rootMargin: "50px 0px",
+            threshold: 0.01,
+          }
+        );
+
+        const loadImage = (img) => {
+          if ("loading" in HTMLImageElement.prototype) {
+            img.loading = "lazy";
+          }
+
+          img.classList.add("transition-opacity", "duration-300", "opacity-0");
+
+          img.onerror = () => {
+            const width = img.getAttribute("width") || img.clientWidth || 300;
+            const height =
+              img.getAttribute("height") || img.clientHeight || 200;
+            img.src = `https://placehold.co/${width}x${height}/DEDEDE/555555?text=Image+Unavailable`;
+            img.alt = "Image unavailable";
+            img.classList.remove("opacity-0");
+            img.classList.add("opacity-100", "error-image");
+          };
+
+          if (img.dataset.src) {
+            imageObserver.observe(img);
+          } else {
+            img.classList.remove("opacity-0");
+            img.classList.add("opacity-100");
+          }
+        };
+
+        document
+          .querySelectorAll("img[data-src], img:not([data-src])")
+          .forEach(loadImage);
+
+        // Watch for dynamically added images
+        new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            mutation.addedNodes.forEach((node) => {
+              if (node.nodeType === 1) {
+                if (node.tagName === "IMG") {
+                  loadImage(node);
+                }
+                node.querySelectorAll("img").forEach(loadImage);
+              }
+            });
+          });
+        }).observe(document.body, {
+          childList: true,
+          subtree: true,
+        });
+      });
+
+      // Performance monitoring
+      if ("performance" in window && "PerformanceObserver" in window) {
+        // Create performance observer
+        const observer = new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          entries.forEach((entry) => {
+            if (entry.entryType === "largest-contentful-paint") {
+              // console.log(`LCP: ${entry.startTime}ms`);
+            }
+            if (entry.entryType === "first-input") {
+              // console.log(`FID: ${entry.processingStart - entry.startTime}ms`);
+            }
+            if (entry.entryType === "layout-shift") {
+              // console.log(`CLS: ${entry.value}`);
+            }
+          });
+        });
+
+        // Observe performance metrics
+        observer.observe({
+          entryTypes: [
+            "largest-contentful-paint",
+            "first-input",
+            "layout-shift",
+          ],
+        });
+
+        // Log basic performance metrics
+        window.addEventListener("load", () => {
+          const timing = performance.getEntriesByType("navigation")[0];
+          console.log({
+            "DNS Lookup": timing.domainLookupEnd - timing.domainLookupStart,
+            "TCP Connection": timing.connectEnd - timing.connectStart,
+            "DOM Content Loaded":
+              timing.domContentLoadedEventEnd - timing.navigationStart,
+            "Page Load": timing.loadEventEnd - timing.navigationStart,
+          });
+        });
+      }
+
+      // Handle offline/online status
+      window.addEventListener("online", () => {
+        document.body.classList.remove("offline");
+        console.log("Connection restored");
+      });
+
+      window.addEventListener("offline", () => {
+        document.body.classList.add("offline");
+        console.log("Connection lost");
+      });
+    </script>
+  </head>
+  <body class="antialiased text-gray-800 min-h-screen flex flex-col">
+    <!-- Skip to main content link for accessibility -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-white focus:text-black"
+    >
+      Skip to main content
+    </a>
+
+    <!-- Header -->
+    <header class="relative z-50 bg-white dark:bg-gray-900">
+      <!-- Header content goes here -->
+    </header>
+
+    <!-- Main content area -->
+    <main id="main-content" class="flex-1 relative">
+      <!-- Content will be injected here -->
+    </main>
+
+    <!-- Offline notification -->
+    <div
+      class="fixed bottom-4 right-4 transform translate-y-full opacity-0 transition-all duration-300 offline:translate-y-0 offline:opacity-100"
+    >
+      <div class="bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg">
+        You are currently offline
+      </div>
+    </div>
+  </body>
+</html>
+<htmlCode>
+  <div id="root" class="min-h-screen bg-neutral-50">
+    <div class="flex">
+      <!-- Sidebar Navigation -->
+      <nav
+        id="sidebar"
+        class="fixed h-screen w-64 bg-neutral-800 text-white py-6 hidden lg:block transition-all duration-300"
+      >
+        <div class="px-6 mb-8">
+          <h2 class="text-2xl font-semibold">NeuroMed</h2>
+        </div>
+        <div class="space-y-2 px-4">
+          <a
+            href="#dashboard"
+            class="flex items-center px-4 py-3 text-neutral-300 hover:bg-neutral-700 rounded-lg transition-all duration-300 active"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 mr-3"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+              />
+            </svg>
+            Dashboard
+          </a>
+          <a
+            href="#patients"
+            class="flex items-center px-4 py-3 text-neutral-300 hover:bg-neutral-700 rounded-lg transition-all duration-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 mr-3"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>
+            Patients
+          </a>
+          <a
+            href="#appointments"
+            class="flex items-center px-4 py-3 text-neutral-300 hover:bg-neutral-700 rounded-lg transition-all duration-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 mr-3"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
+            </svg>
+            Appointments
+          </a>
+          <a
+            href="#chat"
+            class="flex items-center px-4 py-3 text-neutral-300 hover:bg-neutral-700 rounded-lg transition-all duration-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 mr-3"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+              />
+            </svg>
+            Chat
+          </a>
+          <a
+            href="#settings"
+            class="flex items-center px-4 py-3 text-neutral-300 hover:bg-neutral-700 rounded-lg transition-all duration-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 mr-3"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+            Settings
+          </a>
+        </div>
+        <div
+          class="absolute bottom-0 left-0 right-0 p-6 border-t border-neutral-700"
+        >
+          <div class="flex items-center">
+            <img
+              src="https://avatar.iran.liara.run/public"
+              alt="Profile"
+              class="w-8 h-8 rounded-full"
+            />
+            <div class="ml-3">
+              <p class="text-sm font-medium">Dr. Smith</p>
+              <p class="text-xs text-neutral-400">dr.smith@neuromed.com</p>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Mobile Header -->
+      <div
+        class="lg:hidden fixed top-0 left-0 right-0 bg-neutral-800 text-white z-50"
+      >
+        <div class="flex items-center justify-between p-4">
+          <h1 class="text-xl font-semibold">NeuroMed</h1>
+          <button
+            type="button"
+            class="mobile-menu-button p-2 rounded-lg hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-neutral-400"
+          >
+            <svg
+              class="h-6 w-6"
+              x-show="!isOpen"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <main
+        class="flex-1 ml-0 lg:ml-64 min-h-screen overflow-y-auto bg-neutral-50"
+      >
+        <!-- Header -->
+        <header class="sticky top-0 bg-white border-b border-neutral-200 z-40">
+          <div class="flex items-center justify-between px-6 py-4">
+            <h1 class="text-xl font-semibold text-neutral-800">Dashboard</h1>
+            <div class="flex items-center space-x-4">
+              <button
+                class="p-2 text-neutral-600 hover:bg-neutral-100 rounded-lg"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                  />
+                </svg>
+              </button>
+              <button
+                class="flex items-center space-x-2 p-2 hover:bg-neutral-100 rounded-lg"
+              >
+                <img
+                  src="https://avatar.iran.liara.run/public"
+                  alt="Profile"
+                  class="w-8 h-8 rounded-full"
+                />
+                <span class="text-sm font-medium text-neutral-700"
+                  >Dr. Smith</span
+                >
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <MountPoint>
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              // Mobile menu toggle
+              const menuButton = document.querySelector(".mobile-menu-button");
+              const sidebar = document.querySelector("#sidebar");
+
+              menuButton.addEventListener("click", () => {
+                sidebar.classList.toggle("hidden");
+              });
+
+              // Handle navigation active states
+              const navLinks = document.querySelectorAll("nav a");
+
+              function setActiveLink() {
+                const hash = window.location.hash || "#dashboard";
+                navLinks.forEach((link) => {
+                  if (link.getAttribute("href") === hash) {
+                    link.classList.add("bg-neutral-700");
+                    link.classList.add("text-white");
+                  } else {
+                    link.classList.remove("bg-neutral-700");
+                    link.classList.remove("text-white");
+                  }
+                });
+              }
+
+              window.addEventListener("hashchange", setActiveLink);
+              setActiveLink();
+
+              // Handle window resize for mobile menu
+              window.addEventListener("resize", () => {
+                if (window.innerWidth >= 1024) {
+                  sidebar.classList.remove("hidden");
+                } else {
+                  sidebar.classList.add("hidden");
+                }
+              });
+            });
+
+            // Smooth scroll behavior
+            document.documentElement.style.scrollBehavior = "smooth";
+          </script>
+
+          <style>
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            .hide-scrollbar::-webkit-scrollbar {
+              display: none;
+            }
+
+            /* Hide scrollbar for IE, Edge and Firefox */
+            .hide-scrollbar {
+              -ms-overflow-style: none; /* IE and Edge */
+              scrollbar-width: none; /* Firefox */
+            }</style
+          ><htmlCode>
+            <section
+              id="auth"
+              class="min-h-screen bg-neutral-50 flex items-center justify-center p-4"
+            >
+              <div
+                class="w-full max-w-4xl grid lg:grid-cols-2 gap-8 items-center"
+              >
+                <!-- Left Side - Welcome Message -->
+                <div class="hidden lg:block p-8">
+                  <h1 class="text-4xl font-bold text-neutral-800 mb-4">
+                    Welcome to NeuroMed
+                  </h1>
+                  <p class="text-neutral-600 mb-6">
+                    Access your personalized healthcare portal for seamless
+                    communication and care management.
+                  </p>
+                  <div class="space-y-4">
+                    <div class="flex items-center">
+                      <div class="bg-green-100 p-2 rounded-full">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-6 w-6 text-green-600"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      </div>
+                      <span class="ml-3 text-neutral-600"
+                        >Secure Video Consultations</span
+                      >
+                    </div>
+                    <div class="flex items-center">
+                      <div class="bg-blue-100 p-2 rounded-full">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-6 w-6 text-blue-600"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          />
+                        </svg>
+                      </div>
+                      <span class="ml-3 text-neutral-600"
+                        >Easy Appointment Booking</span
+                      >
+                    </div>
+                    <div class="flex items-center">
+                      <div class="bg-purple-100 p-2 rounded-full">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-6 w-6 text-purple-600"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                          />
+                        </svg>
+                      </div>
+                      <span class="ml-3 text-neutral-600"
+                        >Access Medical Records</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right Side - Auth Form -->
+                <div class="bg-white p-8 rounded-2xl border border-neutral-200">
+                  <div class="mb-8 text-center">
+                    <h2 class="text-2xl font-semibold text-neutral-800">
+                      Sign In to Your Account
+                    </h2>
+                    <p class="text-neutral-600 mt-2">
+                      Choose your account type to continue
+                    </p>
+                  </div>
+
+                  <!-- Account Type Toggle -->
+                  <div class="flex gap-4 mb-6">
+                    <button
+                      class="flex-1 py-3 px-4 rounded-lg border-2 border-blue-600 bg-blue-600 text-white font-medium transition-colors"
+                    >
+                      Patient
+                    </button>
+                    <button
+                      class="flex-1 py-3 px-4 rounded-lg border-2 border-neutral-200 text-neutral-600 font-medium hover:border-blue-600 transition-colors"
+                    >
+                      Doctor
+                    </button>
+                  </div>
+
+                  <!-- Login Form -->
+                  <form class="space-y-4">
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-neutral-700 mb-1"
+                        for="email"
+                        >Email Address</label
+                      >
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="w-full px-4 py-3 rounded-lg border border-neutral-200 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-colors"
+                        placeholder="Enter your email"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-neutral-700 mb-1"
+                        for="password"
+                        >Password</label
+                      >
+                      <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="w-full px-4 py-3 rounded-lg border border-neutral-200 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-colors"
+                        placeholder="Enter your password"
+                      />
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          class="w-4 h-4 text-blue-600 border-neutral-300 rounded focus:ring-blue-500"
+                        />
+                        <span class="ml-2 text-sm text-neutral-600"
+                          >Remember me</span
+                        >
+                      </label>
+                      <a
+                        href="#"
+                        class="text-sm text-blue-600 hover:text-blue-700"
+                        >Forgot password?</a
+                      >
+                    </div>
+
+                    <button
+                      type="submit"
+                      class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                    >
+                      Sign In
+                    </button>
+                  </form>
+
+                  <div class="mt-6 text-center">
+                    <p class="text-neutral-600">
+                      Don't have an account?
+                      <a
+                        href="#"
+                        class="text-blue-600 hover:text-blue-700 font-medium"
+                        >Sign up</a
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section> </htmlCode
+          ><htmlCode>
+            <section id="doctor_dashboard" class="p-6 bg-neutral-50">
+              <!-- Overview Cards -->
+              <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+              >
+                <div class="bg-white p-6 rounded-xl border border-neutral-200">
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="bg-blue-100 p-3 rounded-lg">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 text-blue-600"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                        />
+                      </svg>
+                    </div>
+                    <span class="text-sm text-neutral-500">Total Patients</span>
+                  </div>
+                  <h3 class="text-2xl font-semibold text-neutral-800">248</h3>
+                  <p class="text-sm text-green-600 mt-2">
+                    +12% from last month
+                  </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-neutral-200">
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="bg-green-100 p-3 rounded-lg">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 text-green-600"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                      </svg>
+                    </div>
+                    <span class="text-sm text-neutral-500"
+                      >Today's Appointments</span
+                    >
+                  </div>
+                  <h3 class="text-2xl font-semibold text-neutral-800">12</h3>
+                  <p class="text-sm text-green-600 mt-2">Next at 2:00 PM</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-neutral-200">
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="bg-purple-100 p-3 rounded-lg">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 text-purple-600"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                        />
+                      </svg>
+                    </div>
+                    <span class="text-sm text-neutral-500"
+                      >Pending Consultations</span
+                    >
+                  </div>
+                  <h3 class="text-2xl font-semibold text-neutral-800">8</h3>
+                  <p class="text-sm text-orange-600 mt-2">3 urgent requests</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-neutral-200">
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="bg-rose-100 p-3 rounded-lg">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 text-rose-600"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                        />
+                      </svg>
+                    </div>
+                    <span class="text-sm text-neutral-500"
+                      >Pending Reports</span
+                    >
+                  </div>
+                  <h3 class="text-2xl font-semibold text-neutral-800">5</h3>
+                  <p class="text-sm text-rose-600 mt-2">Due within 24 hours</p>
+                </div>
+              </div>
+
+              <!-- Upcoming Appointments -->
+              <div class="bg-white rounded-xl border border-neutral-200 mb-8">
+                <div class="p-6 border-b border-neutral-200">
+                  <h2 class="text-xl font-semibold text-neutral-800">
+                    Upcoming Appointments
+                  </h2>
+                </div>
+                <div class="overflow-x-auto">
+                  <table class="w-full">
+                    <thead class="bg-neutral-50">
+                      <tr>
+                        <th
+                          class="px-6 py-4 text-left text-sm font-medium text-neutral-500"
+                        >
+                          Patient
+                        </th>
+                        <th
+                          class="px-6 py-4 text-left text-sm font-medium text-neutral-500"
+                        >
+                          Time
+                        </th>
+                        <th
+                          class="px-6 py-4 text-left text-sm font-medium text-neutral-500"
+                        >
+                          Type
+                        </th>
+                        <th
+                          class="px-6 py-4 text-left text-sm font-medium text-neutral-500"
+                        >
+                          Status
+                        </th>
+                        <th
+                          class="px-6 py-4 text-left text-sm font-medium text-neutral-500"
+                        >
+                          Action
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-neutral-200">
+                      <tr>
+                        <td class="px-6 py-4">
+                          <div class="flex items-center">
+                            <img
+                              src="https://avatar.iran.liara.run/public"
+                              alt="Patient"
+                              class="w-8 h-8 rounded-full"
+                            />
+                            <div class="ml-4">
+                              <div class="text-sm font-medium text-neutral-900">
+                                Sarah Johnson
+                              </div>
+                              <div class="text-sm text-neutral-500">
+                                Depression
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-neutral-500">
+                          2:00 PM
+                        </td>
+                        <td class="px-6 py-4">
+                          <span
+                            class="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
+                            >Video Call</span
+                          >
+                        </td>
+                        <td class="px-6 py-4">
+                          <span
+                            class="px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800"
+                            >Confirmed</span
+                          >
+                        </td>
+                        <td class="px-6 py-4">
+                          <button class="text-blue-600 hover:text-blue-900">
+                            View Details
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="px-6 py-4">
+                          <div class="flex items-center">
+                            <img
+                              src="https://avatar.iran.liara.run/public"
+                              alt="Patient"
+                              class="w-8 h-8 rounded-full"
+                            />
+                            <div class="ml-4">
+                              <div class="text-sm font-medium text-neutral-900">
+                                Michael Brown
+                              </div>
+                              <div class="text-sm text-neutral-500">
+                                Anxiety
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-neutral-500">
+                          3:30 PM
+                        </td>
+                        <td class="px-6 py-4">
+                          <span
+                            class="px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800"
+                            >In Person</span
+                          >
+                        </td>
+                        <td class="px-6 py-4">
+                          <span
+                            class="px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800"
+                            >Pending</span
+                          >
+                        </td>
+                        <td class="px-6 py-4">
+                          <button class="text-blue-600 hover:text-blue-900">
+                            View Details
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Recent Activity and Quick Actions -->
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Recent Activity -->
+                <div
+                  class="lg:col-span-2 bg-white rounded-xl border border-neutral-200"
+                >
+                  <div class="p-6 border-b border-neutral-200">
+                    <h2 class="text-xl font-semibold text-neutral-800">
+                      Recent Activity
+                    </h2>
+                  </div>
+                  <div class="p-6 space-y-6">
+                    <div class="flex items-start">
+                      <div class="bg-blue-100 p-2 rounded-lg">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5 text-blue-600"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      </div>
+                      <div class="ml-4">
+                        <p class="text-sm font-medium text-neutral-900">
+                          Medical report updated for Sarah Johnson
+                        </p>
+                        <p class="text-sm text-neutral-500 mt-1">
+                          10 minutes ago
+                        </p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <div class="bg-green-100 p-2 rounded-lg">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5 text-green-600"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          />
+                        </svg>
+                      </div>
+                      <div class="ml-4">
+                        <p class="text-sm font-medium text-neutral-900">
+                          New appointment scheduled with Michael Brown
+                        </p>
+                        <p class="text-sm text-neutral-500 mt-1">1 hour ago</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-xl border border-neutral-200">
+                  <div class="p-6 border-b border-neutral-200">
+                    <h2 class="text-xl font-semibold text-neutral-800">
+                      Quick Actions
+                    </h2>
+                  </div>
+                  <div class="p-6 space-y-4">
+                    <button
+                      class="w-full flex items-center justify-center px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 mr-2"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 4v16m8-8H4"
+                        />
+                      </svg>
+                      New Appointment
+                    </button>
+                    <button
+                      class="w-full flex items-center justify-center px-4 py-2 border border-neutral-300 text-neutral-700 rounded-lg hover:bg-neutral-50 transition-colors"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 mr-2"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                        />
+                      </svg>
+                      Start Video Call
+                    </button>
+                    <button
+                      class="w-full flex items-center justify-center px-4 py-2 border border-neutral-300 text-neutral-700 rounded-lg hover:bg-neutral-50 transition-colors"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 mr-2"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                        />
+                      </svg>
+                      Create Report
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section> </htmlCode
+          ><htmlCode>
+            <section id="patient_dashboard" class="p-6 bg-neutral-50">
+              <!-- Welcome Banner -->
+              <div
+                class="bg-white rounded-xl border border-neutral-200 p-6 mb-8"
+              >
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h1 class="text-2xl font-semibold text-neutral-800">
+                      Welcome back, Sarah
+                    </h1>
+                    <p class="text-neutral-600 mt-1">
+                      Your next appointment is in 2 days
+                    </p>
+                  </div>
+                  <button
+                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    Book Appointment
+                  </button>
+                </div>
+              </div>
+
+              <!-- Status Cards -->
+              <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+              >
+                <div class="bg-white p-6 rounded-xl border border-neutral-200">
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="bg-emerald-100 p-3 rounded-lg">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 text-emerald-600"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
+                    <span class="text-sm text-neutral-500"
+                      >Next Appointment</span
+                    >
+                  </div>
+                  <h3 class="text-lg font-semibold text-neutral-800">
+                    Thursday
+                  </h3>
+                  <p class="text-sm text-emerald-600 mt-2">
+                    2:00 PM with Dr. Smith
+                  </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-neutral-200">
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="bg-blue-100 p-3 rounded-lg">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 text-blue-600"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                        />
+                      </svg>
+                    </div>
+                    <span class="text-sm text-neutral-500">Prescriptions</span>
+                  </div>
+                  <h3 class="text-lg font-semibold text-neutral-800">
+                    2 Active
+                  </h3>
+                  <p class="text-sm text-blue-600 mt-2">1 needs renewal</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-neutral-200">
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="bg-purple-100 p-3 rounded-lg">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 text-purple-600"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                        />
+                      </svg>
+                    </div>
+                    <span class="text-sm text-neutral-500">Test Results</span>
+                  </div>
+                  <h3 class="text-lg font-semibold text-neutral-800">3 New</h3>
+                  <p class="text-sm text-purple-600 mt-2">Updated today</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-neutral-200">
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="bg-rose-100 p-3 rounded-lg">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 text-rose-600"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                        />
+                      </svg>
+                    </div>
+                    <span class="text-sm text-neutral-500">Health Score</span>
+                  </div>
+                  <h3 class="text-lg font-semibold text-neutral-800">85/100</h3>
+                  <p class="text-sm text-rose-600 mt-2">+5 from last month</p>
+                </div>
+              </div>
+
+              <!-- Health Tracker and Upcoming -->
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                <!-- Health Tracker -->
+                <div
+                  class="lg:col-span-2 bg-white rounded-xl border border-neutral-200"
+                >
+                  <div
+                    class="p-6 border-b border-neutral-200 flex justify-between items-center"
+                  >
+                    <h2 class="text-xl font-semibold text-neutral-800">
+                      Health Tracker
+                    </h2>
+                    <div class="flex space-x-2">
+                      <button
+                        class="px-3 py-1 text-sm border border-neutral-200 rounded-lg hover:bg-neutral-50"
+                      >
+                        Week
+                      </button>
+                      <button
+                        class="px-3 py-1 text-sm bg-blue-600 text-white rounded-lg"
+                      >
+                        Month
+                      </button>
+                    </div>
+                  </div>
+                  <div class="p-6">
+                    <div
+                      class="h-64 w-full bg-neutral-50 rounded-lg flex items-center justify-center"
+                    >
+                      <span class="text-neutral-500"
+                        >Health tracking chart will be displayed here</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Upcoming Activities -->
+                <div class="bg-white rounded-xl border border-neutral-200">
+                  <div class="p-6 border-b border-neutral-200">
+                    <h2 class="text-xl font-semibold text-neutral-800">
+                      Upcoming Activities
+                    </h2>
+                  </div>
+                  <div class="p-6">
+                    <div class="space-y-6">
+                      <div class="flex items-start">
+                        <div class="bg-blue-100 p-2 rounded-lg">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 text-blue-600"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            />
+                          </svg>
+                        </div>
+                        <div class="ml-4">
+                          <p class="text-sm font-medium text-neutral-900">
+                            Video Consultation
+                          </p>
+                          <p class="text-sm text-neutral-500">
+                            Thursday, 2:00 PM
+                          </p>
+                          <button
+                            class="mt-2 text-sm text-blue-600 hover:text-blue-800"
+                          >
+                            Join Call
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="flex items-start">
+                        <div class="bg-purple-100 p-2 rounded-lg">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 text-purple-600"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                            />
+                          </svg>
+                        </div>
+                        <div class="ml-4">
+                          <p class="text-sm font-medium text-neutral-900">
+                            Medication Reminder
+                          </p>
+                          <p class="text-sm text-neutral-500">Daily, 9:00 AM</p>
+                          <button
+                            class="mt-2 text-sm text-purple-600 hover:text-purple-800"
+                          >
+                            View Details
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Actions -->
+              <div class="bg-white rounded-xl border border-neutral-200">
+                <div class="p-6 border-b border-neutral-200">
+                  <h2 class="text-xl font-semibold text-neutral-800">
+                    Quick Actions
+                  </h2>
+                </div>
+                <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <button
+                    class="flex items-center justify-center px-4 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 mr-2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 4v16m8-8H4"
+                      />
+                    </svg>
+                    Book Appointment
+                  </button>
+                  <button
+                    class="flex items-center justify-center px-4 py-3 border border-green-600 text-green-600 rounded-lg hover:bg-green-50 transition-colors"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 mr-2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-4l-4 4v-4z"
+                      />
+                    </svg>
+                    Message Doctor
+                  </button>
+                  <button
+                    class="flex items-center justify-center px-4 py-3 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-50 transition-colors"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 mr-2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                    View Reports
+                  </button>
+                </div>
+              </div>
+            </section> </htmlCode
+          ><htmlCode>
+            <section id="appointment_manager" class="p-6 bg-neutral-50">
+              <!-- Calendar and Appointment List -->
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Calendar Section -->
+                <div
+                  class="lg:col-span-2 bg-white rounded-xl border border-neutral-200"
+                >
+                  <div class="p-6 border-b border-neutral-200">
+                    <div class="flex justify-between items-center">
+                      <h2 class="text-xl font-semibold text-neutral-800">
+                        Appointment Calendar
+                      </h2>
+                      <div class="flex space-x-2">
+                        <button
+                          class="px-4 py-2 text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+                        >
+                          Today
+                        </button>
+                        <button
+                          class="p-2 text-neutral-600 hover:bg-neutral-100 rounded-lg"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M15 19l-7-7 7-7"
+                            />
+                          </svg>
+                        </button>
+                        <button
+                          class="p-2 text-neutral-600 hover:bg-neutral-100 rounded-lg"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                    <p class="text-neutral-600 mt-1">September 2023</p>
+                  </div>
+                  <div class="p-6">
+                    <div class="grid grid-cols-7 gap-2 mb-4">
+                      <div
+                        class="text-center text-sm font-medium text-neutral-600"
+                      >
+                        Sun
+                      </div>
+                      <div
+                        class="text-center text-sm font-medium text-neutral-600"
+                      >
+                        Mon
+                      </div>
+                      <div
+                        class="text-center text-sm font-medium text-neutral-600"
+                      >
+                        Tue
+                      </div>
+                      <div
+                        class="text-center text-sm font-medium text-neutral-600"
+                      >
+                        Wed
+                      </div>
+                      <div
+                        class="text-center text-sm font-medium text-neutral-600"
+                      >
+                        Thu
+                      </div>
+                      <div
+                        class="text-center text-sm font-medium text-neutral-600"
+                      >
+                        Fri
+                      </div>
+                      <div
+                        class="text-center text-sm font-medium text-neutral-600"
+                      >
+                        Sat
+                      </div>
+                    </div>
+                    <div class="grid grid-cols-7 gap-2">
+                      <!-- Calendar dates -->
+                      <div
+                        class="aspect-square flex items-center justify-center text-neutral-400"
+                      >
+                        28
+                      </div>
+                      <div
+                        class="aspect-square flex items-center justify-center text-neutral-400"
+                      >
+                        29
+                      </div>
+                      <div
+                        class="aspect-square flex items-center justify-center text-neutral-400"
+                      >
+                        30
+                      </div>
+                      <div
+                        class="aspect-square flex items-center justify-center text-neutral-800"
+                      >
+                        1
+                      </div>
+                      <div
+                        class="aspect-square flex items-center justify-center text-neutral-800"
+                      >
+                        2
+                      </div>
+                      <div
+                        class="aspect-square flex items-center justify-center text-neutral-800"
+                      >
+                        3
+                      </div>
+                      <div
+                        class="aspect-square flex items-center justify-center text-neutral-800"
+                      >
+                        4
+                      </div>
+                      <div
+                        class="aspect-square flex items-center justify-center text-neutral-800"
+                      >
+                        5
+                      </div>
+                      <div
+                        class="aspect-square flex items-center justify-center text-neutral-800"
+                      >
+                        6
+                      </div>
+                      <div
+                        class="aspect-square flex items-center justify-center text-neutral-800"
+                      >
+                        7
+                      </div>
+                      <div
+                        class="aspect-square flex items-center justify-center text-neutral-800"
+                      >
+                        8
+                      </div>
+                      <div
+                        class="aspect-square flex items-center justify-center bg-blue-600 text-white rounded-lg"
+                      >
+                        9
+                      </div>
+                      <div
+                        class="aspect-square flex items-center justify-center text-neutral-800"
+                      >
+                        10
+                      </div>
+                      <div
+                        class="aspect-square flex items-center justify-center text-neutral-800"
+                      >
+                        11
+                      </div>
+                      <!-- Continue with more dates -->
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Appointment List -->
+                <div class="bg-white rounded-xl border border-neutral-200">
+                  <div class="p-6 border-b border-neutral-200">
+                    <h2 class="text-xl font-semibold text-neutral-800">
+                      Today's Schedule
+                    </h2>
+                    <p class="text-neutral-600 mt-1">Thursday, September 9</p>
+                  </div>
+                  <div class="p-6 space-y-6">
+                    <div
+                      class="flex items-center p-4 bg-blue-50 rounded-lg border border-blue-100"
+                    >
+                      <div class="flex-shrink-0">
+                        <img
+                          src="https://avatar.iran.liara.run/public"
+                          alt="Patient"
+                          class="w-10 h-10 rounded-full"
+                        />
+                      </div>
+                      <div class="ml-4 flex-grow">
+                        <h3 class="text-sm font-medium text-neutral-900">
+                          Sarah Johnson
+                        </h3>
+                        <p class="text-sm text-neutral-500">
+                          9:00 AM - 10:00 AM
+                        </p>
+                      </div>
+                      <button
+                        class="ml-4 px-3 py-1 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                      >
+                        Start
+                      </button>
+                    </div>
+
+                    <div
+                      class="flex items-center p-4 rounded-lg border border-neutral-200"
+                    >
+                      <div class="flex-shrink-0">
+                        <img
+                          src="https://avatar.iran.liara.run/public"
+                          alt="Patient"
+                          class="w-10 h-10 rounded-full"
+                        />
+                      </div>
+                      <div class="ml-4 flex-grow">
+                        <h3 class="text-sm font-medium text-neutral-900">
+                          Michael Brown
+                        </h3>
+                        <p class="text-sm text-neutral-500">
+                          11:30 AM - 12:30 PM
+                        </p>
+                      </div>
+                      <span
+                        class="ml-4 px-3 py-1 text-sm bg-neutral-100 text-neutral-600 rounded-lg"
+                      >
+                        Upcoming
+                      </span>
+                    </div>
+
+                    <div
+                      class="flex items-center p-4 rounded-lg border border-neutral-200"
+                    >
+                      <div class="flex-shrink-0">
+                        <img
+                          src="https://avatar.iran.liara.run/public"
+                          alt="Patient"
+                          class="w-10 h-10 rounded-full"
+                        />
+                      </div>
+                      <div class="ml-4 flex-grow">
+                        <h3 class="text-sm font-medium text-neutral-900">
+                          Emma Wilson
+                        </h3>
+                        <p class="text-sm text-neutral-500">
+                          2:00 PM - 3:00 PM
+                        </p>
+                      </div>
+                      <span
+                        class="ml-4 px-3 py-1 text-sm bg-neutral-100 text-neutral-600 rounded-lg"
+                      >
+                        Upcoming
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Appointment Actions -->
+              <div class="mt-8 bg-white rounded-xl border border-neutral-200">
+                <div class="p-6 border-b border-neutral-200">
+                  <h2 class="text-xl font-semibold text-neutral-800">
+                    Quick Actions
+                  </h2>
+                </div>
+                <div class="p-6 grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <button
+                    class="flex items-center justify-center px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 mr-2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 4v16m8-8H4"
+                      />
+                    </svg>
+                    New Appointment
+                  </button>
+                  <button
+                    class="flex items-center justify-center px-4 py-3 border border-neutral-200 text-neutral-700 rounded-lg hover:bg-neutral-50 transition-colors"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 mr-2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                      />
+                    </svg>
+                    Video Call
+                  </button>
+                  <button
+                    class="flex items-center justify-center px-4 py-3 border border-neutral-200 text-neutral-700 rounded-lg hover:bg-neutral-50 transition-colors"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 mr-2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
+                    </svg>
+                    View Schedule
+                  </button>
+                  <button
+                    class="flex items-center justify-center px-4 py-3 border border-neutral-200 text-neutral-700 rounded-lg hover:bg-neutral-50 transition-colors"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 mr-2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                      />
+                    </svg>
+                    Cancel Appointment
+                  </button>
+                </div>
+              </div>
+            </section> </htmlCode
+          ><htmlCode>
+            <section id="medical_records" class="p-6 bg-neutral-50">
+              <!-- Patient Info Header -->
+              <div
+                class="bg-white rounded-xl border border-neutral-200 p-6 mb-8"
+              >
+                <div
+                  class="flex flex-col md:flex-row md:items-center md:justify-between"
+                >
+                  <div class="flex items-center mb-4 md:mb-0">
+                    <img
+                      src="https://avatar.iran.liara.run/public"
+                      alt="Patient"
+                      class="w-16 h-16 rounded-full"
+                    />
+                    <div class="ml-4">
+                      <h1 class="text-2xl font-semibold text-neutral-800">
+                        Sarah Johnson
+                      </h1>
+                      <p class="text-neutral-600">Patient ID: #12345</p>
+                    </div>
+                  </div>
+                  <div class="flex flex-wrap gap-3">
+                    <button
+                      class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    >
+                      Update Record
+                    </button>
+                    <button
+                      class="px-4 py-2 border border-neutral-200 text-neutral-700 rounded-lg hover:bg-neutral-50 transition-colors"
+                    >
+                      Download History
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Patient Details -->
+                <div class="bg-white rounded-xl border border-neutral-200">
+                  <div class="p-6 border-b border-neutral-200">
+                    <h2 class="text-xl font-semibold text-neutral-800">
+                      Patient Details
+                    </h2>
+                  </div>
+                  <div class="p-6 space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                      <div>
+                        <p class="text-sm text-neutral-500">Age</p>
+                        <p class="text-neutral-800">32 years</p>
+                      </div>
+                      <div>
+                        <p class="text-sm text-neutral-500">Gender</p>
+                        <p class="text-neutral-800">Female</p>
+                      </div>
+                      <div>
+                        <p class="text-sm text-neutral-500">Blood Type</p>
+                        <p class="text-neutral-800">O+</p>
+                      </div>
+                      <div>
+                        <p class="text-sm text-neutral-500">Weight</p>
+                        <p class="text-neutral-800">65 kg</p>
+                      </div>
+                    </div>
+                    <div class="pt-4 border-t border-neutral-200">
+                      <p class="text-sm text-neutral-500">Emergency Contact</p>
+                      <p class="text-neutral-800">John Johnson</p>
+                      <p class="text-neutral-600">+1 (555) 123-4567</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Medical History -->
+                <div
+                  class="lg:col-span-2 bg-white rounded-xl border border-neutral-200"
+                >
+                  <div class="p-6 border-b border-neutral-200">
+                    <h2 class="text-xl font-semibold text-neutral-800">
+                      Medical History
+                    </h2>
+                  </div>
+                  <div class="p-6">
+                    <div class="space-y-6">
+                      <div class="border-l-4 border-blue-600 pl-4">
+                        <div class="flex items-center justify-between mb-2">
+                          <h3 class="font-medium text-neutral-800">
+                            Depression Diagnosis
+                          </h3>
+                          <span class="text-sm text-neutral-500"
+                            >Sep 15, 2023</span
+                          >
+                        </div>
+                        <p class="text-neutral-600 text-sm mb-2">
+                          Initial diagnosis of major depressive disorder.
+                        </p>
+                        <div class="flex items-center text-sm text-neutral-500">
+                          <span class="mr-4">Dr. Smith</span>
+                          <button class="text-blue-600 hover:text-blue-800">
+                            View Details
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="border-l-4 border-green-600 pl-4">
+                        <div class="flex items-center justify-between mb-2">
+                          <h3 class="font-medium text-neutral-800">
+                            Medication Prescribed
+                          </h3>
+                          <span class="text-sm text-neutral-500"
+                            >Sep 20, 2023</span
+                          >
+                        </div>
+                        <p class="text-neutral-600 text-sm mb-2">
+                          Started on Sertraline 50mg daily.
+                        </p>
+                        <div class="flex items-center text-sm text-neutral-500">
+                          <span class="mr-4">Dr. Smith</span>
+                          <button class="text-blue-600 hover:text-blue-800">
+                            View Details
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="border-l-4 border-purple-600 pl-4">
+                        <div class="flex items-center justify-between mb-2">
+                          <h3 class="font-medium text-neutral-800">
+                            Therapy Session
+                          </h3>
+                          <span class="text-sm text-neutral-500"
+                            >Sep 27, 2023</span
+                          >
+                        </div>
+                        <p class="text-neutral-600 text-sm mb-2">
+                          CBT session - discussed coping mechanisms.
+                        </p>
+                        <div class="flex items-center text-sm text-neutral-500">
+                          <span class="mr-4">Dr. Smith</span>
+                          <button class="text-blue-600 hover:text-blue-800">
+                            View Details
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Current Medications -->
+              <div class="mt-8 bg-white rounded-xl border border-neutral-200">
+                <div class="p-6 border-b border-neutral-200">
+                  <h2 class="text-xl font-semibold text-neutral-800">
+                    Current Medications
+                  </h2>
+                </div>
+                <div class="p-6">
+                  <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                  >
+                    <div class="p-4 border border-neutral-200 rounded-lg">
+                      <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-medium text-neutral-800">Sertraline</h3>
+                        <span
+                          class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full"
+                          >Active</span
+                        >
+                      </div>
+                      <p class="text-sm text-neutral-600 mb-2">50mg daily</p>
+                      <p class="text-sm text-neutral-500">
+                        Started: Sep 20, 2023
+                      </p>
+                      <button
+                        class="mt-4 text-sm text-blue-600 hover:text-blue-800"
+                      >
+                        Refill Request
+                      </button>
+                    </div>
+
+                    <div class="p-4 border border-neutral-200 rounded-lg">
+                      <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-medium text-neutral-800">Alprazolam</h3>
+                        <span
+                          class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full"
+                          >Discontinued</span
+                        >
+                      </div>
+                      <p class="text-sm text-neutral-600 mb-2">
+                        0.25mg as needed
+                      </p>
+                      <p class="text-sm text-neutral-500">
+                        Ended: Sep 25, 2023
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Notes and Observations -->
+              <div class="mt-8 bg-white rounded-xl border border-neutral-200">
+                <div
+                  class="p-6 border-b border-neutral-200 flex justify-between items-center"
+                >
+                  <h2 class="text-xl font-semibold text-neutral-800">
+                    Notes and Observations
+                  </h2>
+                  <button
+                    class="px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                  >
+                    Add Note
+                  </button>
+                </div>
+                <div class="p-6">
+                  <div class="space-y-6">
+                    <div class="p-4 bg-neutral-50 rounded-lg">
+                      <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm text-neutral-500"
+                          >Sep 27, 2023</span
+                        >
+                        <span class="text-sm text-neutral-500">Dr. Smith</span>
+                      </div>
+                      <p class="text-neutral-700">
+                        Patient shows improvement in mood and sleep patterns.
+                        Continuing with current medication dosage.
+                      </p>
+                    </div>
+                    <div class="p-4 bg-neutral-50 rounded-lg">
+                      <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm text-neutral-500"
+                          >Sep 20, 2023</span
+                        >
+                        <span class="text-sm text-neutral-500">Dr. Smith</span>
+                      </div>
+                      <p class="text-neutral-700">
+                        Initial symptoms include difficulty sleeping and
+                        decreased appetite. Starting with low dose SSRI.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section> </htmlCode
+          ><htmlCode>
+            <section
+              id="chat_system"
+              class="flex h-[calc(100vh-80px)] bg-neutral-50"
+            >
+              <!-- Contacts Sidebar -->
+              <div
+                class="w-full md:w-80 bg-white border-r border-neutral-200 flex flex-col"
+              >
+                <div class="p-4 border-b border-neutral-200">
+                  <div class="relative">
+                    <input
+                      type="text"
+                      placeholder="Search conversations..."
+                      class="w-full pl-10 pr-4 py-2 border border-neutral-200 rounded-lg focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none"
+                    />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 text-neutral-400 absolute left-3 top-2.5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="overflow-y-auto flex-1">
+                  <div class="p-2">
+                    <div
+                      class="flex items-center p-3 bg-blue-50 rounded-lg mb-2"
+                    >
+                      <img
+                        src="https://avatar.iran.liara.run/public"
+                        alt="Contact"
+                        class="w-12 h-12 rounded-full"
+                      />
+                      <div class="ml-3 flex-1">
+                        <h3 class="text-sm font-medium text-neutral-900">
+                          Sarah Johnson
+                        </h3>
+                        <p class="text-sm text-neutral-500 truncate">
+                          Thanks for the consultation...
+                        </p>
+                      </div>
+                      <div class="text-xs text-neutral-500">2m</div>
+                    </div>
+
+                    <div
+                      class="flex items-center p-3 hover:bg-neutral-50 rounded-lg mb-2 transition-colors"
+                    >
+                      <img
+                        src="https://avatar.iran.liara.run/public"
+                        alt="Contact"
+                        class="w-12 h-12 rounded-full"
+                      />
+                      <div class="ml-3 flex-1">
+                        <h3 class="text-sm font-medium text-neutral-900">
+                          Michael Brown
+                        </h3>
+                        <p class="text-sm text-neutral-500 truncate">
+                          When is my next appointment?
+                        </p>
+                      </div>
+                      <div class="text-xs text-neutral-500">1h</div>
+                    </div>
+
+                    <div
+                      class="flex items-center p-3 hover:bg-neutral-50 rounded-lg mb-2 transition-colors"
+                    >
+                      <img
+                        src="https://avatar.iran.liara.run/public"
+                        alt="Contact"
+                        class="w-12 h-12 rounded-full"
+                      />
+                      <div class="ml-3 flex-1">
+                        <h3 class="text-sm font-medium text-neutral-900">
+                          Emma Wilson
+                        </h3>
+                        <p class="text-sm text-neutral-500 truncate">
+                          I'll see you tomorrow
+                        </p>
+                      </div>
+                      <div class="text-xs text-neutral-500">2h</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chat Area -->
+              <div class="hidden md:flex flex-1 flex-col bg-white">
+                <!-- Chat Header -->
+                <div
+                  class="p-4 border-b border-neutral-200 flex items-center justify-between"
+                >
+                  <div class="flex items-center">
+                    <img
+                      src="https://avatar.iran.liara.run/public"
+                      alt="Current Chat"
+                      class="w-10 h-10 rounded-full"
+                    />
+                    <div class="ml-3">
+                      <h2 class="text-lg font-medium text-neutral-900">
+                        Sarah Johnson
+                      </h2>
+                      <p class="text-sm text-neutral-500">Online</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <button
+                      class="p-2 text-neutral-600 hover:bg-neutral-100 rounded-lg transition-colors"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      class="p-2 text-neutral-600 hover:bg-neutral-100 rounded-lg transition-colors"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Messages Area -->
+                <div class="flex-1 overflow-y-auto p-4 space-y-4">
+                  <div class="flex items-end">
+                    <img
+                      src="https://avatar.iran.liara.run/public"
+                      alt="Contact"
+                      class="w-8 h-8 rounded-full"
+                    />
+                    <div class="ml-2 max-w-md">
+                      <div class="bg-neutral-100 p-3 rounded-lg">
+                        <p class="text-neutral-800">
+                          Hello Dr. Smith, I've been feeling much better since
+                          our last session.
+                        </p>
+                      </div>
+                      <span class="text-xs text-neutral-500 mt-1"
+                        >10:30 AM</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="flex items-end justify-end">
+                    <div class="mr-2 max-w-md">
+                      <div class="bg-blue-600 p-3 rounded-lg">
+                        <p class="text-white">
+                          That's great to hear, Sarah! Have you been practicing
+                          the exercises we discussed?
+                        </p>
+                      </div>
+                      <span class="text-xs text-neutral-500 mt-1"
+                        >10:32 AM</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="flex items-end">
+                    <img
+                      src="https://avatar.iran.liara.run/public"
+                      alt="Contact"
+                      class="w-8 h-8 rounded-full"
+                    />
+                    <div class="ml-2 max-w-md">
+                      <div class="bg-neutral-100 p-3 rounded-lg">
+                        <p class="text-neutral-800">
+                          Yes, I've been doing them daily. The breathing
+                          exercises have been particularly helpful.
+                        </p>
+                      </div>
+                      <span class="text-xs text-neutral-500 mt-1"
+                        >10:33 AM</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Message Input -->
+                <div class="p-4 border-t border-neutral-200">
+                  <div class="flex items-end space-x-3">
+                    <button
+                      class="p-2 text-neutral-600 hover:bg-neutral-100 rounded-lg transition-colors"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                        />
+                      </svg>
+                    </button>
+                    <div class="flex-1">
+                      <input
+                        type="text"
+                        placeholder="Type your message..."
+                        class="w-full px-4 py-2 border border-neutral-200 rounded-lg focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none"
+                      />
+                    </div>
+                    <button
+                      class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Empty State for Mobile -->
+              <div
+                class="flex-1 flex items-center justify-center bg-white md:hidden"
+              >
+                <div class="text-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-12 w-12 text-neutral-400 mx-auto mb-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                    />
+                  </svg>
+                  <p class="text-neutral-600">
+                    Select a conversation to start messaging
+                  </p>
+                </div>
+              </div>
+            </section> </htmlCode
+          ><htmlCode>
+            <section id="video_call" class="h-screen bg-neutral-900 text-white">
+              <!-- Main Video Grid -->
+              <div class="h-full flex flex-col">
+                <!-- Video Call Header -->
+                <div
+                  class="p-4 bg-neutral-800 flex items-center justify-between"
+                >
+                  <div class="flex items-center">
+                    <div
+                      class="flex items-center bg-emerald-600 px-3 py-1 rounded-full"
+                    >
+                      <span class="w-2 h-2 bg-white rounded-full mr-2"></span>
+                      <span class="text-sm">Call in progress</span>
+                    </div>
+                    <span class="ml-4 text-neutral-400">32:15</span>
+                  </div>
+                  <div class="flex items-center space-x-4">
+                    <button
+                      class="p-2 hover:bg-neutral-700 rounded-lg transition-colors"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      class="p-2 hover:bg-neutral-700 rounded-lg transition-colors"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                        />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Video Content -->
+                <div class="flex-1 p-4">
+                  <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 h-full">
+                    <!-- Main Video -->
+                    <div
+                      class="lg:col-span-3 bg-neutral-800 rounded-xl overflow-hidden relative"
+                    >
+                      <img
+                        src="https://placehold.co/800x600"
+                        alt="Main video stream"
+                        class="w-full h-full object-cover"
+                      />
+                      <div
+                        class="absolute bottom-4 left-4 bg-neutral-900/80 px-3 py-1 rounded-lg"
+                      >
+                        <p class="text-sm">Dr. Sarah Smith</p>
+                      </div>
+                    </div>
+
+                    <!-- Side Panel -->
+                    <div class="space-y-4">
+                      <!-- Secondary Video -->
+                      <div
+                        class="bg-neutral-800 rounded-xl overflow-hidden relative aspect-video"
+                      >
+                        <img
+                          src="https://placehold.co/400x300"
+                          alt="Secondary video stream"
+                          class="w-full h-full object-cover"
+                        />
+                        <div
+                          class="absolute bottom-2 left-2 bg-neutral-900/80 px-2 py-1 rounded-lg"
+                        >
+                          <p class="text-xs">You</p>
+                        </div>
+                      </div>
+
+                      <!-- Controls Panel -->
+                      <div class="bg-neutral-800 p-4 rounded-xl space-y-4">
+                        <div class="flex justify-around">
+                          <button
+                            class="p-3 bg-neutral-700 rounded-full hover:bg-neutral-600 transition-colors"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="h-6 w-6"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
+                              />
+                            </svg>
+                          </button>
+                          <button
+                            class="p-3 bg-neutral-700 rounded-full hover:bg-neutral-600 transition-colors"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="h-6 w-6"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                              />
+                            </svg>
+                          </button>
+                          <button
+                            class="p-3 bg-neutral-700 rounded-full hover:bg-neutral-600 transition-colors"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="h-6 w-6"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+
+                        <button
+                          class="w-full py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors flex items-center justify-center"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                          End Call
+                        </button>
+                      </div>
+
+                      <!-- Notes Section -->
+                      <div class="bg-neutral-800 p-4 rounded-xl">
+                        <h3 class="text-sm font-medium mb-2">Session Notes</h3>
+                        <textarea
+                          class="w-full h-32 bg-neutral-700 rounded-lg p-3 text-sm resize-none focus:ring-2 focus:ring-blue-500 outline-none"
+                          placeholder="Take notes during the session..."
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section> </htmlCode
+          ><htmlCode>
+            <section id="disease_library" class="p-6 bg-neutral-50">
+              <!-- Header -->
+              <div class="max-w-7xl mx-auto mb-8">
+                <h1 class="text-3xl font-bold text-neutral-800 mb-4">
+                  Mental Health Library
+                </h1>
+                <div class="flex flex-col md:flex-row md:items-center gap-4">
+                  <div class="flex-1">
+                    <div class="relative">
+                      <input
+                        type="text"
+                        placeholder="Search conditions..."
+                        class="w-full pl-10 pr-4 py-2 border border-neutral-200 rounded-lg focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none"
+                      />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 text-neutral-400 absolute left-3 top-2.5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="flex gap-2">
+                    <button
+                      class="px-4 py-2 bg-neutral-100 text-neutral-700 rounded-lg hover:bg-neutral-200 transition-colors"
+                    >
+                      Categories
+                    </button>
+                    <button
+                      class="px-4 py-2 bg-neutral-100 text-neutral-700 rounded-lg hover:bg-neutral-200 transition-colors"
+                    >
+                      Symptoms
+                    </button>
+                    <button
+                      class="px-4 py-2 bg-neutral-100 text-neutral-700 rounded-lg hover:bg-neutral-200 transition-colors"
+                    >
+                      Treatments
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Common Conditions Grid -->
+              <div class="max-w-7xl mx-auto mb-12">
+                <h2 class="text-xl font-semibold text-neutral-800 mb-6">
+                  Common Conditions
+                </h2>
+                <div
+                  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                >
+                  <!-- Depression Card -->
+                  <div
+                    class="bg-white rounded-xl border border-neutral-200 overflow-hidden hover:border-blue-600 transition-colors"
+                  >
+                    <div class="aspect-video bg-neutral-100">
+                      <img
+                        src="https://placehold.co/600x400?text=Depression"
+                        alt="Depression"
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div class="p-6">
+                      <h3 class="text-lg font-semibold text-neutral-800 mb-2">
+                        Depression
+                      </h3>
+                      <p class="text-neutral-600 mb-4">
+                        Major depressive disorder affects how you feel, think
+                        and behave and can lead to various emotional and
+                        physical problems.
+                      </p>
+                      <a
+                        href="#depression"
+                        class="text-blue-600 hover:text-blue-800 font-medium"
+                        >Learn more →</a
+                      >
+                    </div>
+                  </div>
+
+                  <!-- Anxiety Card -->
+                  <div
+                    class="bg-white rounded-xl border border-neutral-200 overflow-hidden hover:border-blue-600 transition-colors"
+                  >
+                    <div class="aspect-video bg-neutral-100">
+                      <img
+                        src="https://placehold.co/600x400?text=Anxiety"
+                        alt="Anxiety"
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div class="p-6">
+                      <h3 class="text-lg font-semibold text-neutral-800 mb-2">
+                        Anxiety Disorders
+                      </h3>
+                      <p class="text-neutral-600 mb-4">
+                        Anxiety disorders involve persistent, excessive fear or
+                        worry in situations that are not threatening.
+                      </p>
+                      <a
+                        href="#anxiety"
+                        class="text-blue-600 hover:text-blue-800 font-medium"
+                        >Learn more →</a
+                      >
+                    </div>
+                  </div>
+
+                  <!-- ADHD Card -->
+                  <div
+                    class="bg-white rounded-xl border border-neutral-200 overflow-hidden hover:border-blue-600 transition-colors"
+                  >
+                    <div class="aspect-video bg-neutral-100">
+                      <img
+                        src="https://placehold.co/600x400?text=ADHD"
+                        alt="ADHD"
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div class="p-6">
+                      <h3 class="text-lg font-semibold text-neutral-800 mb-2">
+                        ADHD
+                      </h3>
+                      <p class="text-neutral-600 mb-4">
+                        Attention deficit hyperactivity disorder affects
+                        attention, impulsiveness, and hyperactivity levels.
+                      </p>
+                      <a
+                        href="#adhd"
+                        class="text-blue-600 hover:text-blue-800 font-medium"
+                        >Learn more →</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Categories Section -->
+              <div class="max-w-7xl mx-auto mb-12">
+                <h2 class="text-xl font-semibold text-neutral-800 mb-6">
+                  Browse by Category
+                </h2>
+                <div
+                  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+                >
+                  <button
+                    class="p-4 bg-white border border-neutral-200 rounded-xl hover:border-blue-600 transition-colors"
+                  >
+                    <div class="flex items-center">
+                      <div class="bg-blue-100 p-3 rounded-lg">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-6 w-6 text-blue-600"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      </div>
+                      <span class="ml-3 text-neutral-800">Mood Disorders</span>
+                    </div>
+                  </button>
+
+                  <button
+                    class="p-4 bg-white border border-neutral-200 rounded-xl hover:border-blue-600 transition-colors"
+                  >
+                    <div class="flex items-center">
+                      <div class="bg-green-100 p-3 rounded-lg">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-6 w-6 text-green-600"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"
+                          />
+                        </svg>
+                      </div>
+                      <span class="ml-3 text-neutral-800"
+                        >Anxiety Disorders</span
+                      >
+                    </div>
+                  </button>
+
+                  <button
+                    class="p-4 bg-white border border-neutral-200 rounded-xl hover:border-blue-600 transition-colors"
+                  >
+                    <div class="flex items-center">
+                      <div class="bg-purple-100 p-3 rounded-lg">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-6 w-6 text-purple-600"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                          />
+                        </svg>
+                      </div>
+                      <span class="ml-3 text-neutral-800"
+                        >Learning Disorders</span
+                      >
+                    </div>
+                  </button>
+
+                  <button
+                    class="p-4 bg-white border border-neutral-200 rounded-xl hover:border-blue-600 transition-colors"
+                  >
+                    <div class="flex items-center">
+                      <div class="bg-rose-100 p-3 rounded-lg">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-6 w-6 text-rose-600"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                          />
+                        </svg>
+                      </div>
+                      <span class="ml-3 text-neutral-800"
+                        >Personality Disorders</span
+                      >
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Featured Resources -->
+              <div class="max-w-7xl mx-auto">
+                <h2 class="text-xl font-semibold text-neutral-800 mb-6">
+                  Featured Resources
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div
+                    class="bg-white p-6 rounded-xl border border-neutral-200"
+                  >
+                    <h3 class="font-medium text-neutral-800 mb-2">
+                      Treatment Guides
+                    </h3>
+                    <p class="text-neutral-600 text-sm mb-4">
+                      Comprehensive guides for various treatment approaches and
+                      therapies.
+                    </p>
+                    <a
+                      href="#"
+                      class="text-blue-600 text-sm hover:text-blue-800"
+                      >View guides →</a
+                    >
+                  </div>
+
+                  <div
+                    class="bg-white p-6 rounded-xl border border-neutral-200"
+                  >
+                    <h3 class="font-medium text-neutral-800 mb-2">
+                      Self-Help Tools
+                    </h3>
+                    <p class="text-neutral-600 text-sm mb-4">
+                      Resources and tools for managing symptoms and maintaining
+                      mental health.
+                    </p>
+                    <a
+                      href="#"
+                      class="text-blue-600 text-sm hover:text-blue-800"
+                      >Access tools →</a
+                    >
+                  </div>
+
+                  <div
+                    class="bg-white p-6 rounded-xl border border-neutral-200"
+                  >
+                    <h3 class="font-medium text-neutral-800 mb-2">
+                      Support Groups
+                    </h3>
+                    <p class="text-neutral-600 text-sm mb-4">
+                      Connect with others and find support in your mental health
+                      journey.
+                    </p>
+                    <a
+                      href="#"
+                      class="text-blue-600 text-sm hover:text-blue-800"
+                      >Find groups →</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </section> </htmlCode
+          ><htmlCode>
+            <div id="root">
+              <section id="health_tracker" class="bg-neutral-900 py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                      Personal Health Tracker
+                    </h2>
+                    <p class="text-neutral-400 max-w-2xl mx-auto">
+                      Monitor your health metrics and medical history in one
+                      place
+                    </p>
+                  </div>
+
+                  <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                  >
+                    <!-- Vitals Card -->
+                    <div
+                      class="border border-neutral-700/40 rounded-xl p-6 bg-neutral-800/50 hover:border-neutral-600/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold text-white">
+                          Vital Signs
+                        </h3>
+                        <button
+                          class="text-blue-400 hover:text-blue-300 transition-colors"
+                        >
+                          Update
+                        </button>
+                      </div>
+                      <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                          <span class="text-neutral-400">Blood Pressure</span>
+                          <span class="text-white">120/80 mmHg</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                          <span class="text-neutral-400">Heart Rate</span>
+                          <span class="text-white">72 bpm</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                          <span class="text-neutral-400">Temperature</span>
+                          <span class="text-white">98.6°F</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Medications Card -->
+                    <div
+                      class="border border-neutral-700/40 rounded-xl p-6 bg-neutral-800/50 hover:border-neutral-600/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold text-white">
+                          Medications
+                        </h3>
+                        <button
+                          class="text-blue-400 hover:text-blue-300 transition-colors"
+                        >
+                          Add New
+                        </button>
+                      </div>
+                      <div class="space-y-4">
+                        <div
+                          class="p-3 border border-neutral-700/30 rounded-lg"
+                        >
+                          <div class="flex justify-between items-center">
+                            <span class="text-white">Sertraline</span>
+                            <span class="text-neutral-400">50mg daily</span>
+                          </div>
+                        </div>
+                        <div
+                          class="p-3 border border-neutral-700/30 rounded-lg"
+                        >
+                          <div class="flex justify-between items-center">
+                            <span class="text-white">Vitamin D3</span>
+                            <span class="text-neutral-400">2000 IU daily</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Appointments Card -->
+                    <div
+                      class="border border-neutral-700/40 rounded-xl p-6 bg-neutral-800/50 hover:border-neutral-600/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold text-white">
+                          Upcoming Appointments
+                        </h3>
+                        <button
+                          class="text-blue-400 hover:text-blue-300 transition-colors"
+                        >
+                          Book New
+                        </button>
+                      </div>
+                      <div class="space-y-4">
+                        <div
+                          class="p-3 border border-neutral-700/30 rounded-lg"
+                        >
+                          <div class="flex flex-col">
+                            <span class="text-white">Dr. Sarah Johnson</span>
+                            <span class="text-neutral-400"
+                              >Tomorrow, 10:00 AM</span
+                            >
+                          </div>
+                        </div>
+                        <div
+                          class="p-3 border border-neutral-700/30 rounded-lg"
+                        >
+                          <div class="flex flex-col">
+                            <span class="text-white">Dr. Michael Chen</span>
+                            <span class="text-neutral-400"
+                              >Next Week, 2:30 PM</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Progress Chart -->
+                    <div
+                      class="border border-neutral-700/40 rounded-xl p-6 bg-neutral-800/50 hover:border-neutral-600/40 transition-all duration-300 md:col-span-2 lg:col-span-2"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold text-white">
+                          Mood Tracker
+                        </h3>
+                        <div class="flex space-x-2">
+                          <button
+                            class="text-neutral-400 hover:text-white transition-colors"
+                          >
+                            Week
+                          </button>
+                          <button
+                            class="text-neutral-400 hover:text-white transition-colors"
+                          >
+                            Month
+                          </button>
+                          <button
+                            class="text-neutral-400 hover:text-white transition-colors"
+                          >
+                            Year
+                          </button>
+                        </div>
+                      </div>
+                      <div
+                        class="h-64 flex items-center justify-center border border-neutral-700/30 rounded-lg"
+                      >
+                        <p class="text-neutral-400">
+                          Mood tracking data visualization would go here
+                        </p>
+                      </div>
+                    </div>
+
+                    <!-- Notes Card -->
+                    <div
+                      class="border border-neutral-700/40 rounded-xl p-6 bg-neutral-800/50 hover:border-neutral-600/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold text-white">
+                          Health Notes
+                        </h3>
+                        <button
+                          class="text-blue-400 hover:text-blue-300 transition-colors"
+                        >
+                          Add Note
+                        </button>
+                      </div>
+                      <div class="space-y-4">
+                        <div
+                          class="p-3 border border-neutral-700/30 rounded-lg"
+                        >
+                          <p class="text-neutral-400">
+                            Feeling more energetic after starting new exercise
+                            routine
+                          </p>
+                          <span class="text-sm text-neutral-500"
+                            >2 days ago</span
+                          >
+                        </div>
+                        <div
+                          class="p-3 border border-neutral-700/30 rounded-lg"
+                        >
+                          <p class="text-neutral-400">
+                            Sleep quality has improved significantly
+                          </p>
+                          <span class="text-sm text-neutral-500"
+                            >1 week ago</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div> </htmlCode
+          ><htmlCode>
+            <div id="root">
+              <section id="settings" class="bg-neutral-900 py-16">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-white mb-4">
+                      Account Settings
+                    </h2>
+                    <p class="text-neutral-400">
+                      Manage your account preferences and security settings
+                    </p>
+                  </div>
+
+                  <div class="space-y-8">
+                    <!-- Profile Settings -->
+                    <div
+                      class="border border-neutral-700/40 rounded-xl p-6 bg-neutral-800/50"
+                    >
+                      <h3 class="text-xl font-semibold text-white mb-6">
+                        Profile Information
+                      </h3>
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                          <label
+                            class="block text-sm font-medium text-neutral-400"
+                            >Profile Picture</label
+                          >
+                          <div class="flex items-center space-x-4">
+                            <img
+                              src="https://avatar.iran.liara.run/public"
+                              alt="Profile"
+                              class="w-16 h-16 rounded-full border border-neutral-700/40"
+                            />
+                            <button
+                              class="px-4 py-2 text-sm text-blue-400 border border-blue-400/40 rounded-lg hover:bg-blue-400/10 transition-colors"
+                            >
+                              Change Photo
+                            </button>
+                          </div>
+                        </div>
+                        <div class="space-y-2">
+                          <label
+                            class="block text-sm font-medium text-neutral-400"
+                            >Full Name</label
+                          >
+                          <input
+                            type="text"
+                            class="w-full px-4 py-2 bg-neutral-700/20 border border-neutral-700/40 rounded-lg text-white focus:border-blue-400/40 focus:outline-none transition-colors"
+                            value="John Doe"
+                          />
+                        </div>
+                        <div class="space-y-2">
+                          <label
+                            class="block text-sm font-medium text-neutral-400"
+                            >Email</label
+                          >
+                          <input
+                            type="email"
+                            class="w-full px-4 py-2 bg-neutral-700/20 border border-neutral-700/40 rounded-lg text-white focus:border-blue-400/40 focus:outline-none transition-colors"
+                            value="john@example.com"
+                          />
+                        </div>
+                        <div class="space-y-2">
+                          <label
+                            class="block text-sm font-medium text-neutral-400"
+                            >Phone Number</label
+                          >
+                          <input
+                            type="tel"
+                            class="w-full px-4 py-2 bg-neutral-700/20 border border-neutral-700/40 rounded-lg text-white focus:border-blue-400/40 focus:outline-none transition-colors"
+                            value="+1 (555) 123-4567"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Notification Settings -->
+                    <div
+                      class="border border-neutral-700/40 rounded-xl p-6 bg-neutral-800/50"
+                    >
+                      <h3 class="text-xl font-semibold text-white mb-6">
+                        Notification Preferences
+                      </h3>
+                      <div class="space-y-4">
+                        <div
+                          class="flex items-center justify-between p-4 border border-neutral-700/30 rounded-lg"
+                        >
+                          <div>
+                            <h4 class="text-white font-medium">
+                              Email Notifications
+                            </h4>
+                            <p class="text-sm text-neutral-400">
+                              Receive updates about appointments and treatments
+                            </p>
+                          </div>
+                          <label
+                            class="relative inline-flex items-center cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              class="sr-only peer"
+                              checked
+                            />
+                            <div
+                              class="w-11 h-6 bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"
+                            ></div>
+                          </label>
+                        </div>
+                        <div
+                          class="flex items-center justify-between p-4 border border-neutral-700/30 rounded-lg"
+                        >
+                          <div>
+                            <h4 class="text-white font-medium">
+                              SMS Notifications
+                            </h4>
+                            <p class="text-sm text-neutral-400">
+                              Get text messages for appointment reminders
+                            </p>
+                          </div>
+                          <label
+                            class="relative inline-flex items-center cursor-pointer"
+                          >
+                            <input type="checkbox" class="sr-only peer" />
+                            <div
+                              class="w-11 h-6 bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"
+                            ></div>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Privacy & Security -->
+                    <div
+                      class="border border-neutral-700/40 rounded-xl p-6 bg-neutral-800/50"
+                    >
+                      <h3 class="text-xl font-semibold text-white mb-6">
+                        Privacy & Security
+                      </h3>
+                      <div class="space-y-6">
+                        <div class="space-y-2">
+                          <label
+                            class="block text-sm font-medium text-neutral-400"
+                            >Current Password</label
+                          >
+                          <input
+                            type="password"
+                            class="w-full px-4 py-2 bg-neutral-700/20 border border-neutral-700/40 rounded-lg text-white focus:border-blue-400/40 focus:outline-none transition-colors"
+                            placeholder="••••••••"
+                          />
+                        </div>
+                        <div class="space-y-2">
+                          <label
+                            class="block text-sm font-medium text-neutral-400"
+                            >New Password</label
+                          >
+                          <input
+                            type="password"
+                            class="w-full px-4 py-2 bg-neutral-700/20 border border-neutral-700/40 rounded-lg text-white focus:border-blue-400/40 focus:outline-none transition-colors"
+                            placeholder="••••••••"
+                          />
+                        </div>
+                        <div class="space-y-2">
+                          <label
+                            class="block text-sm font-medium text-neutral-400"
+                            >Confirm New Password</label
+                          >
+                          <input
+                            type="password"
+                            class="w-full px-4 py-2 bg-neutral-700/20 border border-neutral-700/40 rounded-lg text-white focus:border-blue-400/40 focus:outline-none transition-colors"
+                            placeholder="••••••••"
+                          />
+                        </div>
+                        <button
+                          class="w-full md:w-auto px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-colors"
+                        >
+                          Update Password
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Save Changes Button -->
+                    <div class="flex justify-end space-x-4">
+                      <button
+                        class="px-6 py-3 border border-neutral-700/40 text-neutral-400 hover:text-white hover:border-neutral-600/40 font-medium rounded-lg transition-colors"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-colors"
+                      >
+                        Save Changes
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div> </htmlCode
+          ><htmlCode>
+            <div id="root">
+              <section id="notifications" class="bg-neutral-900 py-16">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-3xl font-bold text-white">Notifications</h2>
+                    <div class="flex space-x-4">
+                      <button
+                        class="text-neutral-400 hover:text-white transition-colors"
+                      >
+                        Mark all as read
+                      </button>
+                      <button
+                        class="text-neutral-400 hover:text-white transition-colors"
+                      >
+                        Clear all
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="space-y-4">
+                    <!-- Today's Notifications -->
+                    <div class="mb-8">
+                      <h3 class="text-neutral-400 text-sm font-medium mb-4">
+                        Today
+                      </h3>
+
+                      <!-- Appointment Reminder -->
+                      <div
+                        class="border border-neutral-700/40 rounded-xl p-4 bg-neutral-800/50 hover:border-neutral-600/40 transition-all duration-300"
+                      >
+                        <div class="flex items-center">
+                          <div
+                            class="flex-shrink-0 w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-blue-400"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div class="ml-4 flex-1">
+                            <p class="text-white">
+                              Upcoming appointment with Dr. Sarah Johnson
+                            </p>
+                            <p class="text-neutral-400 text-sm">
+                              Today at 2:30 PM
+                            </p>
+                          </div>
+                          <button class="text-neutral-400 hover:text-white">
+                            <svg
+                              class="w-5 h-5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"
+                              ></path>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+
+                      <!-- Medication Reminder -->
+                      <div
+                        class="mt-4 border border-neutral-700/40 rounded-xl p-4 bg-neutral-800/50 hover:border-neutral-600/40 transition-all duration-300"
+                      >
+                        <div class="flex items-center">
+                          <div
+                            class="flex-shrink-0 w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-green-400"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div class="ml-4 flex-1">
+                            <p class="text-white">
+                              Time to take your evening medication
+                            </p>
+                            <p class="text-neutral-400 text-sm">
+                              30 minutes ago
+                            </p>
+                          </div>
+                          <button class="text-neutral-400 hover:text-white">
+                            <svg
+                              class="w-5 h-5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"
+                              ></path>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Earlier Notifications -->
+                    <div>
+                      <h3 class="text-neutral-400 text-sm font-medium mb-4">
+                        Earlier
+                      </h3>
+
+                      <!-- Test Results -->
+                      <div
+                        class="border border-neutral-700/40 rounded-xl p-4 bg-neutral-800/50 hover:border-neutral-600/40 transition-all duration-300"
+                      >
+                        <div class="flex items-center">
+                          <div
+                            class="flex-shrink-0 w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-purple-400"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div class="ml-4 flex-1">
+                            <p class="text-white">
+                              Your test results are now available
+                            </p>
+                            <p class="text-neutral-400 text-sm">
+                              Yesterday at 4:15 PM
+                            </p>
+                          </div>
+                          <button class="text-neutral-400 hover:text-white">
+                            <svg
+                              class="w-5 h-5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"
+                              ></path>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+
+                      <!-- Doctor Message -->
+                      <div
+                        class="mt-4 border border-neutral-700/40 rounded-xl p-4 bg-neutral-800/50 hover:border-neutral-600/40 transition-all duration-300"
+                      >
+                        <div class="flex items-center">
+                          <div
+                            class="flex-shrink-0 w-12 h-12 bg-yellow-500/10 rounded-full flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-yellow-400"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div class="ml-4 flex-1">
+                            <p class="text-white">
+                              New message from Dr. Johnson
+                            </p>
+                            <p class="text-neutral-400 text-sm">2 days ago</p>
+                          </div>
+                          <button class="text-neutral-400 hover:text-white">
+                            <svg
+                              class="w-5 h-5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"
+                              ></path>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Load More Button -->
+                  <div class="mt-8 text-center">
+                    <button
+                      class="px-6 py-3 border border-neutral-700/40 text-neutral-400 hover:text-white hover:border-neutral-600/40 rounded-lg transition-colors"
+                    >
+                      Load More
+                    </button>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </htmlCode></MountPoint
+        >
+      </main>
+    </div>
+  </div></htmlCode
+>

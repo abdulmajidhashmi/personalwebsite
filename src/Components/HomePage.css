@@ -31,6 +31,7 @@
 
 .content-sub-div {
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-around;
   align-items: center;
   height: calc(100vh - 120px);
@@ -152,7 +153,7 @@
 }
   .content-sub-div {
     flex-direction: column-reverse;
-    justify-content: center;
+    justify-content: space-evenly;
   }
   .strike-line {
     display: none;
@@ -173,4 +174,111 @@
   .show-nav-bar {
     display: flex;
   }
+}
+
+
+
+
+/* Global styles */
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 20px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+}
+
+.icon-wrapper {
+  padding: 0.5rem;
+  border-radius: 9999px; /* Makes it fully rounded */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Specific color classes for the icons */
+.icon-wrapper.green {
+  background-color: #d1fae5; /* Tailwind's bg-green-100 */
+}
+
+.icon-wrapper.blue {
+  background-color: #dbeafe; /* Tailwind's bg-blue-100 */
+}
+
+.icon-wrapper.purple {
+  background-color: #ede9fe; /* Tailwind's bg-purple-100 */
+}
+
+/* Icon styles */
+.icon {
+  height: 1.5rem; /* Tailwind's h-6 */
+  width: 1.5rem; /* Tailwind's w-6 */
+}
+
+/* Specific color classes for SVG icons */
+.icon.green-icon {
+  color: #16a34a; /* Tailwind's text-green-600 */
+}
+
+.icon.blue-icon {
+  color: #2563eb; /* Tailwind's text-blue-600 */
+}
+
+.icon.purple-icon {
+  color: #7c3aed; /* Tailwind's text-purple-600 */
+}
+
+/* Text styles */
+.text {
+  margin-left: 0.75rem; /* Tailwind's ml-3 */
+  color: black; /* Tailwind's text-neutral-600 */
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Navigation Menu */
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Tailwind's space-y-2 */
+  padding: 1rem; /* Tailwind's px-4 */
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem; /* Tailwind's px-4 py-3 */
+  color: #d1d5db;
+  color:rgb(44, 83, 131); /* Tailwind's text-neutral-300 */
+  border-radius: 0.5rem; /* Tailwind's rounded-lg */
+  transition: all 0.3s ease; /* Tailwind's transition-all duration-300 */
+}
+
+.nav-item:hover {
+  background-color: #374151;
+  color: #d1d5db; /* Tailwind's hover:bg-neutral-700 */
+}
+
+.nav-item.active {
+  background-color: #374151; 
+  color: #d1d5db; 
+  /* Same as hover for active state */
+}
+
+.nav-icon {
+  height: 1.25rem; /* Tailwind's h-5 */
+  width: 1.25rem; /* Tailwind's w-5 */
+  margin-right: 0.75rem; /* Tailwind's mr-3 */
 }

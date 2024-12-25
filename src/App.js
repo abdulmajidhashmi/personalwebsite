@@ -30,7 +30,7 @@ function App() {
             element={
               <>
                 <HomePage />
-                <Chat/>
+               
                 <DataCards />
                 {/* <Video/> */}
               </>
