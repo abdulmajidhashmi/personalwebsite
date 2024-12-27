@@ -135,7 +135,7 @@
   display: flex;
   align-items: center;
   gap: 0.75rem; /* Tailwind's space-x-3 */
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
   box-sizing: border-box;
