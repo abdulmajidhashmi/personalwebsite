@@ -135,7 +135,7 @@ const Test = () => {
       ></div> */}
 
       <div class="sidebar">
-        {updatedata ? (
+        {!updatedata ? (
           <div class="sidebar-header">
             <div class="search-wrapper">
               <input
