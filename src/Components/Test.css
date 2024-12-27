@@ -21,7 +21,7 @@
   flex-direction: column;
   height: 100%;
   background-color: #ffffff; /* Tailwind's bg-white */
-height: 100vh;
+height: calc(100vh - 80px);
 }
 
 .chat-header {
