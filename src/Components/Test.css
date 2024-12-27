@@ -21,7 +21,7 @@
   flex-direction: column;
   height: 100%;
   background-color: #ffffff; /* Tailwind's bg-white */
-  height: calc(100vh - 80px);
+height: 100vh;
 }
 
 .chat-header {
@@ -134,8 +134,8 @@
   border-top: 1px solid #e5e7eb; /* Tailwind's border-neutral-200 */
   display: flex;
   align-items: center;
-  gap: 0.75rem; /* Tailwind's space-x-3 */
-  position: absolute;
+  gap: 0.75rem; 
+  position: relative;
   bottom: 0;
   width: 100%;
   box-sizing: border-box;
