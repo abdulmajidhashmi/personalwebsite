@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { io } from "socket.io-client";
-import axiosInstance from "./api/axiosInstance";
+import axiosInstance from "../api/axiosInstance";
 import "./Test.css";
-import baseURL from "./api/BaseURL";
+import baseURL from "../api/BaseURL";
 
 const Test = () => {
   const location = useLocation();

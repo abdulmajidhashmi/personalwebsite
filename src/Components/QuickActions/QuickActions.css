@@ -1,0 +1,94 @@
+.custom-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+@media (min-width: 768px) {
+  .custom-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.custom-button {
+  display: unset;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid transparent;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.icon-container {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.text-container {
+  text-align: left;
+}
+
+.heading {
+  font-weight: 600;
+  color: #212121;
+}
+
+.subtext {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.custom-emerald {
+  background-color: #d1fae5;
+  border-color: #a7f3d0;
+}
+
+.custom-emerald:hover {
+  background-color: #ecfdf5;
+}
+
+.custom-blue {
+  background-color: #bfdbfe;
+  border-color: #93c5fd;
+}
+
+.custom-blue:hover {
+  background-color: #eff6ff;
+}
+
+.custom-purple {
+  background-color: #e9d5ff;
+  border-color: #c4b5fd;
+}
+
+.custom-purple:hover {
+  background-color: #f3e8ff;
+}
+
+.emerald-icon {
+  background-color: #10b981;
+}
+
+.blue-icon {
+  background-color: #3b82f6;
+}
+
+.purple-icon {
+  background-color: #8b5cf6;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}

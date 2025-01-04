@@ -1,9 +1,9 @@
 import "./Test.css";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axiosInstance from "./api/axiosInstance";
+import axiosInstance from "../api/axiosInstance";
 import { io } from "socket.io-client";
-import baseURL from "./api/BaseURL";
+import baseURL from "../api/BaseURL";
 
 const SingleUser = () => {
   const navigate = useNavigate();

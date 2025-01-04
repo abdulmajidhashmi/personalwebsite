@@ -1,79 +1,10 @@
-.treatments {
-  text-align: center;
-  color: coral;
-}
-/* .disease-div {
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  padding: 15px;
-  box-sizing: border-box;
-}
-.link-reset {
-  all: unset;
-  margin: 10px 20px 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  width: 45%;
-  height: 300px;
-  flex-direction: inherit;
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 1px 1px 8px rgba(128, 128, 128, 0.5);
-  color: green;
-}
-
-.disease {
-  height: 100%;
-  width: 100%;
-  display: flex;
- 
-  display: flex;
-  flex-direction: inherit;
-  color: inherit;
-  justify-content: space-between;
-  
-}
-
-.disease-img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-}
-
-.link-reset:nth-child(even) {
-  color: blue;
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-@media only screen and (max-width: 700px) {
-  .disease-img {
-    max-width: 150px;
-    max-height: 150px;
-  }
-
-  .disease {
-    flex-direction: inherit;
-    justify-content: inherit;
-  }
-  .link-reset:nth-child(even) {
-    flex-direction: column;
-  }
-  .link-reset {
-    width: 80%;
-    flex-direction: column;
-    justify-content: space-evenly;
-    width: 80%;
-    margin-left: 4px;
-    margin-right: 4px;
-  }
-} */
-
 /* new css*/
 /* Global CSS */
+
+.treatments {
+    text-align: center;
+    color: coral;
+  }
 .container {
     max-width: 112rem; /* Tailwind max-w-7xl */
     margin: 0 auto;

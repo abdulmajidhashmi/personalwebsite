@@ -1,0 +1,1676 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="AI-generated website">
+      <meta name="theme-color" content="#ffffff">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="robots" content="index, follow">
+      
+      <!-- Performance optimization: Preload critical resources -->
+      <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+      <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" as="style">
+      
+      <!-- Core CSS -->
+      <script src="https://cdn.tailwindcss.com"></script>
+      <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+             colors: {
+                primary: {
+                  50: '#f8f8f8',
+                  100: '#e8e8e8',
+                  200: '#d3d3d3',
+                  300: '#a3a3a3',
+                  400: '#737373',
+                  500: '#525252',
+                  600: '#404040',
+                  700: '#262626',
+                  800: '#171717',
+                  900: '#0a0a0a',
+                  950: '#030303',
+                },
+                secondary: {
+                  50: '#f8f8f8',
+                  100: '#e8e8e8',
+                  200: '#d3d3d3',
+                  300: '#a3a3a3',
+                  400: '#737373',
+                  500: '#525252',
+                  600: '#404040',
+                  700: '#262626',
+                  800: '#171717',
+                  900: '#0a0a0a',
+                  950: '#030303',
+                },
+                accent: {
+                  50: '#f8f8f8',
+                  100: '#e8e8e8',
+                  200: '#d3d3d3',
+                  300: '#a3a3a3',
+                  400: '#737373',
+                  500: '#525252',
+                  600: '#404040',
+                  700: '#262626',
+                  800: '#171717',
+                  900: '#0a0a0a',
+                  950: '#030303',
+                },
+              },
+              fontFamily: {
+                sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                heading: ['Montserrat', 'Inter', 'system-ui', 'sans-serif'],
+              },
+              spacing: {
+                '18': '4.5rem',
+                '22': '5.5rem',
+                '30': '7.5rem',
+              },
+              maxWidth: {
+                '8xl': '88rem',
+                '9xl': '96rem',
+              },
+              animation: {
+                'fade-in': 'fadeIn 0.5s ease-in',
+                'fade-out': 'fadeOut 0.5s ease-out',
+                'slide-up': 'slideUp 0.5s ease-out',
+                'slide-down': 'slideDown 0.5s ease-out',
+                'slide-left': 'slideLeft 0.5s ease-out',
+                'slide-right': 'slideRight 0.5s ease-out',
+                'scale-in': 'scaleIn 0.5s ease-out',
+                'scale-out': 'scaleOut 0.5s ease-out',
+                'spin-slow': 'spin 3s linear infinite',
+                'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                'bounce-slow': 'bounce 3s infinite',
+                'float': 'float 3s ease-in-out infinite',
+              },
+              keyframes: {
+                fadeIn: {
+                  '0%': { opacity: '0' },
+                  '100%': { opacity: '1' },
+                },
+                fadeOut: {
+                  '0%': { opacity: '1' },
+                  '100%': { opacity: '0' },
+                },
+                slideUp: {
+                  '0%': { transform: 'translateY(20px)', opacity: '0' },
+                  '100%': { transform: 'translateY(0)', opacity: '1' },
+                },
+                slideDown: {
+                  '0%': { transform: 'translateY(-20px)', opacity: '0' },
+                  '100%': { transform: 'translateY(0)', opacity: '1' },
+                },
+                slideLeft: {
+                  '0%': { transform: 'translateX(20px)', opacity: '0' },
+                  '100%': { transform: 'translateX(0)', opacity: '1' },
+                },
+                slideRight: {
+                  '0%': { transform: 'translateX(-20px)', opacity: '0' },
+                  '100%': { transform: 'translateX(0)', opacity: '1' },
+                },
+                scaleIn: {
+                  '0%': { transform: 'scale(0.9)', opacity: '0' },
+                  '100%': { transform: 'scale(1)', opacity: '1' },
+                },
+                scaleOut: {
+                  '0%': { transform: 'scale(1.1)', opacity: '0' },
+                  '100%': { transform: 'scale(1)', opacity: '1' },
+                },
+                float: {
+                  '0%, 100%': { transform: 'translateY(0)' },
+                  '50%': { transform: 'translateY(-10px)' },
+                },
+              },
+              aspectRatio: {
+                'portrait': '3/4',
+                'landscape': '4/3',
+                'ultrawide': '21/9',
+              },
+            },
+          },
+          variants: {
+            extend: {
+              opacity: ['disabled'],
+              cursor: ['disabled'],
+              backgroundColor: ['active', 'disabled'],
+              textColor: ['active', 'disabled'],
+            },
+          },
+        }
+      </script>
+
+      <!-- Utilities and Components -->
+      <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js"></script>
+      <script defer src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.45.1/apexcharts.min.js"></script>
+      
+      <!-- Optimized Font Loading -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+      
+      <!-- Icons -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+      <!-- Base Styles -->
+      <style>
+
+      * {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+/* Webkit browsers like Chrome, Safari, newer Edge */
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+          width: 0px;
+        }
+        
+        ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+          background: #888;
+          border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+          background: #666;
+        }
+
+        /* Remove tap highlight on mobile */
+        * {
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Improve text rendering */
+        body {
+          text-rendering: optimizeLegibility;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Focus outline styles */
+        :focus-visible {
+          outline: 2px solid currentColor;
+          outline-offset: 2px;
+        }
+
+        /* Print styles */
+        @media print {
+          .no-print {
+            display: none !important;
+          }
+          
+          a[href]:after {
+            content: " (" attr(href) ")";
+          }
+        }
+      </style>
+
+      <!-- Enhanced Image Handler -->
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                  const tempImage = new Image();
+                  tempImage.onload = () => {
+                    img.src = img.dataset.src;
+                    img.classList.remove('opacity-0');
+                    img.classList.add('opacity-100');
+                  };
+                  tempImage.src = img.dataset.src;
+                  img.removeAttribute('data-src');
+                  observer.unobserve(img);
+                }
+              }
+            });
+          }, {
+            rootMargin: '50px 0px',
+            threshold: 0.01
+          });
+
+          const loadImage = (img) => {
+            if ('loading' in HTMLImageElement.prototype) {
+              img.loading = 'lazy';
+            }
+            
+            img.classList.add('transition-opacity', 'duration-300', 'opacity-0');
+            
+            img.onerror = () => {
+              const width = img.getAttribute('width') || img.clientWidth || 300;
+              const height = img.getAttribute('height') || img.clientHeight || 200;
+              img.src = `https://placehold.co/${width}x${height}/DEDEDE/555555?text=Image+Unavailable`;
+              img.alt = 'Image unavailable';
+              img.classList.remove('opacity-0');
+              img.classList.add('opacity-100', 'error-image');
+            };
+
+            if (img.dataset.src) {
+              imageObserver.observe(img);
+            } else {
+              img.classList.remove('opacity-0');
+              img.classList.add('opacity-100');
+            }
+          };
+
+          document.querySelectorAll('img[data-src], img:not([data-src])').forEach(loadImage);
+
+          // Watch for dynamically added images
+          new MutationObserver((mutations) => {
+            mutations.forEach(mutation => {
+              mutation.addedNodes.forEach(node => {
+                if (node.nodeType === 1) {
+                  if (node.tagName === 'IMG') {
+                    loadImage(node);
+                  }
+                  node.querySelectorAll('img').forEach(loadImage);
+                }
+              });
+            });
+          }).observe(document.body, {
+            childList: true,
+            subtree: true
+          });
+        });
+
+        // Performance monitoring
+        if ('performance' in window && 'PerformanceObserver' in window) {
+          // Create performance observer
+          const observer = new PerformanceObserver((list) => {
+            const entries = list.getEntries();
+            entries.forEach((entry) => {
+              if (entry.entryType === 'largest-contentful-paint') {
+                // console.log(`LCP: ${entry.startTime}ms`);
+              }
+              if (entry.entryType === 'first-input') {
+                // console.log(`FID: ${entry.processingStart - entry.startTime}ms`);
+              }
+              if (entry.entryType === 'layout-shift') {
+                // console.log(`CLS: ${entry.value}`);
+              }
+            });
+          });
+
+          // Observe performance metrics
+          observer.observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'] });
+
+          // Log basic performance metrics
+          window.addEventListener('load', () => {
+            const timing = performance.getEntriesByType('navigation')[0];
+            console.log({
+              'DNS Lookup': timing.domainLookupEnd - timing.domainLookupStart,
+              'TCP Connection': timing.connectEnd - timing.connectStart,
+              'DOM Content Loaded': timing.domContentLoadedEventEnd - timing.navigationStart,
+              'Page Load': timing.loadEventEnd - timing.navigationStart
+            });
+          });
+        }
+
+        // Handle offline/online status
+        window.addEventListener('online', () => {
+          document.body.classList.remove('offline');
+          console.log('Connection restored');
+        });
+        
+        window.addEventListener('offline', () => {
+          document.body.classList.add('offline');
+          console.log('Connection lost');
+        });
+      </script>
+   </head>
+   <body class="antialiased text-gray-800 min-h-screen flex flex-col">
+      <!-- Skip to main content link for accessibility -->
+      <a href="#main-content" 
+         class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-white focus:text-black">
+         Skip to main content
+      </a>
+
+      <!-- Header -->
+      <header class="relative z-50 bg-white dark:bg-gray-900">
+        <!-- Header content goes here -->
+      </header>
+
+      <!-- Main content area -->
+      <main id="main-content" class="flex-1 relative ">
+        <!-- Content will be injected here -->
+      </main>
+
+   </body>
+</html><htmlCode>
+<div id="root" class="antialiased bg-neutral-50 text-neutral-900">
+    <div class="flex">
+        <!-- Sidebar Navigation -->
+        <nav class="fixed h-screen w-64 bg-neutral-900 text-white border-r border-neutral-800 hidden lg:block">
+            <div class="p-4">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2 mb-8">
+                    <span class="text-2xl font-bold">NeuroMed</span>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="space-y-2">
+                    <a href="#layout" class="flex items-center space-x-2 px-4 py-3 rounded-lg bg-neutral-800 text-white transition-all duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#auth" class="flex items-center space-x-2 px-4 py-3 rounded-lg hover:bg-neutral-800 text-neutral-400 hover:text-white transition-all duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                        <span>Auth</span>
+                    </a>
+                    <a href="#patients" class="flex items-center space-x-2 px-4 py-3 rounded-lg hover:bg-neutral-800 text-neutral-400 hover:text-white transition-all duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                        <span>Patients</span>
+                    </a>
+                    <a href="#appointments" class="flex items-center space-x-2 px-4 py-3 rounded-lg hover:bg-neutral-800 text-neutral-400 hover:text-white transition-all duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        <span>Schedule</span>
+                    </a>
+                    <a href="#records" class="flex items-center space-x-2 px-4 py-3 rounded-lg hover:bg-neutral-800 text-neutral-400 hover:text-white transition-all duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        <span>Records</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Profile Section -->
+            <div class="absolute bottom-0 w-full p-4 border-t border-neutral-800">
+                <div class="flex items-center space-x-3">
+                    <img src="https://avatar.iran.liara.run/public" alt="Profile" class="w-10 h-10 rounded-full" />
+                    <div>
+                        <p class="text-sm font-medium">Dr. Smith</p>
+                        <p class="text-xs text-neutral-400">Neuropsychiatrist</p>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <div class="lg:hidden fixed top-4 right-4 z-50">
+            <button type="button" class="mobile-menu-button bg-neutral-900 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-600">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path class="open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    <path class="close hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu fixed inset-0 bg-neutral-900 z-40 hidden lg:hidden">
+            <div class="p-4 space-y-4">
+                <!-- Mobile Navigation Links -->
+                <div class="space-y-2">
+                    <a href="#layout" class="block px-4 py-3 text-white bg-neutral-800 rounded-lg">Dashboard</a>
+                    <a href="#auth" class="block px-4 py-3 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-lg">Auth</a>
+                    <a href="#patients" class="block px-4 py-3 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-lg">Patients</a>
+                    <a href="#appointments" class="block px-4 py-3 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-lg">Schedule</a>
+                    <a href="#records" class="block px-4 py-3 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-lg">Records</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 ml-0 lg:ml-64 min-h-screen overflow-y-auto scroll-smooth">
+            <MountPoint>
+
+<script>
+// Mobile menu toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const openIcon = document.querySelector('.open');
+    const closeIcon = document.querySelector('.close');
+
+    mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+        openIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+    });
+
+    // Handle navigation active states
+    const navLinks = document.querySelectorAll('nav a');
+    const mobileNavLinks = document.querySelectorAll('.mobile-menu a');
+    
+    function setActiveLink(hash) {
+        navLinks.forEach(link => {
+            if(link.getAttribute('href') === hash) {
+                link.classList.add('bg-neutral-800', 'text-white');
+                link.classList.remove('text-neutral-400');
+            } else {
+                link.classList.remove('bg-neutral-800', 'text-white');
+                link.classList.add('text-neutral-400');
+            }
+        });
+
+        mobileNavLinks.forEach(link => {
+            if(link.getAttribute('href') === hash) {
+                link.classList.add('bg-neutral-800', 'text-white');
+                link.classList.remove('text-neutral-400');
+            } else {
+                link.classList.remove('bg-neutral-800', 'text-white');
+                link.classList.add('text-neutral-400');
+            }
+        });
+    }
+
+    // Set active state on page load
+    setActiveLink(window.location.hash || '#layout');
+
+    // Update active state on hash change
+    window.addEventListener('hashchange', () => {
+        setActiveLink(window.location.hash);
+    });
+
+    // Close mobile menu when clicking a link
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            openIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+        });
+    });
+});
+</script><htmlCode>
+<section id="auth" class="bg-neutral-50 min-h-screen">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="w-full max-w-4xl mx-auto bg-white border border-neutral-200/30 rounded-2xl overflow-hidden">
+            <div class="flex flex-col md:flex-row">
+                <!-- Left Column - Image/Info -->
+                <div class="w-full md:w-1/2 bg-neutral-900 p-8 text-white flex flex-col justify-center">
+                    <h2 class="text-3xl font-bold mb-4">NeuroMed Portal</h2>
+                    <p class="text-neutral-300 mb-6">Secure access to your healthcare dashboard. Connect with your doctor, manage appointments, and access medical records safely.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            </svg>
+                            <span>HIPAA Compliant</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                            </svg>
+                            <span>End-to-end encryption</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Auth Forms -->
+                <div class="w-full md:w-1/2 p-8">
+                    <div x-data="{ tab: 'login' }">
+                        <!-- Tab Buttons -->
+                        <div class="flex space-x-4 mb-8">
+                            <button @click="tab = 'login'" :class="{ 'text-neutral-900 border-b-2 border-neutral-900': tab === 'login', 'text-neutral-400': tab !== 'login' }" class="pb-2 px-2 font-medium transition-all duration-300">
+                                Login
+                            </button>
+                            <button @click="tab = 'register'" :class="{ 'text-neutral-900 border-b-2 border-neutral-900': tab === 'register', 'text-neutral-400': tab !== 'register' }" class="pb-2 px-2 font-medium transition-all duration-300">
+                                Register
+                            </button>
+                        </div>
+
+                        <!-- Login Form -->
+                        <div x-show="tab === 'login'" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-700 mb-1">Email</label>
+                                <input type="email" class="w-full px-4 py-2 border border-neutral-200/30 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 transition-all duration-300" placeholder="Enter your email">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-700 mb-1">Password</label>
+                                <input type="password" class="w-full px-4 py-2 border border-neutral-200/30 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 transition-all duration-300" placeholder="Enter your password">
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-neutral-300 text-neutral-900 focus:ring-neutral-900">
+                                    <span class="ml-2 text-sm text-neutral-600">Remember me</span>
+                                </label>
+                                <a href="#" class="text-sm text-neutral-900 hover:underline">Forgot password?</a>
+                            </div>
+                            <button class="w-full bg-neutral-900 text-white py-2 px-4 rounded-lg hover:bg-neutral-800 transition-all duration-300">
+                                Sign In
+                            </button>
+                        </div>
+
+                        <!-- Register Form -->
+                        <div x-show="tab === 'register'" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-700 mb-1">Full Name</label>
+                                <input type="text" class="w-full px-4 py-2 border border-neutral-200/30 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 transition-all duration-300" placeholder="Enter your full name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-700 mb-1">Email</label>
+                                <input type="email" class="w-full px-4 py-2 border border-neutral-200/30 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 transition-all duration-300" placeholder="Enter your email">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-700 mb-1">Password</label>
+                                <input type="password" class="w-full px-4 py-2 border border-neutral-200/30 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 transition-all duration-300" placeholder="Choose a password">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-700 mb-1">User Type</label>
+                                <select class="w-full px-4 py-2 border border-neutral-200/30 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 transition-all duration-300">
+                                    <option value="patient">Patient</option>
+                                    <option value="doctor">Doctor</option>
+                                </select>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 rounded border-neutral-300 text-neutral-900 focus:ring-neutral-900">
+                                <span class="ml-2 text-sm text-neutral-600">I agree to the <a href="#" class="text-neutral-900 hover:underline">Terms of Service</a> and <a href="#" class="text-neutral-900 hover:underline">Privacy Policy</a></span>
+                            </div>
+                            <button class="w-full bg-neutral-900 text-white py-2 px-4 rounded-lg hover:bg-neutral-800 transition-all duration-300">
+                                Create Account
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</htmlCode><htmlCode>
+<section id="patient_dashboard" class="bg-neutral-50 min-h-screen p-6">
+    <!-- Header -->
+    <header class="mb-8">
+        <h1 class="text-2xl font-bold text-neutral-900">Welcome back, John</h1>
+        <p class="text-neutral-600">Here's an overview of your health dashboard</p>
+    </header>
+
+    <!-- Quick Actions -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <button class="flex items-center p-4 bg-emerald-100 border border-emerald-200 rounded-xl hover:bg-emerald-50 transition-all duration-300">
+            <div class="p-3 bg-emerald-500 rounded-lg text-white mr-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </div>
+            <div class="text-left">
+                <h3 class="font-semibold text-neutral-900">Book Appointment</h3>
+                <p class="text-sm text-neutral-600">Schedule your next visit</p>
+            </div>
+        </button>
+
+        <button class="flex items-center p-4 bg-blue-100 border border-blue-200 rounded-xl hover:bg-blue-50 transition-all duration-300">
+            <div class="p-3 bg-blue-500 rounded-lg text-white mr-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                </svg>
+            </div>
+            <div class="text-left">
+                <h3 class="font-semibold text-neutral-900">Message Doctor</h3>
+                <p class="text-sm text-neutral-600">Start a consultation</p>
+            </div>
+        </button>
+
+        <button class="flex items-center p-4 bg-purple-100 border border-purple-200 rounded-xl hover:bg-purple-50 transition-all duration-300">
+            <div class="p-3 bg-purple-500 rounded-lg text-white mr-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+            </div>
+            <div class="text-left">
+                <h3 class="font-semibold text-neutral-900">View Records</h3>
+                <p class="text-sm text-neutral-600">Access medical history</p>
+            </div>
+        </button>
+    </div>
+
+    <!-- Upcoming Appointments -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+            <h2 class="text-lg font-semibold mb-4">Upcoming Appointments</h2>
+            <div class="space-y-4">
+                <div class="flex items-center p-4 bg-neutral-50 border border-neutral-200/30 rounded-lg">
+                    <div class="mr-4">
+                        <img src="https://avatar.iran.liara.run/public" alt="Dr. Smith" class="w-12 h-12 rounded-full"/>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-medium">Dr. Sarah Smith</h3>
+                        <p class="text-sm text-neutral-600">Routine Checkup</p>
+                        <p class="text-sm text-neutral-500">Tomorrow, 10:00 AM</p>
+                    </div>
+                    <button class="px-4 py-2 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-all duration-300">Join Call</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Prescriptions -->
+        <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+            <h2 class="text-lg font-semibold mb-4">Recent Prescriptions</h2>
+            <div class="space-y-4">
+                <div class="p-4 border border-neutral-200/30 rounded-lg">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-medium">Anxiety Medication</h3>
+                        <span class="text-sm text-emerald-600 bg-emerald-50 px-2 py-1 rounded">Active</span>
+                    </div>
+                    <p class="text-sm text-neutral-600">Prescribed by Dr. Smith</p>
+                    <p class="text-sm text-neutral-500">Last renewed: 15 days ago</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Health Metrics -->
+    <div class="bg-white border border-neutral-200/30 rounded-xl p-6 mb-8">
+        <h2 class="text-lg font-semibold mb-4">Health Metrics</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="p-4 border border-neutral-200/30 rounded-lg">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-sm font-medium text-neutral-600">Stress Level</h3>
+                    <span class="text-emerald-600">↓ 12%</span>
+                </div>
+                <p class="text-2xl font-semibold">Medium</p>
+                <div class="w-full bg-neutral-200 rounded-full h-2 mt-2">
+                    <div class="bg-emerald-500 h-2 rounded-full" style="width: 60%"></div>
+                </div>
+            </div>
+
+            <div class="p-4 border border-neutral-200/30 rounded-lg">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-sm font-medium text-neutral-600">Sleep Quality</h3>
+                    <span class="text-emerald-600">↑ 8%</span>
+                </div>
+                <p class="text-2xl font-semibold">Good</p>
+                <div class="w-full bg-neutral-200 rounded-full h-2 mt-2">
+                    <div class="bg-emerald-500 h-2 rounded-full" style="width: 75%"></div>
+                </div>
+            </div>
+
+            <div class="p-4 border border-neutral-200/30 rounded-lg">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-sm font-medium text-neutral-600">Mood Tracker</h3>
+                    <span class="text-emerald-600">↑ 5%</span>
+                </div>
+                <p class="text-2xl font-semibold">Stable</p>
+                <div class="w-full bg-neutral-200 rounded-full h-2 mt-2">
+                    <div class="bg-emerald-500 h-2 rounded-full" style="width: 85%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</htmlCode><htmlCode>
+<section id="doctor_dashboard" class="bg-neutral-50 min-h-screen p-6">
+    <!-- Header with Stats -->
+    <div class="mb-8">
+        <h1 class="text-2xl font-bold text-neutral-900 mb-2">Doctor Dashboard</h1>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="bg-white border border-neutral-200/30 rounded-xl p-4">
+                <h3 class="text-sm text-neutral-600 mb-1">Today's Appointments</h3>
+                <p class="text-2xl font-bold">8</p>
+                <div class="flex items-center text-sm text-emerald-600 mt-1">
+                    <span class="mr-1">↑ 2</span>
+                    <span>from yesterday</span>
+                </div>
+            </div>
+            <div class="bg-white border border-neutral-200/30 rounded-xl p-4">
+                <h3 class="text-sm text-neutral-600 mb-1">Pending Reviews</h3>
+                <p class="text-2xl font-bold">5</p>
+                <div class="flex items-center text-sm text-amber-600 mt-1">
+                    <span class="mr-1">↑ 3</span>
+                    <span>new cases</span>
+                </div>
+            </div>
+            <div class="bg-white border border-neutral-200/30 rounded-xl p-4">
+                <h3 class="text-sm text-neutral-600 mb-1">Active Patients</h3>
+                <p class="text-2xl font-bold">124</p>
+                <div class="flex items-center text-sm text-emerald-600 mt-1">
+                    <span class="mr-1">↑ 12%</span>
+                    <span>this month</span>
+                </div>
+            </div>
+            <div class="bg-white border border-neutral-200/30 rounded-xl p-4">
+                <h3 class="text-sm text-neutral-600 mb-1">Urgent Cases</h3>
+                <p class="text-2xl font-bold">2</p>
+                <div class="flex items-center text-sm text-red-600 mt-1">
+                    <span>Requires attention</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Today's Schedule -->
+        <div class="lg:col-span-2 bg-white border border-neutral-200/30 rounded-xl p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-lg font-semibold">Today's Schedule</h2>
+                <button class="px-4 py-2 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-all duration-300">
+                    + New Appointment
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div class="flex items-center p-4 bg-neutral-50 border border-neutral-200/30 rounded-lg">
+                    <div class="mr-4">
+                        <img src="https://avatar.iran.liara.run/public" alt="Patient" class="w-12 h-12 rounded-full"/>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-medium">Sarah Johnson</h3>
+                        <p class="text-sm text-neutral-600">Follow-up Consultation</p>
+                        <p class="text-sm text-neutral-500">10:00 AM - 10:45 AM</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="px-4 py-2 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-all duration-300">Start Call</button>
+                        <button class="px-4 py-2 border border-neutral-200/30 rounded-lg hover:bg-neutral-50 transition-all duration-300">View Notes</button>
+                    </div>
+                </div>
+
+                <div class="flex items-center p-4 bg-neutral-50 border border-neutral-200/30 rounded-lg">
+                    <div class="mr-4">
+                        <img src="https://avatar.iran.liara.run/public" alt="Patient" class="w-12 h-12 rounded-full"/>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-medium">Michael Smith</h3>
+                        <p class="text-sm text-neutral-600">Initial Assessment</p>
+                        <p class="text-sm text-neutral-500">11:00 AM - 12:00 PM</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="px-4 py-2 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-all duration-300">Start Call</button>
+                        <button class="px-4 py-2 border border-neutral-200/30 rounded-lg hover:bg-neutral-50 transition-all duration-300">View Notes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Patient Overview -->
+        <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+            <h2 class="text-lg font-semibold mb-6">Patient Overview</h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-sm font-medium text-neutral-600 mb-2">Treatment Progress</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-3 border border-neutral-200/30 rounded-lg">
+                            <p class="text-sm text-neutral-600">Improving</p>
+                            <p class="text-xl font-semibold text-emerald-600">64%</p>
+                        </div>
+                        <div class="p-3 border border-neutral-200/30 rounded-lg">
+                            <p class="text-sm text-neutral-600">Stable</p>
+                            <p class="text-xl font-semibold text-blue-600">28%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-medium text-neutral-600 mb-2">Recent Cases</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center p-3 border border-neutral-200/30 rounded-lg">
+                            <img src="https://avatar.iran.liara.run/public" alt="Patient" class="w-10 h-10 rounded-full mr-3"/>
+                            <div>
+                                <h4 class="font-medium">Emma Wilson</h4>
+                                <p class="text-sm text-neutral-600">Anxiety Management</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 border border-neutral-200/30 rounded-lg">
+                            <img src="https://avatar.iran.liara.run/public" alt="Patient" class="w-10 h-10 rounded-full mr-3"/>
+                            <div>
+                                <h4 class="font-medium">James Brown</h4>
+                                <p class="text-sm text-neutral-600">Depression Treatment</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-medium text-neutral-600 mb-2">Pending Tasks</h3>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between p-3 border border-neutral-200/30 rounded-lg">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-red-500 rounded-full mr-2"></div>
+                                <span class="text-sm">Review Medical Records</span>
+                            </div>
+                            <span class="text-xs text-neutral-500">Today</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 border border-neutral-200/30 rounded-lg">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-amber-500 rounded-full mr-2"></div>
+                                <span class="text-sm">Update Treatment Plans</span>
+                            </div>
+                            <span class="text-xs text-neutral-500">Tomorrow</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</htmlCode><htmlCode>
+<section id="appointment_manager" class="bg-neutral-50 min-h-screen p-6">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-2xl font-bold text-neutral-900">Appointment Manager</h1>
+            <button class="px-6 py-2 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-all duration-300 flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                </svg>
+                New Appointment
+            </button>
+        </div>
+
+        <!-- Calendar and Details Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Calendar Section -->
+            <div class="lg:col-span-2 bg-white border border-neutral-200/30 rounded-xl p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold">Calendar</h2>
+                    <div class="flex space-x-2">
+                        <button class="px-4 py-2 border border-neutral-200/30 rounded-lg hover:bg-neutral-50">Today</button>
+                        <div class="flex border border-neutral-200/30 rounded-lg">
+                            <button class="px-4 py-2 hover:bg-neutral-50">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                </svg>
+                            </button>
+                            <button class="px-4 py-2 hover:bg-neutral-50">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calendar Grid -->
+                <div class="grid grid-cols-7 gap-1 mb-4">
+                    <div class="text-center text-sm font-medium text-neutral-600 py-2">Sun</div>
+                    <div class="text-center text-sm font-medium text-neutral-600 py-2">Mon</div>
+                    <div class="text-center text-sm font-medium text-neutral-600 py-2">Tue</div>
+                    <div class="text-center text-sm font-medium text-neutral-600 py-2">Wed</div>
+                    <div class="text-center text-sm font-medium text-neutral-600 py-2">Thu</div>
+                    <div class="text-center text-sm font-medium text-neutral-600 py-2">Fri</div>
+                    <div class="text-center text-sm font-medium text-neutral-600 py-2">Sat</div>
+                </div>
+
+                <div class="grid grid-cols-7 gap-1">
+                    <!-- Calendar Days -->
+                    <div class="aspect-square p-2 border border-neutral-200/30 rounded-lg hover:bg-neutral-50 cursor-pointer">
+                        <p class="text-sm">1</p>
+                        <div class="mt-1">
+                            <div class="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                        </div>
+                    </div>
+                    <!-- Repeat for other days... -->
+                </div>
+            </div>
+
+            <!-- Appointment Details -->
+            <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                <h2 class="text-lg font-semibold mb-6">Today's Schedule</h2>
+                <div class="space-y-4">
+                    <div class="p-4 bg-emerald-50 border border-emerald-200/30 rounded-lg">
+                        <div class="flex items-center mb-2">
+                            <div class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></div>
+                            <span class="text-sm font-medium">Current</span>
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <img src="https://avatar.iran.liara.run/public" alt="Patient" class="w-10 h-10 rounded-full mr-3"/>
+                            <div>
+                                <h3 class="font-medium">Sarah Johnson</h3>
+                                <p class="text-sm text-neutral-600">Follow-up Session</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-neutral-600">10:00 AM - 11:00 AM</p>
+                        <div class="flex space-x-2 mt-3">
+                            <button class="px-4 py-2 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-all duration-300">Join Call</button>
+                            <button class="px-4 py-2 border border-neutral-200/30 rounded-lg hover:bg-neutral-50">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="p-4 border border-neutral-200/30 rounded-lg">
+                        <div class="flex items-center mb-2">
+                            <div class="w-2 h-2 bg-neutral-500 rounded-full mr-2"></div>
+                            <span class="text-sm font-medium">Upcoming</span>
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <img src="https://avatar.iran.liara.run/public" alt="Patient" class="w-10 h-10 rounded-full mr-3"/>
+                            <div>
+                                <h3 class="font-medium">Michael Brown</h3>
+                                <p class="text-sm text-neutral-600">Initial Consultation</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-neutral-600">2:00 PM - 3:00 PM</p>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="mt-6">
+                    <h3 class="text-sm font-medium text-neutral-600 mb-3">Quick Actions</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button class="p-3 border border-neutral-200/30 rounded-lg hover:bg-neutral-50 text-sm">
+                            Reschedule
+                        </button>
+                        <button class="p-3 border border-neutral-200/30 rounded-lg hover:bg-neutral-50 text-sm">
+                            Cancel
+                        </button>
+                        <button class="p-3 border border-neutral-200/30 rounded-lg hover:bg-neutral-50 text-sm">
+                            Send Reminder
+                        </button>
+                        <button class="p-3 border border-neutral-200/30 rounded-lg hover:bg-neutral-50 text-sm">
+                            Add Notes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</htmlCode><htmlCode>
+<section id="medical_records" class="bg-neutral-50 min-h-screen p-6">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-neutral-900">Medical Records</h1>
+                <p class="text-neutral-600">Comprehensive patient health information</p>
+            </div>
+            <div class="flex space-x-4 mt-4 md:mt-0">
+                <div class="relative">
+                    <input type="text" placeholder="Search records..." class="pl-10 pr-4 py-2 border border-neutral-200/30 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900">
+                    <svg class="w-5 h-5 absolute left-3 top-2.5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </div>
+                <button class="px-4 py-2 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-all duration-300 flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                    </svg>
+                    Add Record
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            <!-- Patient List -->
+            <div class="lg:col-span-1 bg-white border border-neutral-200/30 rounded-xl p-4">
+                <h2 class="text-lg font-semibold mb-4">Patients</h2>
+                <div class="space-y-3">
+                    <div class="p-3 bg-neutral-900 text-white rounded-lg">
+                        <div class="flex items-center">
+                            <img src="https://avatar.iran.liara.run/public" alt="Patient" class="w-10 h-10 rounded-full mr-3"/>
+                            <div>
+                                <h3 class="font-medium">Sarah Johnson</h3>
+                                <p class="text-sm text-neutral-300">ID: #12345</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 border border-neutral-200/30 rounded-lg hover:bg-neutral-50 cursor-pointer">
+                        <div class="flex items-center">
+                            <img src="https://avatar.iran.liara.run/public" alt="Patient" class="w-10 h-10 rounded-full mr-3"/>
+                            <div>
+                                <h3 class="font-medium">Michael Brown</h3>
+                                <p class="text-sm text-neutral-600">ID: #12346</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medical Records Detail -->
+            <div class="lg:col-span-3 space-y-6">
+                <!-- Patient Overview -->
+                <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="flex items-center">
+                            <img src="https://avatar.iran.liara.run/public" alt="Patient" class="w-16 h-16 rounded-full mr-4"/>
+                            <div>
+                                <h2 class="text-xl font-semibold">Sarah Johnson</h2>
+                                <p class="text-neutral-600">Age: 32 | Gender: Female</p>
+                                <p class="text-neutral-600">Last Visit: 15 May 2023</p>
+                            </div>
+                        </div>
+                        <button class="px-4 py-2 border border-neutral-200/30 rounded-lg hover:bg-neutral-50">Export Records</button>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-3 gap-4 mb-6">
+                        <div class="p-4 border border-neutral-200/30 rounded-lg">
+                            <h3 class="text-sm text-neutral-600 mb-1">Total Visits</h3>
+                            <p class="text-2xl font-semibold">24</p>
+                        </div>
+                        <div class="p-4 border border-neutral-200/30 rounded-lg">
+                            <h3 class="text-sm text-neutral-600 mb-1">Active Prescriptions</h3>
+                            <p class="text-2xl font-semibold">3</p>
+                        </div>
+                        <div class="p-4 border border-neutral-200/30 rounded-lg">
+                            <h3 class="text-sm text-neutral-600 mb-1">Next Appointment</h3>
+                            <p class="text-2xl font-semibold">Jun 5</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medical History -->
+                <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold mb-4">Medical History</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 border border-neutral-200/30 rounded-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h4 class="font-medium">Anxiety Disorder Assessment</h4>
+                                    <p class="text-sm text-neutral-600">Dr. Smith - 15 May 2023</p>
+                                </div>
+                                <button class="text-neutral-900 hover:underline">View Details</button>
+                            </div>
+                            <p class="text-neutral-600 text-sm mt-2">Initial assessment and treatment plan for generalized anxiety disorder.</p>
+                        </div>
+
+                        <div class="p-4 border border-neutral-200/30 rounded-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h4 class="font-medium">Follow-up Consultation</h4>
+                                    <p class="text-sm text-neutral-600">Dr. Smith - 1 May 2023</p>
+                                </div>
+                                <button class="text-neutral-900 hover:underline">View Details</button>
+                            </div>
+                            <p class="text-neutral-600 text-sm mt-2">Progress review and medication adjustment.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reports & Documents -->
+                <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold mb-4">Reports & Documents</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 border border-neutral-200/30 rounded-lg flex items-center">
+                            <svg class="w-8 h-8 text-neutral-900 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            <div class="flex-1">
+                                <h4 class="font-medium">Psychological Assessment</h4>
+                                <p class="text-sm text-neutral-600">15 May 2023</p>
+                            </div>
+                            <button class="text-neutral-900 hover:underline">Download</button>
+                        </div>
+
+                        <div class="p-4 border border-neutral-200/30 rounded-lg flex items-center">
+                            <svg class="w-8 h-8 text-neutral-900 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            <div class="flex-1">
+                                <h4 class="font-medium">Treatment Summary</h4>
+                                <p class="text-sm text-neutral-600">1 May 2023</p>
+                            </div>
+                            <button class="text-neutral-900 hover:underline">Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</htmlCode><htmlCode>
+<section id="telemedicine" class="bg-neutral-50 min-h-screen p-6">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-neutral-900">Telemedicine Console</h1>
+                <p class="text-neutral-600">Virtual consultation and patient care</p>
+            </div>
+            <div class="flex space-x-4">
+                <button class="px-4 py-2 border border-neutral-200/30 rounded-lg hover:bg-white transition-all duration-300 flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                    </svg>
+                    Test Connection
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            <!-- Video Call Interface -->
+            <div class="lg:col-span-3 space-y-6">
+                <!-- Main Video Area -->
+                <div class="bg-neutral-900 border border-neutral-200/30 rounded-xl p-6 aspect-video relative">
+                    <div class="absolute top-6 right-6 space-y-4">
+                        <!-- Small Video Preview -->
+                        <div class="w-48 aspect-video bg-neutral-800 rounded-lg border border-neutral-700"></div>
+                    </div>
+                    <!-- Call Controls -->
+                    <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-4">
+                        <button class="p-4 bg-neutral-800 hover:bg-neutral-700 rounded-full text-white transition-all duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+                            </svg>
+                        </button>
+                        <button class="p-4 bg-neutral-800 hover:bg-neutral-700 rounded-full text-white transition-all duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                            </svg>
+                        </button>
+                        <button class="p-4 bg-red-500 hover:bg-red-600 rounded-full text-white transition-all duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M5 3a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2H5z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Session Notes -->
+                <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                    <h2 class="text-lg font-semibold mb-4">Session Notes</h2>
+                    <textarea class="w-full h-32 p-4 border border-neutral-200/30 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 resize-none" placeholder="Type your session notes here..."></textarea>
+                    <div class="flex justify-end mt-4">
+                        <button class="px-4 py-2 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-all duration-300">
+                            Save Notes
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Patient Info -->
+                <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://avatar.iran.liara.run/public" alt="Patient" class="w-12 h-12 rounded-full mr-4"/>
+                        <div>
+                            <h3 class="font-semibold">Sarah Johnson</h3>
+                            <p class="text-sm text-neutral-600">ID: #12345</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-neutral-600">Session Type</span>
+                            <span class="font-medium">Follow-up</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-neutral-600">Duration</span>
+                            <span class="font-medium">45 minutes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                    <h3 class="font-semibold mb-4">Quick Actions</h3>
+                    <div class="space-y-3">
+                        <button class="w-full p-3 border border-neutral-200/30 rounded-lg hover:bg-neutral-50 transition-all duration-300 text-left flex items-center">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            View Medical History
+                        </button>
+                        <button class="w-full p-3 border border-neutral-200/30 rounded-lg hover:bg-neutral-50 transition-all duration-300 text-left flex items-center">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                            </svg>
+                            Write Prescription
+                        </button>
+                        <button class="w-full p-3 border border-neutral-200/30 rounded-lg hover:bg-neutral-50 transition-all duration-300 text-left flex items-center">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            Schedule Follow-up
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</htmlCode><htmlCode>
+<section id="prescription_center" class="bg-neutral-50 min-h-screen p-6">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-neutral-900">Prescription Center</h1>
+                <p class="text-neutral-600">Manage and track patient prescriptions</p>
+            </div>
+            <button class="px-6 py-2 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-all duration-300 flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                </svg>
+                New Prescription
+            </button>
+        </div>
+
+        <!-- Main Content -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Active Prescriptions -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Search and Filter -->
+                <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row md:items-center gap-4">
+                        <div class="flex-1 relative">
+                            <input type="text" placeholder="Search prescriptions..." class="w-full pl-10 pr-4 py-2 border border-neutral-200/30 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900">
+                            <svg class="w-5 h-5 absolute left-3 top-2.5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </div>
+                        <select class="px-4 py-2 border border-neutral-200/30 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900">
+                            <option>All Status</option>
+                            <option>Active</option>
+                            <option>Expired</option>
+                            <option>Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Prescriptions List -->
+                <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                    <h2 class="text-lg font-semibold mb-6">Active Prescriptions</h2>
+                    <div class="space-y-4">
+                        <div class="p-4 border border-neutral-200/30 rounded-lg">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center">
+                                    <img src="https://avatar.iran.liara.run/public" alt="Patient" class="w-10 h-10 rounded-full mr-3"/>
+                                    <div>
+                                        <h3 class="font-medium">Sarah Johnson</h3>
+                                        <p class="text-sm text-neutral-600">Prescribed: May 15, 2023</p>
+                                    </div>
+                                </div>
+                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">Active</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-neutral-600">Medication</span>
+                                    <span class="font-medium">Sertraline 50mg</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-neutral-600">Dosage</span>
+                                    <span class="font-medium">1 tablet daily</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-neutral-600">Duration</span>
+                                    <span class="font-medium">30 days</span>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex space-x-3">
+                                <button class="px-4 py-2 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-all duration-300">Renew</button>
+                                <button class="px-4 py-2 border border-neutral-200/30 rounded-lg hover:bg-neutral-50">View Details</button>
+                            </div>
+                        </div>
+
+                        <div class="p-4 border border-neutral-200/30 rounded-lg">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center">
+                                    <img src="https://avatar.iran.liara.run/public" alt="Patient" class="w-10 h-10 rounded-full mr-3"/>
+                                    <div>
+                                        <h3 class="font-medium">Michael Brown</h3>
+                                        <p class="text-sm text-neutral-600">Prescribed: May 10, 2023</p>
+                                    </div>
+                                </div>
+                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">Active</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-neutral-600">Medication</span>
+                                    <span class="font-medium">Escitalopram 10mg</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-neutral-600">Dosage</span>
+                                    <span class="font-medium">1 tablet daily</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-neutral-600">Duration</span>
+                                    <span class="font-medium">60 days</span>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex space-x-3">
+                                <button class="px-4 py-2 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-all duration-300">Renew</button>
+                                <button class="px-4 py-2 border border-neutral-200/30 rounded-lg hover:bg-neutral-50">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Quick Stats -->
+                <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                    <h2 class="text-lg font-semibold mb-4">Overview</h2>
+                    <div class="space-y-4">
+                        <div class="p-4 border border-neutral-200/30 rounded-lg">
+                            <h3 class="text-sm text-neutral-600 mb-1">Active Prescriptions</h3>
+                            <p class="text-2xl font-semibold">24</p>
+                        </div>
+                        <div class="p-4 border border-neutral-200/30 rounded-lg">
+                            <h3 class="text-sm text-neutral-600 mb-1">Pending Renewals</h3>
+                            <p class="text-2xl font-semibold">5</p>
+                        </div>
+                        <div class="p-4 border border-neutral-200/30 rounded-lg">
+                            <h3 class="text-sm text-neutral-600 mb-1">Expiring Soon</h3>
+                            <p class="text-2xl font-semibold">3</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                    <h2 class="text-lg font-semibold mb-4">Recent Activity</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-emerald-500 rounded-full mt-2 mr-3"></div>
+                            <div>
+                                <p class="text-sm font-medium">New prescription issued</p>
+                                <p class="text-xs text-neutral-600">Sarah Johnson - 2 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3"></div>
+                            <div>
+                                <p class="text-sm font-medium">Prescription renewed</p>
+                                <p class="text-xs text-neutral-600">Michael Brown - 5 hours ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</htmlCode><htmlCode>
+<section id="analytics_reports" class="bg-neutral-50 min-h-screen p-6">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-neutral-900">Analytics & Reports</h1>
+                <p class="text-neutral-600">Performance metrics and patient insights</p>
+            </div>
+            <div class="flex space-x-4">
+                <select class="px-4 py-2 border border-neutral-200/30 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900">
+                    <option>Last 30 Days</option>
+                    <option>Last 90 Days</option>
+                    <option>Last Year</option>
+                </select>
+                <button class="px-4 py-2 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-all duration-300 flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    Export Report
+                </button>
+            </div>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-neutral-600">Total Patients</h3>
+                    <span class="text-emerald-600 text-sm">↑ 12%</span>
+                </div>
+                <p class="text-3xl font-bold">248</p>
+                <p class="text-sm text-neutral-600 mt-2">+28 this month</p>
+            </div>
+
+            <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-neutral-600">Appointments</h3>
+                    <span class="text-emerald-600 text-sm">↑ 8%</span>
+                </div>
+                <p class="text-3xl font-bold">186</p>
+                <p class="text-sm text-neutral-600 mt-2">+15 this week</p>
+            </div>
+
+            <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-neutral-600">Treatment Success</h3>
+                    <span class="text-emerald-600 text-sm">↑ 5%</span>
+                </div>
+                <p class="text-3xl font-bold">78%</p>
+                <p class="text-sm text-neutral-600 mt-2">Based on outcomes</p>
+            </div>
+
+            <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-neutral-600">Patient Satisfaction</h3>
+                    <span class="text-emerald-600 text-sm">↑ 3%</span>
+                </div>
+                <p class="text-3xl font-bold">92%</p>
+                <p class="text-sm text-neutral-600 mt-2">Based on feedback</p>
+            </div>
+        </div>
+
+        <!-- Charts and Detailed Analytics -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Patient Demographics -->
+            <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                <h2 class="text-lg font-semibold mb-6">Patient Demographics</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-neutral-600">18-25 years</span>
+                        <span class="text-neutral-900 font-medium">25%</span>
+                    </div>
+                    <div class="w-full bg-neutral-100 rounded-full h-2">
+                        <div class="bg-blue-500 h-2 rounded-full" style="width: 25%"></div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <span class="text-neutral-600">26-35 years</span>
+                        <span class="text-neutral-900 font-medium">40%</span>
+                    </div>
+                    <div class="w-full bg-neutral-100 rounded-full h-2">
+                        <div class="bg-blue-500 h-2 rounded-full" style="width: 40%"></div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <span class="text-neutral-600">36-50 years</span>
+                        <span class="text-neutral-900 font-medium">35%</span>
+                    </div>
+                    <div class="w-full bg-neutral-100 rounded-full h-2">
+                        <div class="bg-blue-500 h-2 rounded-full" style="width: 35%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Treatment Distribution -->
+            <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                <h2 class="text-lg font-semibold mb-6">Treatment Distribution</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-neutral-600">Anxiety</span>
+                        <span class="text-neutral-900 font-medium">45%</span>
+                    </div>
+                    <div class="w-full bg-neutral-100 rounded-full h-2">
+                        <div class="bg-emerald-500 h-2 rounded-full" style="width: 45%"></div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <span class="text-neutral-600">Depression</span>
+                        <span class="text-neutral-900 font-medium">30%</span>
+                    </div>
+                    <div class="w-full bg-neutral-100 rounded-full h-2">
+                        <div class="bg-emerald-500 h-2 rounded-full" style="width: 30%"></div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <span class="text-neutral-600">Others</span>
+                        <span class="text-neutral-900 font-medium">25%</span>
+                    </div>
+                    <div class="w-full bg-neutral-100 rounded-full h-2">
+                        <div class="bg-emerald-500 h-2 rounded-full" style="width: 25%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                <h2 class="text-lg font-semibold mb-6">Activity Timeline</h2>
+                <div class="space-y-6">
+                    <div class="relative flex gap-4">
+                        <div class="flex flex-col items-center">
+                            <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                            <div class="w-0.5 h-full bg-neutral-200"></div>
+                        </div>
+                        <div>
+                            <p class="font-medium">New Patient Registration</p>
+                            <p class="text-sm text-neutral-600">Sarah Johnson joined</p>
+                            <p class="text-xs text-neutral-500 mt-1">2 hours ago</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex gap-4">
+                        <div class="flex flex-col items-center">
+                            <div class="w-3 h-3 bg-emerald-500 rounded-full"></div>
+                            <div class="w-0.5 h-full bg-neutral-200"></div>
+                        </div>
+                        <div>
+                            <p class="font-medium">Treatment Completed</p>
+                            <p class="text-sm text-neutral-600">Michael Brown - Anxiety Management</p>
+                            <p class="text-xs text-neutral-500 mt-1">5 hours ago</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex gap-4">
+                        <div class="flex flex-col items-center">
+                            <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                        </div>
+                        <div>
+                            <p class="font-medium">Prescription Renewed</p>
+                            <p class="text-sm text-neutral-600">Emma Wilson</p>
+                            <p class="text-xs text-neutral-500 mt-1">1 day ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</htmlCode><htmlCode>
+<section id="settings_privacy" class="bg-neutral-50 min-h-screen p-6">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-2xl font-bold text-neutral-900">Settings & Privacy</h1>
+            <p class="text-neutral-600">Manage your account settings and privacy preferences</p>
+        </div>
+
+        <!-- Settings Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Navigation Sidebar -->
+            <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                <nav class="space-y-2">
+                    <button class="w-full text-left px-4 py-3 bg-neutral-900 text-white rounded-lg">Account Settings</button>
+                    <button class="w-full text-left px-4 py-3 text-neutral-700 hover:bg-neutral-50 rounded-lg">Privacy & Security</button>
+                    <button class="w-full text-left px-4 py-3 text-neutral-700 hover:bg-neutral-50 rounded-lg">Notifications</button>
+                    <button class="w-full text-left px-4 py-3 text-neutral-700 hover:bg-neutral-50 rounded-lg">Connected Devices</button>
+                    <button class="w-full text-left px-4 py-3 text-neutral-700 hover:bg-neutral-50 rounded-lg">Data Management</button>
+                </nav>
+            </div>
+
+            <!-- Main Settings Area -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Account Settings -->
+                <div class="bg-white border border-neutral-200/30 rounded-xl p-6">
+                    <h2 class="text-lg font-semibold mb-6">Account Settings</h2>
+                    
+                    <!-- Profile Section -->
+                    <div class="mb-8">
+                        <div class="flex items-center gap-6 mb-6">
+                            <img src="https://avatar.iran.liara.run/public" alt="Profile" class="w-20 h-20 rounded-full"/>
+                            <div>
+                                <button class="px-4 py-2 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-all duration-300">Change Photo</button>
+                                <p class="text-sm text-neutral-600 mt-2">Recommended: Square JPG, PNG (1000x1000px)</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-700 mb-1">First Name</label>
+                                <input type="text" value="John" class="w-full px-4 py-2 border border-neutral-200/30 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900"/>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-700 mb-1">Last Name</label>
+                                <input type="text" value="Doe" class="w-full px-4 py-2 border border-neutral-200/30 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900"/>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-700 mb-1">Email</label>
+                                <input type="email" value="john.doe@example.com" class="w-full px-4 py-2 border border-neutral-200/30 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900"/>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-700 mb-1">Phone</label>
+                                <input type="tel" value="+1 (555) 123-4567" class="w-full px-4 py-2 border border-neutral-200/30 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Section -->
+                    <div class="border-t border-neutral-200/30 pt-6">
+                        <h3 class="text-lg font-semibold mb-4">Security</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium">Two-Factor Authentication</h4>
+                                    <p class="text-sm text-neutral-600">Add an extra layer of security</p>
+                                </div>
+                                <button class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-neutral-200 transition-colors duration-200 ease-in-out focus:outline-none">
+                                    <span class="translate-x-5 inline-block h-5 w-5 transform rounded-full bg-white transition duration-200 ease-in-out"></span>
+                                </button>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium">Session Management</h4>
+                                    <p class="text-sm text-neutral-600">Manage active sessions</p>
+                                </div>
+                                <button class="text-neutral-900 hover:underline">View Sessions</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Privacy Section -->
+                    <div class="border-t border-neutral-200/30 pt-6 mt-6">
+                        <h3 class="text-lg font-semibold mb-4">Privacy Preferences</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium">Profile Visibility</h4>
+                                    <p class="text-sm text-neutral-600">Control who can view your profile</p>
+                                </div>
+                                <select class="px-4 py-2 border border-neutral-200/30 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900">
+                                    <option>Private</option>
+                                    <option>Public</option>
+                                    <option>Patients Only</option>
+                                </select>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium">Data Sharing</h4>
+                                    <p class="text-sm text-neutral-600">Manage how your data is shared</p>
+                                </div>
+                                <button class="text-neutral-900 hover:underline">Configure</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Save Button -->
+                    <div class="border-t border-neutral-200/30 pt-6 mt-6">
+                        <div class="flex justify-end space-x-4">
+                            <button class="px-4 py-2 border border-neutral-200/30 rounded-lg hover:bg-neutral-50">Cancel</button>
+                            <button class="px-4 py-2 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-all duration-300">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</htmlCode>

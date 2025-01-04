@@ -1,18 +1,5 @@
-import HomePage from "./Components/Homepage/HomePage";
-import "./App.css";
-import Video from "./Components/VideoCall/Video";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-import Login from "./Components/Login/Login";
-import Signup from "./Components/Signup/Signup";
-import Test from "./Components/Chat/Test";
-import SingleUser from "./Components/Chat/SingleUser";
-import Disease from "./Components/Disease/Disease";
-import DiseaseExpand from "./Components/DiseaseExpand/DiseaseExpand";
-
-import QuickActions from "./Components/QuickActions/QuickActions";
-import Calender from "./Components/Calender/Calender";
-import Appointments from "./Components/Appointments/Appointments";
+import SingleDisease from "../SingleDisease/SingleDisease";
+import './Disease.css';
 
 const diseaseData = [
   {
@@ -107,81 +94,19 @@ const diseaseData = [
   },
 ];
 
-function App() {
+const Disease = () => {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <HomePage />
-                <QuickActions />
-
-                <Disease />
-                {/* <Video/> */}
-              </>
-            }
-          />
-          <Route
-            path="book-appoinment"
-            element={
-              <>
-                <Appointments />
-              </>
-            }
-          />
-
-          <Route
-            path="/login"
-            element={
-              <>
-                <Login />
-              </>
-            }
-          />
-
-          <Route
-            path="/signup"
-            element={
-              <>
-                <Signup />
-              </>
-            }
-          />
-          <Route
-            path="/chat"
-            element={
-              <>
-                <Test />
-              </>
-            }
-          />
-          <Route
-            path="/test/:id"
-            element={
-              <>
-                <SingleUser />
-              </>
-            }
-          />
-
+      <div class="container">
+        <h2 class="heading">Common Conditions</h2>
+        <div class="grid-layout">
           {diseaseData.map((value, index) => (
-            <Route
-              key={index}
-              path={`/${value.title.replace(/\s+/g, "")}`}
-              element={
-                <>
-                  <DiseaseExpand data={value} />
-                </>
-              }
-            />
+            <SingleDisease key={index} data={value} />
           ))}
-        </Routes>
-      </BrowserRouter>
+        </div>
+      </div>
     </>
   );
-}
+};
 
-export default App;
+export default Disease;

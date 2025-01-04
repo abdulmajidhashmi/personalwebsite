@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import "./Login.css";
-import axiosInstance from "./api/axiosInstance";
+import axiosInstance from "../api/axiosInstance";
 import { useDispatch } from "react-redux";
-import { adddata } from "./redux/reducer/UserReducer";
+import { adddata } from "../redux/reducer/UserReducer";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
