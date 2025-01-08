@@ -1,0 +1,66 @@
+.appointments {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.appointment-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+}
+
+.avatar {
+  flex-shrink: 0;
+}
+
+.avatar-img {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+
+.appointment-details {
+  margin-left: 1rem;
+  flex-grow: 1;
+}
+
+.patient-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #2d3748;
+}
+
+.appointment-time {
+  font-size: 0.875rem;
+  color: #4a5568;
+}
+
+.start-button {
+  margin-left: 1rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  background-color: #3182ce;
+  color: #ffffff;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.start-button:hover {
+  background-color: #2b6cb0;
+}
+
+.appointment-status {
+  margin-left: 1rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+}
+
+.appointment-status.upcoming {
+  background-color: #edf2f7;
+  color: #718096;
+}
