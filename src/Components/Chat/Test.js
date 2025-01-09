@@ -31,7 +31,7 @@ const Test = () => {
     if (!localData) {
       navigate("/login");
     }
-  }, [navigate]);
+  }, []);
 
   useEffect(() => {
     if (chatsubdivRef.current) {
@@ -58,7 +58,7 @@ const Test = () => {
   useEffect(() => {
     fetchUserData();
 
-    if (local.name && local.name !== "Abdul Wase Hashmi") {
+    if (local?.name && local?.name !== "Abdul Wase Hashmi") {
       socket.current = io(`${baseURL}`, {
         query: { roomName: String(local.number) },
       });
@@ -87,7 +87,7 @@ const Test = () => {
   }, [local]);
 
   const handleSendMessage = () => {
-    if (msg.trim() && local.name !== "Abdul Wase Hashmi") {
+    if (msg.trim() && local?.name !== "Abdul Wase Hashmi") {
       setStoreMsg((prev) => [...prev, { place: "right", message: msg }]);
 
       socket.current.emit("sendMessage", { use: String(local.number), msg });

@@ -77,7 +77,7 @@ const SingleUser = () => {
     if (userId) {
       fetchUserDetails();
     }
-  }, [navigate, userId]);
+  }, [ userId]);
 
   const playAudio = (id) => {
     const audio = document.getElementById(id);

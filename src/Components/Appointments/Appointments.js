@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Calender from "../Calender/Calender";
 import axiosInstance from "../api/axiosInstance";
 import "./Appointments.css";
@@ -9,6 +9,14 @@ const Appointments = () => {
   const [currentTime, setCurrentTime] = useState("");
   const navigate = useNavigate();
   const localData = JSON.parse(localStorage.getItem("user"));
+
+  useEffect(()=>{
+
+    if(!localData ){
+
+      navigate("/login");
+    }
+  },[])
   const selectTime = (event) => {
     setCurrentTime(event.target.value);
     const timedivs = document.querySelectorAll(".time-button");

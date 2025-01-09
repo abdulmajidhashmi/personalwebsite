@@ -50,13 +50,13 @@
 .ul-li {
   margin: 15px 0px 15px 0px;
   
-  transition: 0.4s;
+  transition: 0.2s;
   
 }
 .ul-li:hover{
 
   color: rgb(34, 47, 63);
-  transform: scale(1.15);
+  transform: scale(1.1);
   cursor: pointer;
   
   

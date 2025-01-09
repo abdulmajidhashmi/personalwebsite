@@ -68,13 +68,7 @@ const HomePage = () => {
             className="fa-solid fa-xmark cut"
             onClick={() => setnavbarstate(false)}
           ></i>
-          {/* <ul className="ul-li-div2">
-            <li className="ul-li2">Home</li>
-            <li className="ul-li2">About</li>
-            <li className="ul-li2">treatments</li>
-            <li className="ul-li2">patients</li>
-            <Link to="/login"><li className="ul-li2">Login</li></Link>
-          </ul> */}
+         
 
 
 
@@ -227,7 +221,7 @@ const HomePage = () => {
     <div class="icon-wrapper blue">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="icon blue-icon"
+        className="icon blue-icon"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
