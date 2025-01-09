@@ -273,7 +273,6 @@ const HomePage = () => {
         </div>
       </div>
 
-       <h1>{userdata.number}</h1> 
     </div>
   );
 };
