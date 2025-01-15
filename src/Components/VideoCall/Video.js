@@ -63,7 +63,7 @@ const Video =()=>{
         <div class="main-video">
           <img src="https://placehold.co/800x600" alt="Main video stream" />
           <div class="main-video-caption">
-            <p>Dr. Sarah Smith</p>
+            <p>Dr. Abdul Wase Hashmi</p>
           </div>
         </div>
 
@@ -109,7 +109,7 @@ const Video =()=>{
           
           <div class="notes-section">
             <h3>Session Notes</h3>
-            <textarea placeholder="Take notes during the session..."></textarea>
+            <textarea  className="notes-area" placeholder="Take notes during the session..."></textarea>
           </div>
         </div>
       </div>

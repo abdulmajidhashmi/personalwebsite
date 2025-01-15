@@ -1,6 +1,7 @@
 import "./Test.css";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Alert, Flex, Spin } from 'antd';
 import axiosInstance from "../api/axiosInstance";
 import { io } from "socket.io-client";
 import baseURL from "../api/BaseURL";
@@ -13,6 +14,7 @@ const SingleUser = () => {
   const [localUser, setLocalUser] = useState({});
   const [isOnline, setIsOnline] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [loading, setloading] = useState(true);
   const { id: userId } = useParams();
 
   const socket = useRef(null);
@@ -61,8 +63,10 @@ const SingleUser = () => {
           id: userId,
         });
         setUsername(data?.data);
+        setloading(false);
       } catch (err) {
         console.error(err);
+        setloading(false);
       }
     };
 
@@ -109,7 +113,15 @@ const SingleUser = () => {
     }
   };
 
-  return (
+  return loading ? (
+    
+    <Flex  className="loader" gap="middle">
+     
+      <Spin tip="Loading" size="large">
+    
+      </Spin>
+    </Flex>
+  ) : (
     <>
       <audio
         id="message-notification"
