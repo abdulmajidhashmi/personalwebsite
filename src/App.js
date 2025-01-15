@@ -124,6 +124,7 @@ function App() {
               </>
             }
           />
+          <Route path="/videoCall" element={<><Video/></>}/>
           <Route
             path="book-appoinment"
             element={

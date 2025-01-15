@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { io } from "socket.io-client";
 import axiosInstance from "../api/axiosInstance";
 import "./Test.css";
@@ -208,7 +208,8 @@ const Test = () => {
               </div>
             </div>
             <div class="header-actions">
-              <button class="action-button">
+              <Link to="/videoCall"><button class="action-button">
+              
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="icon"
@@ -223,7 +224,7 @@ const Test = () => {
                     d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
                   />
                 </svg>
-              </button>
+              </button></Link>
               <button class="action-button">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
