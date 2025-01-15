@@ -7,6 +7,7 @@ import "./Test.css";
 import baseURL from "../api/BaseURL";
 
 const Test = () => {
+  const [loading,setloading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
   const data = useSelector((state) => state.User.value);
@@ -41,6 +42,7 @@ const Test = () => {
 
   const fetchUserData = async () => {
     try {
+     
       const localData = JSON.parse(localStorage.getItem("user"));
       const response = await axiosInstance.post("/user/all", localData);
 
@@ -50,8 +52,10 @@ const Test = () => {
       } else {
         setUpdateData(response.data.data);
       }
+      setloading(false);
     } catch (err) {
       console.error(err);
+      setloading(false);
     }
   };
 
@@ -116,7 +120,7 @@ const Test = () => {
     }
   }, [location]);
 
-  return (
+  return loading ?<h1>loading...</h1>:(
     <>
       <audio
         id="message-notification"
