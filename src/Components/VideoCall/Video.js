@@ -1,10 +1,13 @@
-import {useEffect, useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import './Video.css';
 const Video =()=>{
 
     const videoRef = useRef();
+    const [time,setTime] = useState(0);
 
     useEffect(() => {
+
+       
         navigator.mediaDevices.getUserMedia({ video: true, audio: true })
           .then((stream) => {
             videoRef.current.srcObject = stream;
@@ -24,7 +27,41 @@ const Video =()=>{
           }
         };
       }, []);
+      useEffect(()=>{
+
+
+        const interval = setInterval(()=>{
+            setTime((prev) => prev+1);
+
+        },1000)
+
+        return(()=>{
+
+            clearInterval(interval);
+        })
+
+
+        
+        
+
+      },[])
       
+      const formatTime = (seconds)=>{
+
+       
+
+            const sec = seconds % 60;
+            const min= Math.floor((seconds % 3600) / 60);
+            const hours = Math.floor(seconds / 3600);
+let ans;
+            if(hours>0){
+                ans = hours + ":" + min + ":" +sec;
+            }else{
+            ans = min + ":" +sec;}
+            return ans;
+            
+        
+      }
     return(
         <>
 
@@ -39,7 +76,7 @@ const Video =()=>{
           <span class="status-indicator"></span>
           <span class="status-text">Call in progress</span>
         </div>
-        <span class="call-duration">32:15</span>
+        <span class="call-duration">{formatTime(time)}</span>
       </div>
       <div class="header-right">
         <div class="control-btn">
