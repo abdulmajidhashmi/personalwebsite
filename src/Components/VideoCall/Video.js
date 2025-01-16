@@ -1,67 +1,110 @@
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
+import Peer from "peerjs";
 import './Video.css';
-const Video =()=>{
+import { io } from "socket.io-client";
+import baseURL from "../api/BaseURL";
+import { Link, useNavigate } from "react-router-dom";
 
+const Video = () => {
     const videoRef = useRef();
-    const [time,setTime] = useState(0);
+    const videoGridRef = useRef(null);
+    const [time, setTime] = useState(0);
+    const [peerId, setPeerId] = useState("");
+    const socket = useRef();
+    const navigate = useNavigate();
 
     useEffect(() => {
+        const ROOM_ID = "12345"; // Example Room ID
+        const peer = new Peer();
+        socket.current = io(baseURL);
 
-       
-        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-          .then((stream) => {
+        const handleOpen = (id) => {
+            setPeerId(id);
+            socket.current.emit("join-room", { roomId: ROOM_ID, userId: id });
+        };
+
+        const handleStream = (stream) => {
             videoRef.current.srcObject = stream;
             videoRef.current.play().catch(err => {
-              console.error("Error playing the video:", err);
+                console.error("Error playing the video:", err);
             });
-          })
-          .catch((err) => {
-            console.error("Error accessing media devices:", err);
-          });
-      
-        return () => {
-          if (videoRef.current && videoRef.current.srcObject) {
-            const tracks = videoRef.current.srcObject.getTracks();
-            tracks.forEach(track => track.stop()); // Stop each track
-            videoRef.current.srcObject = null; // Clear the srcObject
-          }
+
+            peer.on("call", (call) => {
+                call.answer(stream);
+                call.on("stream", (userStream) => {
+                    addVideoStream(userStream);
+                });
+            });
+
+            socket.current.on("user-connected", (userId) => {
+                connectToNewUser(userId, stream, peer);
+            });
         };
-      }, []);
-      useEffect(()=>{
 
+        const handleUserDisconnected = (userId) => {
+            console.log("User disconnected:", userId);
+        };
 
-        const interval = setInterval(()=>{
-            setTime((prev) => prev+1);
+        peer.on("open", handleOpen);
 
-        },1000)
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+            .then(handleStream)
+            .catch(err => {
+                console.error("Error accessing media devices:", err);
+            });
 
-        return(()=>{
+        socket.current.on("user-disconnected", handleUserDisconnected);
 
+        return () => {
+            if (videoRef.current && videoRef.current.srcObject) {
+                const tracks = videoRef.current.srcObject.getTracks();
+                tracks.forEach(track => track.stop());
+                videoRef.current.srcObject = null;
+            }
+            peer.off("open", handleOpen);
+            socket.current.off("user-disconnected", handleUserDisconnected);
+        };
+    }, []);
+
+    const connectToNewUser = (userId, stream, peer) => {
+        const call = peer.call(userId, stream);
+        call.on("stream", (userStream) => {
+            addVideoStream(userStream);
+        });
+    };
+
+    const addVideoStream = (stream) => {
+        const video = document.createElement("video");
+        video.srcObject = stream;
+        video.addEventListener("loadedmetadata", () => {
+            video.play();
+        });
+        videoGridRef.current.append(video);
+    };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTime((prev) => prev + 1);
+        }, 1000);
+
+        return () => {
             clearInterval(interval);
-        })
+        };
+    }, []);
+
+    const formatTime = (seconds) => {
+        const sec = seconds % 60;
+        const min = Math.floor((seconds % 3600) / 60);
+        const hours = Math.floor(seconds / 3600);
+
+        return hours > 0 ? `${hours}:${min}:${sec}` : `${min}:${sec}`;
+    };
+
+    const backtopage =()=>{
 
 
-        
-        
-
-      },[])
-      
-      const formatTime = (seconds)=>{
-
-       
-
-            const sec = seconds % 60;
-            const min= Math.floor((seconds % 3600) / 60);
-            const hours = Math.floor(seconds / 3600);
-let ans;
-            if(hours>0){
-                ans = hours + ":" + min + ":" +sec;
-            }else{
-            ans = min + ":" +sec;}
-            return ans;
-            
-        
-      }
+        navigate(-1);
+    }
     return(
         <>
 
@@ -97,8 +140,9 @@ let ans;
     <div class="content">
       <div class="video-grid">
       
-        <div class="main-video">
-          <img src="https://placehold.co/800x600" alt="Main video stream" />
+        <div class="main-video" ref={videoGridRef}>
+          
+          
           <div class="main-video-caption">
             <p>Dr. Abdul Wase Hashmi</p>
           </div>
@@ -135,7 +179,7 @@ let ans;
                 </svg>
               </div>
             </div>
-            <div class="end-call-btn">
+           <div class="end-call-btn" onClick={backtopage}>
               <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
