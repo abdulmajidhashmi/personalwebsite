@@ -105,22 +105,46 @@ const Video = () => {
 
     const backtopage =()=>{
 
-      if (videoRef.current && videoRef.current.srcObject) {
-        const tracks = videoRef.current.srcObject.getTracks();
-        tracks.forEach(track => track.stop());
+      console.log("Ending call...");
+
+    if (videoRef.current) {
+        console.log("Stopping video tracks and removing video element...");
+        const tracks = videoRef.current.srcObject?.getTracks();
+        if (tracks) {
+            tracks.forEach(track => track.stop());
+        }
         videoRef.current.srcObject = null;
+        videoRef.current.load(); // Reloads the video element to ensure it's reset
+    } else {
+        console.log("Video reference is null.");
     }
 
     if (peerRef.current) {
+        console.log("Disconnecting peer...");
         peerRef.current.disconnect();
         peerRef.current.destroy();
+    } else {
+        console.log("Peer reference is null.");
     }
 
     if (socket.current) {
+        console.log("Disconnecting socket...");
         socket.current.disconnect();
+    } else {
+        console.log("Socket reference is null.");
     }
 
-    navigate(-1);
+    // Remove video element and recreate it after navigation
+    if (videoGridRef.current) {
+        console.log("Removing video element...");
+        while (videoGridRef.current.firstChild) {
+            videoGridRef.current.removeChild(videoGridRef.current.firstChild);
+        }
+    }
+
+    
+       navigate(-1);
+    
         
     }
     return(
