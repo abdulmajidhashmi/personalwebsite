@@ -121,7 +121,7 @@ const Video = () => {
     }
 
     navigate(-1);
-        navigate(-1);
+        
     }
     return(
         <>
