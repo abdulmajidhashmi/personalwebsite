@@ -12,10 +12,12 @@ const Video = () => {
     const [peerId, setPeerId] = useState("");
     const socket = useRef();
     const navigate = useNavigate();
+    const peerRef = useRef(null);
 
     useEffect(() => {
         const ROOM_ID = "12345"; // Example Room ID
         const peer = new Peer();
+        peerRef.current = peer;
         socket.current = io(baseURL);
 
         const handleOpen = (id) => {
@@ -75,6 +77,7 @@ const Video = () => {
 
     const addVideoStream = (stream) => {
         const video = document.createElement("video");
+        video.classList.add('server-video');
         video.srcObject = stream;
         video.addEventListener("loadedmetadata", () => {
             video.play();
@@ -102,7 +105,22 @@ const Video = () => {
 
     const backtopage =()=>{
 
+      if (videoRef.current && videoRef.current.srcObject) {
+        const tracks = videoRef.current.srcObject.getTracks();
+        tracks.forEach(track => track.stop());
+        videoRef.current.srcObject = null;
+    }
 
+    if (peerRef.current) {
+        peerRef.current.disconnect();
+        peerRef.current.destroy();
+    }
+
+    if (socket.current) {
+        socket.current.disconnect();
+    }
+
+    navigate(-1);
         navigate(-1);
     }
     return(

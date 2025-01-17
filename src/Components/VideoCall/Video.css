@@ -301,3 +301,9 @@
    
   }
   
+
+  .server-video{
+
+
+    transform: scaleX(-1);
+  }
