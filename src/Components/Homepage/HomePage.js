@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
 import "./HomePage.css";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
@@ -7,6 +8,8 @@ const HomePage = () => {
   const closeRef = useRef();
 
   const userdata = useSelector((state)=>state.User.value);
+
+ 
 
   useEffect(() => {
 
@@ -45,7 +48,7 @@ const HomePage = () => {
         <ul className="ul-li-div">
           <li className="ul-li">Home</li>
           <li className="ul-li">About</li>
-          <li className="ul-li">treatments</li>
+         <HashLink smooth to="#treat"><li className="ul-li">treatments</li> </HashLink> 
           <li className="ul-li">patients</li>
         </ul>
        <Link to="/login"><div className="userenddiv"><i className="fa-regular fa-user userend"></i></div> </Link>
@@ -109,7 +112,7 @@ const HomePage = () => {
     </svg>
     Patients
   </a>
-  <a href="#appointments" class="nav-item">
+  <Link to="/book-appoinment" class="nav-item">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="nav-icon"
@@ -125,7 +128,7 @@ const HomePage = () => {
       />
     </svg>
     Appointments
-  </a>
+  </Link>
   <Link to="/chat" class="nav-item">
     <svg
       xmlns="http://www.w3.org/2000/svg"

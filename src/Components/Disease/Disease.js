@@ -97,7 +97,7 @@ const diseaseData = [
 const Disease = () => {
   return (
     <>
-      <div class="container">
+      <div class="container" id="treat">
         <h2 class="heading">Common Conditions</h2>
         <div class="grid-layout">
           {diseaseData.map((value, index) => (
