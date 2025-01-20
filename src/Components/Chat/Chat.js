@@ -83,7 +83,7 @@ const Chat = () => {
         }
       };
     }
-  }, []);
+  }, [userData]);
 
   const handleSendMessage = () => {
     if (msg.trim() && userData?.role === "user" && socket.current) {
