@@ -27,11 +27,12 @@ const Login = () => {
   const loginapicall = async(logindata)=>{
 
     try{
-      const resdata = await axiosInstance.post('/user/login',logindata);
+      const resdata = await axiosInstance.post('/user/login',logindata,{withCredentials:true});
 
       console.log(resdata.data.data);
       dispatch(adddata(resdata.data.data));
-      localStorage.setItem('user',JSON.stringify(resdata.data.data));
+
+      
       if(resdata.data.success===true){
       navigate(-1);
       }

@@ -1,5 +1,5 @@
-import "./Appointments.css";
-const Appointments = () => {
+import "./AppointmentsAdmin.css";
+const AppointmentsAdmin = () => {
   return (
     <>
       <div class="appointment-list">
@@ -58,4 +58,4 @@ const Appointments = () => {
   );
 };
 
-export default Appointments;
+export default AppointmentsAdmin;

@@ -28,11 +28,14 @@ userData[key]  =Number(value);
 
   const signupcall = async (userData) => {
     try {
-      const resdata = await axiosInstance.post("/user/signup", userData);
+      const resdata = await axiosInstance.post("/user/signup", userData,{withCredentials: true});
 
-      console.log(resdata);
-      navigate('/login');
+      console.log(resdata.data.data);
+
       
+      if(resdata.data.success===true){
+        navigate('/');
+      }
     } catch (err) {
       console.log(err);
     }

@@ -9,7 +9,7 @@ const QuickActions = ()=>{
         <>
 
     <div class="custom-grid">
-        <Link to="book-appoinment">
+        <Link to="/book-appoinment">
         <button class="custom-button custom-emerald" id="appointments">
             <div class="icon-container emerald-icon2">
                 <svg class="icon2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -22,7 +22,7 @@ const QuickActions = ()=>{
             </div>
         </button>
         </Link>
-        <Link  className='no-style-link' to='chat'>
+        <Link  className='no-style-link' to='/chat'>
         <button class="custom-button custom-blue">
         
             <div class="icon-container blue-icon2">

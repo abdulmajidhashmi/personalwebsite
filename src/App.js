@@ -2,17 +2,17 @@ import HomePage from "./Components/Homepage/HomePage";
 import "./App.css";
 import Video from "./Components/VideoCall/Video";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
-import Test from "./Components/Chat/Test";
-import SingleUser from "./Components/Chat/SingleUser";
+import Chat from "./Components/Chat/Chat";
 import Disease from "./Components/Disease/Disease";
 import DiseaseExpand from "./Components/DiseaseExpand/DiseaseExpand";
-
 import QuickActions from "./Components/QuickActions/QuickActions";
-import Calender from "./Components/Calender/Calender";
 import Appointments from "./Components/Appointments/Appointments";
+import AppointmentsAdmin from "./Components/Admin/Appointments/AppointmentsAdmin";
+import HomepageAdmin from "./Components/Admin/Homepage/HomepageAdmin";
+import ChatAdminUserDetails from "./Components/Admin/Chat/ChatAdminUserDetails";
+import ChatAdmin from "./Components/Admin/Chat/ChatAdmin";
 
 const diseaseData = [
   {
@@ -118,13 +118,19 @@ function App() {
               <>
                 <HomePage />
                 <QuickActions />
-
                 <Disease />
-                {/* <Video/> */}
+               
               </>
             }
           />
-          <Route path="/videoCall" element={<><Video/></>}/>
+          <Route
+            path="/videoCall"
+            element={
+              <>
+                <Video />
+              </>
+            }
+          />
           <Route
             path="book-appoinment"
             element={
@@ -155,15 +161,7 @@ function App() {
             path="/chat"
             element={
               <>
-                <Test />
-              </>
-            }
-          />
-          <Route
-            path="/test/:id"
-            element={
-              <>
-                <SingleUser />
+                <Chat />
               </>
             }
           />
@@ -179,6 +177,34 @@ function App() {
               }
             />
           ))}
+
+          {/* admim Routes*/}
+
+          <Route
+            path="/admin"
+            element={
+              <>
+                <HomepageAdmin />
+                <AppointmentsAdmin />
+              </>
+            }
+          />
+          <Route
+            path="/admin/chat-details"
+            element={
+              <>
+                <ChatAdminUserDetails />
+              </>
+            }
+          />
+          <Route
+            path="/admin/chat/:id"
+            element={
+              <>
+                <ChatAdmin />
+              </>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>

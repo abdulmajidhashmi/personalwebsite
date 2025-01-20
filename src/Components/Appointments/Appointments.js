@@ -12,10 +12,17 @@ const Appointments = () => {
 
   useEffect(()=>{
 
-    if(!localData ){
+    const checktoken =async()=>{
+
+     const tokendata =  await axiosInstance.get('/user/check-token',{withCredentials:true});
+    
+     if(tokendata.data.success===false){
 
       navigate("/login");
     }
+    }
+    checktoken();
+   
   },[])
   const selectTime = (event) => {
     setCurrentTime(event.target.value);
@@ -43,7 +50,7 @@ const Appointments = () => {
       try {
         const reply = await axiosInstance.post(
           "/patient/appointments",
-          appointmentData
+          appointmentData,{withCredentials:true}
         );
         message.destroy();
         message.success("Scheduled Sucessfully");

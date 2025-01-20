@@ -3,36 +3,36 @@ import { useSelector } from "react-redux";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { io } from "socket.io-client";
 import axiosInstance from "../api/axiosInstance";
-import "./Test.css";
+import "./Chat.css";
 import baseURL from "../api/BaseURL";
-import { Alert, Flex, Spin } from 'antd';
+import { Alert, Flex, Spin } from "antd";
 
-const Test = () => {
+const Chat = () => {
   const [loading, setloading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
-  const data = useSelector((state) => state.User.value);
-  const statusreducer = useSelector((state) => state.Online.value);
-
   const chatsubdivRef = useRef();
-  const deliveredRef = useRef();
-
   const [storemsg, setStoreMsg] = useState([]);
-  const [msg, setMsg] = useState("");
-  const [local, setLocal] = useState({});
+  const [msg, setMsg] = useState(null);
   const [updatedata, setUpdateData] = useState([]);
-  const [touserId, setToUserId] = useState("");
+  const [touserId, setToUserId] = useState(null);
   const [show, setShow] = useState(true);
-
+  const [adminData, setAdminData] = useState(null);
+  const [userData, setUserData] = useState(null);
   const socket = useRef(null);
 
   useEffect(() => {
-    const localData = JSON.parse(localStorage.getItem("user"));
-    setLocal(localData);
+    const checktoken = async () => {
+      const tokendata = await axiosInstance.get("/user/check-token", {
+        withCredentials: true,
+      });
 
-    if (!localData) {
-      navigate("/login");
-    }
+      if (tokendata.data.success === false) {
+        navigate("/login");
+      }
+    };
+    checktoken();
+    fetchUserData();
   }, []);
 
   useEffect(() => {
@@ -43,28 +43,23 @@ const Test = () => {
 
   const fetchUserData = async () => {
     try {
-      const localData = JSON.parse(localStorage.getItem("user"));
-      const response = await axiosInstance.post("/user/all", localData);
-
-      if (response.data.data.name === "Doctor") {
-        setToUserId(response.data.data.number);
-        setShow(false);
-      } else {
-        setUpdateData(response.data.data);
-      }
+      const selfData = await axiosInstance.get("/user/self-detail", {
+        withCredentials: true,
+      });
+      setUserData(selfData.data.data);
+      setToUserId(selfData.data.data.number);
+      setShow(false);
       setloading(false);
     } catch (err) {
-      console.error(err);
+      console.log(err);
       setloading(false);
     }
   };
 
   useEffect(() => {
-    fetchUserData();
-
-    if (local?.name && local?.name !== "Abdul Wase Hashmi") {
+    if (userData && userData?.role === "user") {
       socket.current = io(`${baseURL}`, {
-        query: { roomName: String(local.number) },
+        query: { roomName: String(userData.number) },
       });
 
       socket.current.on("recieveMessage", ({ message }) => {
@@ -81,20 +76,20 @@ const Test = () => {
       return () => {
         if (socket.current?.connected) {
           socket.current.emit("leaveRoom", {
-            localnumber: local.number,
+            userData: userData.number,
             status: "offline",
           });
           socket.current.disconnect();
         }
       };
     }
-  }, [local]);
+  }, []);
 
   const handleSendMessage = () => {
-    if (msg.trim() && local?.name !== "Abdul Wase Hashmi") {
+    if (msg.trim() && userData?.role === "user" && socket.current) {
       setStoreMsg((prev) => [...prev, { place: "right", message: msg }]);
 
-      socket.current.emit("sendMessage", { use: String(local.number), msg });
+      socket.current.emit("sendMessage", { use: String(userData.number), msg });
       const notification = document.getElementById("send-notification");
       notification?.play().catch((err) => console.error(err));
       setMsg("");
@@ -107,11 +102,6 @@ const Test = () => {
     }
   };
 
-  const handleUserClick = (userId) => {
-    setToUserId(userId);
-    navigate(`/test/${userId}`);
-  };
-
   useEffect(() => {
     if (location.pathname === "/chat") {
       document.body.classList.add("no-scroll");
@@ -121,12 +111,8 @@ const Test = () => {
   }, [location]);
 
   return loading ? (
-    
-    <Flex  className="loader" gap="middle">
-     
-      <Spin tip="Loading" size="large">
-    
-      </Spin>
+    <Flex className="loader" gap="middle">
+      <Spin tip="Loading" size="large"></Spin>
     </Flex>
   ) : (
     <>
@@ -140,70 +126,6 @@ const Test = () => {
         src="https://cdn.uppbeat.io/audio-files/13a6d3c9e914de5ab3fb451786993718/2ec11eb913fad21b859105c510f56d4d/1e1c89bd9921c412363a66f3a6ab8366/STREAMING-notification-muffled-pop-smartsound-fx-1-00-00.mp3"
         preload="auto"
       ></audio>
-
-      {/* <div
-        className={`chat-enterdiv ${updatedata.length ? "full" : ""}`}
-        ref={chatsubdivRef}
-      ></div> */}
-
-      <div class="sidebar">
-        {!updatedata ? (
-          <div class="sidebar-header">
-            <div class="search-wrapper">
-              <input
-                type="text"
-                placeholder="Search conversations..."
-                class="search-input"
-              />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="search-icon"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </div>
-          </div>
-        ) : null}
-
-        <div class="conversations-list">
-          {updatedata.length
-            ? updatedata.map(
-                (user, index) =>
-                  user.number !== local.number &&
-                  user.name !== "Doctor" && (
-                    <div
-                      key={index}
-                      onClick={() => handleUserClick(user.number)}
-                      class={
-                        index === 0 ? "conversation active" : "conversation"
-                      }
-                    >
-                      <img
-                        src="https://avatar.iran.liara.run/public"
-                        alt="Contact"
-                        class="conversation-avatar"
-                      />
-                      <div class="conversation-details">
-                        <h3 class="conversation-name">{user.name}</h3>
-                        <p class="conversation-snippet">
-                          Thanks for the consultation...
-                        </p>
-                      </div>
-                      <div class="conversation-time">2m</div>
-                    </div>
-                  )
-              )
-            : null}
-        </div>
-      </div>
 
       {!show && (
         <div class="chat-container">
@@ -333,4 +255,4 @@ const Test = () => {
   );
 };
 
-export default Test;
+export default Chat;
