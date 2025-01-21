@@ -8,7 +8,7 @@ const Appointments = () => {
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
   const navigate = useNavigate();
-  const localData = JSON.parse(localStorage.getItem("user"));
+  const [localData,setLocalData] = useState(null);
 
   useEffect(()=>{
 
@@ -22,8 +22,25 @@ const Appointments = () => {
     }
     }
     checktoken();
+    userDetails();
    
   },[])
+
+
+  const userDetails =async()=>{
+
+try{
+
+  const userData = await axiosInstance.get("/user/self-detail",{withCredentials:true});
+ 
+  setLocalData(userData.data.data);
+
+}catch(err){
+
+  console.log(err);
+}
+
+  }
   const selectTime = (event) => {
     setCurrentTime(event.target.value);
     const timedivs = document.querySelectorAll(".time-button");
@@ -46,7 +63,7 @@ const Appointments = () => {
     };
 
     message.loading("Scheduling");
-    if (currentDate && currentTime && localData) {
+    if (currentDate && currentTime && localData?.number) {
       try {
         const reply = await axiosInstance.post(
           "/patient/appointments",
@@ -110,12 +127,13 @@ const Appointments = () => {
                     4:30 PM
                   </button>
                 </div>
-                <Popconfirm
+              <Popconfirm
                   title="Schedule the Appointment"
                   description="Are you sure to Schedule the Appointment?"
                   onConfirm={bookAppointment}
+                  disabled={!currentDate || !currentTime}
                   
-                >
+                > 
                  
                   <button className="book-appointment-button">
                     Book Appointment
