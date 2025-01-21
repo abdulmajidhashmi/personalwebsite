@@ -36,6 +36,8 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
+
+    console.log(chatsubdivRef.current);
     if (chatsubdivRef.current) {
       chatsubdivRef.current.scrollTop = chatsubdivRef.current.scrollHeight;
     }
@@ -179,7 +181,7 @@ const Chat = () => {
             </div>
           </div>
 
-          <div class="chat-messages">
+          <div class="chat-messages" ref={chatsubdivRef}>
             {storemsg.map(({ place, message }, index) => (
               <>
                 <div

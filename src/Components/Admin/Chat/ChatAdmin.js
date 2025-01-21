@@ -34,7 +34,7 @@ const ChatAdmin = () => {
       }
     };
     checktoken();
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     const initializeSocket = async () => {
@@ -208,7 +208,7 @@ const ChatAdmin = () => {
           </div>
         </div>
 
-        <div class="chat-messages">
+        <div class="chat-messages" ref={chatsubdivRef}>
           {messages.map(({ place, message }, index) => (
             <>
               <div
