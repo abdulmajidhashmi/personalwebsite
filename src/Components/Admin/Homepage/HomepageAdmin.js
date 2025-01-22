@@ -1,23 +1,31 @@
 import { useEffect } from 'react';
 import './HomepageAdmin.css';
 import axiosInstance from '../../api/axiosInstance';
+import { useNavigate } from 'react-router-dom';
 const HomepageAdmin = () =>{
+
+  const navigate=useNavigate();
   
-useEffect(()=>{
+  useEffect(()=>{
+
+    const checktoken =async()=>{
+
+     const tokendata =  await axiosInstance.get('/user/check-token',{withCredentials:true});
+    
+     if(tokendata.data.success===false){
+
+      navigate("/login");
+    }
+    }
+    checktoken();
+    
+   adminData();
+  },[])
 
 
-const cookies = document.cookie;
-  if(cookies.includes('authToken')){
-  
-  patientsinfo();
-  }
-
-},[])
-
-
-const patientsinfo  =async()=>{
+const adminData  =async()=>{
 try{
- const data =  await axiosInstance.post('/user/all',{withCredentials:true});
+ const data =  await axiosInstance.get('/user/all-admin-data',{withCredentials:true});
  console.log(data);
 }catch(err){
 
