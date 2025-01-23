@@ -1,5 +1,5 @@
 {
-  "proxy": "https://personalwebsitebackend-ntzy.onrender.com",
+  "proxy": "http://13.71.43.117:4020",
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
