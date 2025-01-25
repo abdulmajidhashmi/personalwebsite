@@ -1,5 +1,4 @@
 {
-  "proxy": "http://4.213.176.68:4020",
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
