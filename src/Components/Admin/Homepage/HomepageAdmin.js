@@ -1,43 +1,139 @@
-import { useEffect } from 'react';
-import './HomepageAdmin.css';
-import axiosInstance from '../../api/axiosInstance';
-import { useNavigate } from 'react-router-dom';
-const HomepageAdmin = () =>{
+import { useEffect, useState } from "react";
+import "./HomepageAdmin.css";
+import axiosInstance from "../../api/axiosInstance";
+import { useNavigate } from "react-router-dom";
+const HomepageAdmin = () => {
+  const navigate = useNavigate();
+  const [totalPatients, setTotalpatients] = useState(0);
+  const [patientThisMonth, setPatientThisMonth] = useState(0);
+  const [patientToday, setPatientToday] = useState(0);
+  const [nearTime, setNearTime] = useState(null);
+  const [noappointments, setNoAppointments] = useState(false);
+  const [pendingapp,setPendingApp] = useState(0);
+  const [pendingreports, setPendingReports] = useState(0);
 
-  const navigate=useNavigate();
-  
-  useEffect(()=>{
+  useEffect(() => {
+    const checktoken = async () => {
+      const tokendata = await axiosInstance.get("/user/check-token", {
+        withCredentials: true,
+      });
 
-    const checktoken =async()=>{
-
-     const tokendata =  await axiosInstance.get('/user/check-token',{withCredentials:true});
-    
-     if(tokendata.data.success===false){
-
-      navigate("/login");
-    }
-    }
+      if (tokendata.data.success === false) {
+        navigate("/login");
+      }
+    };
     checktoken();
-    
-   adminData();
-  },[])
 
+    adminData();
+  }, []);
 
-const adminData  =async()=>{
-try{
- const data =  await axiosInstance.get('/user/all-admin-data',{withCredentials:true});
- console.log(data);
-}catch(err){
+  const calculatepercentage = (thismonth, lastmonth) => {
+    if (lastmonth === 0) {
+      lastmonth = 1;
+    }
 
-console.log(err);
-}
-  
-}
-    return(
+    return (thismonth / lastmonth) * 100;
+  };
+  const adminData = async () => {
+    try {
+      const data = await axiosInstance.get("/user/all-admin-data", {
+        withCredentials: true,
+      });
+      console.log(data.data.data);
+      setTotalpatients(data.data.data.totalpatientdata.length);
+      setPendingReports(data.data.data.appointmentdata.length);
 
+      //map appointments to get today's appointments
+      var todayappointments = 0;
 
-      <section id="doctor_dashboard" class="dashboard-section">
-    <h1 className='dashboard'>Doctor Dashboard</h1>
+      // Example date string (replace with your dynamic date)
+      const date = new Date();
+
+      // Function to format the date to 12-hour format with AM/PM
+      function formatTo12Hour(date) {
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        const ampm = hours >= 12 ? "PM" : "AM";
+
+        // Convert to 12-hour format
+        hours = hours % 12;
+        hours = hours ? hours : 12; // The hour '0' should be '12'
+
+        // Pad minutes with leading zero if needed
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+
+        // Construct the formatted time
+        const formattedTime = hours + ":" + minutes + " " + ampm;
+        return formattedTime;
+      }
+
+      // Format the specific date into 12-hour format
+      const formattedTime = formatTo12Hour(date);
+
+      console.log(formattedTime); // Output: "2:46 PM"
+
+      var temptime = data.data.data.appointmentdata[0].time;
+      let pending = 0;
+      data.data.data.appointmentdata.map((item) => {
+        if(new Date(item.date).getDate() === new Date().getDate()){
+          if (item.time > formattedTime) {
+            pending++;
+
+          }
+         
+        }else if(new Date(item.date).getDate() > new Date().getDate()){
+
+          pending++;
+        }
+        if (new Date(item.date).getDate() === new Date().getDate()) {
+          todayappointments++;
+
+          if (temptime > item.time && item.time > formattedTime) {
+            temptime = item.time;
+          }
+        }
+      });
+      console.log(temptime);
+
+      if (temptime < formattedTime) {
+        setNoAppointments(true);
+      }
+      setNearTime(temptime);
+      setPendingApp(pending);
+
+      setPatientToday(todayappointments);
+
+      if (patientToday > 0) {
+        setNoAppointments(true);
+      }
+
+      let thismonthpatienttemp = 0;
+
+      data.data.data.totalpatientdata.forEach((item) => {
+        if (new Date(item.createdAt).getMonth() === new Date().getMonth()) {
+          thismonthpatienttemp++;
+        }
+      });
+
+      const lastmonthpatienttemp = 0;
+      data.data.data.totalpatientdata.map((item) => {
+        if (new Date(item.createdAt).getMonth() === new Date().getMonth() - 1) {
+          lastmonthpatienttemp++;
+        }
+      });
+      const ans = calculatepercentage(
+        thismonthpatienttemp,
+        lastmonthpatienttemp
+      );
+      setPatientThisMonth(ans);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  return (
+    <section id="doctor_dashboard" class="dashboard-section">
+      <h1 className="dashboard">Doctor Dashboard</h1>
       <div class="overview-grid">
         <div class="overview-card">
           <div class="card-header">
@@ -59,10 +155,10 @@ console.log(err);
             </div>
             <span class="text-neutral">Total Patients</span>
           </div>
-          <h3 class="card-title">248</h3>
-          <p class="text-green">+12% from last month</p>
+          <h3 class="card-title">{totalPatients}</h3>
+          <p class="text-green">+{patientThisMonth}% from last month</p>
         </div>
-        
+
         <div class="overview-card">
           <div class="card-header">
             <div class="icon-bg-green">
@@ -83,10 +179,14 @@ console.log(err);
             </div>
             <span class="text-neutral">Today's Appointments</span>
           </div>
-          <h3 class="card-title">12</h3>
-          <p class="text-green">Next at 2:00 PM</p>
+          <h3 class="card-title">{patientToday}</h3>
+          {noappointments ? (
+            <p class="text-green">No appointments left for today</p>
+          ) : (
+            <p class="text-green">Next at {nearTime}</p>
+          )}
         </div>
-  
+
         <div class="overview-card">
           <div class="card-header">
             <div class="icon-bg-purple">
@@ -107,10 +207,10 @@ console.log(err);
             </div>
             <span class="text-neutral">Pending Consultations</span>
           </div>
-          <h3 class="card-title">8</h3>
-          <p class="text-orange">3 urgent requests</p>
+          <h3 class="card-title">{pendingapp}</h3>
+          <p class="text-orange">0 urgent requests</p>
         </div>
-  
+
         <div class="overview-card">
           <div class="card-header">
             <div class="icon-bg-rose">
@@ -131,12 +231,11 @@ console.log(err);
             </div>
             <span class="text-neutral">Pending Reports</span>
           </div>
-          <h3 class="card-title">5</h3>
+          <h3 class="card-title">{pendingreports}</h3>
           <p class="text-rose">Due within 24 hours</p>
         </div>
       </div>
-  
-      
+
       <div class="upcoming-appointments">
         <div class="appointments-header">
           <h2 class="appointments-title">Upcoming Appointments</h2>
@@ -156,7 +255,11 @@ console.log(err);
               <tr>
                 <td class="table-data">
                   <div class="patient-info">
-                    <img src="https://avatar.iran.liara.run/public" alt="Patient" class="patient-avatar" />
+                    <img
+                      src="https://avatar.iran.liara.run/public"
+                      alt="Patient"
+                      class="patient-avatar"
+                    />
                     <div class="patient-details">
                       <div class="patient-name">Sarah Johnson</div>
                       <div class="patient-condition">Depression</div>
@@ -177,7 +280,11 @@ console.log(err);
               <tr>
                 <td class="table-data">
                   <div class="patient-info">
-                    <img src="https://avatar.iran.liara.run/public" alt="Patient" class="patient-avatar" />
+                    <img
+                      src="https://avatar.iran.liara.run/public"
+                      alt="Patient"
+                      class="patient-avatar"
+                    />
                     <div class="patient-details">
                       <div class="patient-name">Michael Brown</div>
                       <div class="patient-condition">Anxiety</div>
@@ -199,8 +306,7 @@ console.log(err);
           </table>
         </div>
       </div>
-  
-     
+
       <div class="activity-actions-grid">
         <div class="recent-activity">
           <div class="activity-header">
@@ -225,7 +331,9 @@ console.log(err);
                 </svg>
               </div>
               <div class="activity-details">
-                <p class="activity-description">Medical report updated for Sarah Johnson</p>
+                <p class="activity-description">
+                  Medical report updated for Sarah Johnson
+                </p>
                 <p class="activity-time">10 minutes ago</p>
               </div>
             </div>
@@ -247,13 +355,15 @@ console.log(err);
                 </svg>
               </div>
               <div class="activity-details">
-                <p class="activity-description">New appointment scheduled with Michael Brown</p>
+                <p class="activity-description">
+                  New appointment scheduled with Michael Brown
+                </p>
                 <p class="activity-time">1 hour ago</p>
               </div>
             </div>
           </div>
         </div>
-  
+
         <div class="quick-actions">
           <div class="actions-header">
             <h2 class="actions-title">Quick Actions</h2>
@@ -267,7 +377,12 @@ console.log(err);
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4v16m8-8H4"
+                />
               </svg>
               New Appointment
             </button>
@@ -309,8 +424,7 @@ console.log(err);
         </div>
       </div>
     </section>
-
-    )
-}
+  );
+};
 
 export default HomepageAdmin;
