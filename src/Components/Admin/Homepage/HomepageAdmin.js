@@ -8,7 +8,7 @@ const HomepageAdmin = () => {
   const [patientThisMonth, setPatientThisMonth] = useState(0);
   const [patientToday, setPatientToday] = useState(0);
   const [nearTime, setNearTime] = useState(null);
-  const [noappointments, setNoAppointments] = useState(false);
+  const [noappointments, setNoAppointments] = useState(true);
   const [pendingapp,setPendingApp] = useState(0);
   const [pendingreports, setPendingReports] = useState(0);
 
@@ -72,7 +72,7 @@ const HomepageAdmin = () => {
 
       console.log(formattedTime); // Output: "2:46 PM"
 
-      var temptime = data.data.data.appointmentdata[0].time;
+      var temptime = data.data.data.appointmentdata[0]?.time;
       let pending = 0;
       data.data.data.appointmentdata.map((item) => {
         if(new Date(item.date).getDate() === new Date().getDate()){
@@ -97,6 +97,8 @@ const HomepageAdmin = () => {
 
       if (temptime < formattedTime) {
         setNoAppointments(true);
+      }else if(todayappointments){
+        setNoAppointments(false);
       }
       setNearTime(temptime);
       setPendingApp(pending);
