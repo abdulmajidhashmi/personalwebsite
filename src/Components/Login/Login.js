@@ -1,12 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Login.css";
 import axiosInstance from "../api/axiosInstance";
 import { useDispatch } from "react-redux";
 import { adddata } from "../redux/reducer/UserReducer";
 import { useNavigate } from "react-router-dom";
+
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+
   const logincall = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -20,28 +23,40 @@ const Login = () => {
     }
 
     console.log(logindata);
-    if(!Object.values(logindata).every(value =>!value)){
-    loginapicall(logindata);}
+    if (Object.values(logindata).every((value) => value)) {
+      loginapicall(logindata);
+    }
   };
 
-  const loginapicall = async(logindata)=>{
+  const loginapicall = async (logindata) => {
+    try {
+      const resdata = await axiosInstance.post("/user/login", logindata, {
+        withCredentials: true,
+      });
 
-    try{
-      const resdata = await axiosInstance.post('/user/login',logindata,{withCredentials:true});
-
-      console.log(resdata.data.data);
       dispatch(adddata(resdata.data.data));
 
+      const user = await axiosInstance.get("/user/self-detail", {
+        withCredentials: true,
+      });
+
+      if (user.data.data.role === "admin") {
+        navigate("/admin");
+      } else if (user.data.data.role === "user") {
+        const previousPath = location.state?.from || "/";
       
-      if(resdata.data.success===true){
-      navigate(-1);
+        if (previousPath === "/signup") {
+          navigate("/"); // Navigate to home
+        } else {
+          navigate(-1); // Navigate back to the previous path
+        }
       }
-
-    }catch(err){
-
+      
+    } catch (err) {
       console.log(err);
     }
-  }
+  };
+
   return (
     <>
       <div className="login-maindiv">
@@ -60,13 +75,12 @@ const Login = () => {
               />
               <input
                 className="login-inp"
-                name="password" type="password"
+                name="password"
+                type="password"
                 placeholder="Enter password"
               />
-
               <button className="login-click">Login</button>
-
-              <Link to="/signup">
+              <Link to="/signup" state={{ from: location.pathname }}>
                 <div className="signuphere-div">
                   <p>New user?</p> <p className="signup-here">Sign up here</p>
                 </div>
@@ -75,13 +89,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-
-
-
-
-
-
-
     </>
   );
 };

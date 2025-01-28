@@ -11,6 +11,7 @@ const HomepageAdmin = () => {
   const [noappointments, setNoAppointments] = useState(true);
   const [pendingapp,setPendingApp] = useState(0);
   const [pendingreports, setPendingReports] = useState(0);
+  const [appData,setAppData] = useState([]);
 
   useEffect(() => {
     const checktoken = async () => {
@@ -39,7 +40,8 @@ const HomepageAdmin = () => {
       const data = await axiosInstance.get("/user/all-admin-data", {
         withCredentials: true,
       });
-      console.log(data.data.data);
+      console.log(data.data.data.appointmentdata);
+      setAppData(data.data.data.appointmentdata);
       setTotalpatients(data.data.data.totalpatientdata.length);
       setPendingReports(data.data.data.appointmentdata.length);
 
@@ -134,15 +136,15 @@ const HomepageAdmin = () => {
   };
 
   return (
-    <section id="doctor_dashboard" class="dashboard-section">
+    <section id="doctor_dashboard" className="dashboard-section">
       <h1 className="dashboard">Doctor Dashboard</h1>
-      <div class="overview-grid">
-        <div class="overview-card">
-          <div class="card-header">
-            <div class="icon-bg-blue">
+      <div className="overview-grid">
+        <div className="overview-card">
+          <div className="card-header">
+            <div className="icon-bg-blue">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon-blue"
+                className="icon-blue"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -155,18 +157,18 @@ const HomepageAdmin = () => {
                 />
               </svg>
             </div>
-            <span class="text-neutral">Total Patients</span>
+            <span className="text-neutral">Total Patients</span>
           </div>
-          <h3 class="card-title">{totalPatients}</h3>
-          <p class="text-green">+{patientThisMonth}% from last month</p>
+          <h3 className="card-title">{totalPatients}</h3>
+          <p className="text-green">+{patientThisMonth}% from last month</p>
         </div>
 
-        <div class="overview-card">
-          <div class="card-header">
-            <div class="icon-bg-green">
+        <div className="overview-card">
+          <div className="card-header">
+            <div className="icon-bg-green">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon-green"
+                className="icon-green"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -179,22 +181,22 @@ const HomepageAdmin = () => {
                 />
               </svg>
             </div>
-            <span class="text-neutral">Today's Appointments</span>
+            <span className="text-neutral">Today's Appointments</span>
           </div>
-          <h3 class="card-title">{patientToday}</h3>
+          <h3 className="card-title">{patientToday}</h3>
           {noappointments ? (
-            <p class="text-green">No appointments left for today</p>
+            <p className="text-green">No appointments left for today</p>
           ) : (
-            <p class="text-green">Next at {nearTime}</p>
+            <p className="text-green">Next at {nearTime}</p>
           )}
         </div>
 
-        <div class="overview-card">
-          <div class="card-header">
-            <div class="icon-bg-purple">
+        <div className="overview-card">
+          <div className="card-header">
+            <div className="icon-bg-purple">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon-purple"
+                className="icon-purple"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -207,18 +209,18 @@ const HomepageAdmin = () => {
                 />
               </svg>
             </div>
-            <span class="text-neutral">Pending Consultations</span>
+            <span className="text-neutral">Pending Consultations</span>
           </div>
-          <h3 class="card-title">{pendingapp}</h3>
-          <p class="text-orange">0 urgent requests</p>
+          <h3 className="card-title">{pendingapp}</h3>
+          <p className="text-orange">0 urgent requests</p>
         </div>
 
-        <div class="overview-card">
-          <div class="card-header">
-            <div class="icon-bg-rose">
+        <div className="overview-card">
+          <div className="card-header">
+            <div className="icon-bg-rose">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon-rose"
+                className="icon-rose"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -231,77 +233,106 @@ const HomepageAdmin = () => {
                 />
               </svg>
             </div>
-            <span class="text-neutral">Pending Reports</span>
+            <span className="text-neutral">Pending Reports</span>
           </div>
-          <h3 class="card-title">{pendingreports}</h3>
-          <p class="text-rose">Due within 24 hours</p>
+          <h3 className="card-title">{pendingreports}</h3>
+          <p className="text-rose">Due within 24 hours</p>
         </div>
       </div>
 
-      <div class="upcoming-appointments">
-        <div class="appointments-header">
-          <h2 class="appointments-title">Upcoming Appointments</h2>
+      <div className="upcoming-appointments">
+        <div className="appointments-header">
+          <h2 className="appointments-title">Upcoming Appointments</h2>
         </div>
-        <div class="table-container">
-          <table class="appointments-table">
-            <thead class="table-header">
+        <div className="table-container">
+          <table className="appointments-table">
+            <thead className="table-header">
               <tr>
-                <th class="table-cell">Patient</th>
-                <th class="table-cell">Time</th>
-                <th class="table-cell">Type</th>
-                <th class="table-cell">Status</th>
-                <th class="table-cell">Action</th>
+                <th className="table-cell">Patient</th>
+                <th className="table-cell">Time</th>
+                <th className="table-cell">Type</th>
+                <th className="table-cell">Status</th>
+                <th className="table-cell">Action</th>
               </tr>
             </thead>
-            <tbody class="table-body">
-              <tr>
-                <td class="table-data">
-                  <div class="patient-info">
+            <tbody className="table-body">
+              {/* <tr>
+                <td className="table-data">
+                  <div className="patient-info">
                     <img
                       src="https://avatar.iran.liara.run/public"
                       alt="Patient"
-                      class="patient-avatar"
+                      className="patient-avatar"
                     />
-                    <div class="patient-details">
-                      <div class="patient-name">Sarah Johnson</div>
-                      <div class="patient-condition">Depression</div>
+                    <div className="patient-details">
+                      <div className="patient-name">Sarah Johnson</div>
+                      <div className="patient-condition">Depression</div>
                     </div>
                   </div>
                 </td>
-                <td class="table-data">2:00 PM</td>
-                <td class="table-data">
-                  <span class="badge-blue">Video Call</span>
+                <td className="table-data">2:00 PM</td>
+                <td className="table-data">
+                  <span className="badge-blue">Video Call</span>
                 </td>
-                <td class="table-data">
-                  <span class="badge-green">Confirmed</span>
+                <td className="table-data">
+                  <span className="badge-green">Confirmed</span>
                 </td>
-                <td class="table-data">
-                  <button class="action-button">View Details</button>
+                <td className="table-data">
+                  <button className="action-button">View Details</button>
                 </td>
-              </tr>
+              </tr> */}
+
+              {appData?.map((item) => ((
+(new Date(item.date).getDate() > new Date().getDate())?<tr key={item._id}>
+  <td className="table-data">
+    <div className="patient-info">
+      <img
+        src="https://avatar.iran.liara.run/public"
+        alt="Patient"
+        className="patient-avatar"
+      />
+      <div className="patient-details">
+        <div className="patient-name">{item.user.name}</div>
+        <div className="patient-condition">General Checkup</div>
+      </div>
+    </div>
+  </td>
+  <td className="table-data">{item.time}</td>
+  <td className="table-data">
+    <span className="badge-blue">videoCall</span>
+  </td>
+  <td className="table-data">
+    <span className="badge-green">Confirmed</span>
+  </td>
+  <td className="table-data">
+    <button className="action-button">View Details</button>
+  </td>
+  </tr>:null
+
+         )     ))}
               <tr>
-                <td class="table-data">
-                  <div class="patient-info">
+                <td className="table-data">
+                  <div className="patient-info">
                     <img
                       src="https://avatar.iran.liara.run/public"
                       alt="Patient"
-                      class="patient-avatar"
+                      className="patient-avatar"
                     />
-                    <div class="patient-details">
-                      <div class="patient-name">Michael Brown</div>
-                      <div class="patient-condition">Anxiety</div>
+                    <div className="patient-details">
+                      <div className="patient-name">Michael Brown</div>
+                      <div className="patient-condition">Anxiety</div>
                     </div>
                   </div>
                 </td>
-                <td class="table-data">3:30 PM</td>
-                <td class="table-data">
-                  <span class="badge-purple">In Person</span>
+                <td className="table-data">3:30 PM</td>
+                <td className="table-data">
+                  <span className="badge-purple">In Person</span>
                 </td>
-                <td class="table-data">
-                  <span class="badge-yellow">Pending</span>
+                <td className="table-data">
+                  <span className="badge-yellow">Pending</span>
                 </td>
-                <td class="table-data">
-                  <button class="action-button">View Details</button>
+                <td className="table-data">
+                  <button className="action-button">View Details</button>
                 </td>
               </tr>
             </tbody>
@@ -309,17 +340,17 @@ const HomepageAdmin = () => {
         </div>
       </div>
 
-      <div class="activity-actions-grid">
-        <div class="recent-activity">
-          <div class="activity-header">
-            <h2 class="activity-title">Recent Activity</h2>
+      <div className="activity-actions-grid">
+        <div className="recent-activity">
+          <div className="activity-header">
+            <h2 className="activity-title">Recent Activity</h2>
           </div>
-          <div class="activity-content">
-            <div class="activity-item">
-              <div class="icon-bg-blue">
+          <div className="activity-content">
+            <div className="activity-item">
+              <div className="icon-bg-blue">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon-blue"
+                  className="icon-blue"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -332,18 +363,18 @@ const HomepageAdmin = () => {
                   />
                 </svg>
               </div>
-              <div class="activity-details">
-                <p class="activity-description">
+              <div className="activity-details">
+                <p className="activity-description">
                   Medical report updated for Sarah Johnson
                 </p>
-                <p class="activity-time">10 minutes ago</p>
+                <p className="activity-time">10 minutes ago</p>
               </div>
             </div>
-            <div class="activity-item">
-              <div class="icon-bg-green">
+            <div className="activity-item">
+              <div className="icon-bg-green">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon-green"
+                  className="icon-green"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -356,25 +387,25 @@ const HomepageAdmin = () => {
                   />
                 </svg>
               </div>
-              <div class="activity-details">
-                <p class="activity-description">
+              <div className="activity-details">
+                <p className="activity-description">
                   New appointment scheduled with Michael Brown
                 </p>
-                <p class="activity-time">1 hour ago</p>
+                <p className="activity-time">1 hour ago</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="quick-actions">
-          <div class="actions-header">
-            <h2 class="actions-title">Quick Actions</h2>
+        <div className="quick-actions">
+          <div className="actions-header">
+            <h2 className="actions-title">Quick Actions</h2>
           </div>
-          <div class="actions-content">
-            <button class="action-button-blue">
+          <div className="actions-content">
+            <button className="action-button-blue">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon3"
+                className="icon3"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -388,10 +419,10 @@ const HomepageAdmin = () => {
               </svg>
               New Appointment
             </button>
-            <button class="action-button-neutral">
+            <button className="action-button-neutral">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon3"
+                className="icon3"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -405,10 +436,10 @@ const HomepageAdmin = () => {
               </svg>
               Start Video Call
             </button>
-            <button class="action-button-neutral">
+            <button className="action-button-neutral">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon3"
+                className="icon3"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

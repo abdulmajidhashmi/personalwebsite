@@ -1,25 +1,23 @@
 import axios from "axios";
 import "./Signup.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axiosInstance from "../api/axiosInstance";
 import { useNavigate } from "react-router-dom";
 const Signup = () => {
-
   const navigate = useNavigate();
+  const location = useLocation();
   const submitform = (event) => {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
 
     const userData = {};
     for (let [key, value] of form.entries()) {
-
-      if(key === "number"){
-
-userData[key]  =Number(value);
-      }else{
-      userData[key] = value;
+      if (key === "number") {
+        userData[key] = Number(value);
+      } else {
+        userData[key] = value;
+      }
     }
-  }
 
     signupcall(userData);
 
@@ -28,13 +26,26 @@ userData[key]  =Number(value);
 
   const signupcall = async (userData) => {
     try {
-      const resdata = await axiosInstance.post("/user/signup", userData,{withCredentials: true});
-
-      console.log(resdata.data.data);
+      const resdata = await axiosInstance.post("/user/signup", userData, {
+        withCredentials: true,
+      });
 
       
-      if(resdata.data.success===true){
-        navigate('/');
+
+      const user = await axiosInstance.get("/user/self-detail", {
+        withCredentials: true,
+      });
+
+      if (user.data.data.role === "admin") {
+        navigate("/admin");
+      } else if (user.data.data.role === "user") {
+        const previousPath = location.state?.from || "/";
+       
+        if (previousPath === "/login") {
+          navigate("/"); // Navigate to home
+        } else {
+          navigate(-1); // Navigate back to the previous path
+        }
       }
     } catch (err) {
       console.log(err);
@@ -78,7 +89,7 @@ userData[key]  =Number(value);
             <button className="signup-button" type="submit">
               Sign Up
             </button>
-            <Link to="/login">
+            <Link to="/login" state={{ from: location.pathname }}>
               <div className="already-userdiv">
                 <p>Already a user?</p>
                 <p className="already-user">Login here</p>
