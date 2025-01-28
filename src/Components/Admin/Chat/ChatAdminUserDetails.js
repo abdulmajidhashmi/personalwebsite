@@ -67,7 +67,7 @@ const ChatAdminUserDetails = ()=>{
 
 
 <div class="sidebar">
-        {!updateData ? (
+        {updateData ? (
           <div class="sidebar-header">
             <div class="search-wrapper">
               <input
@@ -94,7 +94,7 @@ const ChatAdminUserDetails = ()=>{
         ) : null}
 
         <div class="conversations-list">
-          {updateData.length
+          {updateData?.length
             ? updateData.map(
                 (user, index) =>
                  (

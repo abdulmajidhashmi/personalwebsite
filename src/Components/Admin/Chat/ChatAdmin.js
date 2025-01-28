@@ -43,7 +43,7 @@ const ChatAdmin = () => {
       });
 
       
-      if (userInfo?.data.data.name === "Abdul Wase Hashmi" && tempUserId) {
+      if (userInfo?.data.data.role==='admin' && tempUserId) {
         socket.current = io(`${baseURL}`, {
           query: { roomName: String(tempUserId) },
         });
@@ -114,7 +114,7 @@ const ChatAdmin = () => {
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && msg.trim()) {
       sendMessage();
-      
+         
     }
   };
 
@@ -126,11 +126,12 @@ const ChatAdmin = () => {
 
   const sendMessage = () => {
     
-    if (socket.current && msg.trim()) {
+    if (socket.current) {
       setMessages((prev) => [...prev, { place: "right", message: msg }]);
       socket.current.emit("sendMessage", { use: String(tempUserId), msg });
       playAudio("send-notification");
       setMsg("");
+      console.log("msg sent");
      
     }
   };
@@ -152,9 +153,7 @@ const ChatAdmin = () => {
         preload="auto"
       ></audio>
 
-      {/* <div className="chat-enter-maindiv">
-        <div className="chat-enterdiv" ref={chatsubdivRef}></div>
-      </div> */}
+     
 
       <div class="chat-container">
         <div class="chat-header">
