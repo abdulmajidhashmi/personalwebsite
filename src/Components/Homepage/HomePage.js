@@ -24,6 +24,8 @@ const HomePage = () => {
         
 
         setnavbarstate(false);
+      }else{
+              document.body.style.overflow = "auto";
       }
     };
 
@@ -261,16 +263,16 @@ const HomePage = () => {
 </div>
 
           <div className="left-side-div">
-            <h1>Dr.Hashmi Abdul Wase</h1>
-            <h2>Neuro-pyschiatrist</h2>
+            <h1 className="title_main_heading">Dr.Hashmi Abdul Wase</h1>
+            <h2 className="title_sub_heading">Neuro-pyschiatrist</h2>
           </div>
 
 
           
           <div className="right-side-div">
-            <img alt="imagej"
+            <img alt="Image"
               className="main-img"
-              src="https://clipart-library.com/img/782967.png"
+              src="https://www.freeiconspng.com/uploads/transparent-medical-doctor-background-logos-18.png"
             />
           </div>
         </div>

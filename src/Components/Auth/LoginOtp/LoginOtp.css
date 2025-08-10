@@ -1,0 +1,218 @@
+/* Container */
+.auth-otpContainer {
+  width: 100%;
+  max-width: 28rem;       /* max-w-md */
+  margin-left: auto;
+  margin-right: auto;     /* mx-auto */
+}
+
+/* Header */
+.auth-otpHeader {
+  text-align: center;     /* text-center */
+  margin-bottom: 2rem;    /* mb-8 */
+}
+
+.auth-otpIconWrapper {
+  background: linear-gradient(
+    to right,
+    #7c3aed,  /* purple-600 */
+    #ec4899   /* pink-600 */
+  );
+  width: 4rem;            /* w-16 */
+  height: 4rem;           /* h-16 */
+  border-radius: 50%;     /* rounded-full */
+  display: flex;          /* flex */
+  align-items: center;    /* items-center */
+  justify-content: center;/* justify-center */
+  margin: 0 auto 1rem;    /* mx-auto mb-4 */
+  box-shadow:
+    0 10px 15px -3px rgba(0,0,0,0.1),
+    0 4px 6px   -2px rgba(0,0,0,0.05); /* shadow-lg */
+}
+
+.auth-otpIcon {
+  width: 2rem;            /* w-8 */
+  height: 2rem;           /* h-8 */
+  color: #ffffff;         /* text-white */
+}
+
+/* Title & Info */
+.auth-title {
+  font-size: 1.875rem;    /* text-3xl */
+  line-height: 2.25rem;
+  font-weight: 700;       /* font-bold */
+  color: #1f2937;         /* text-gray-800 */
+  margin-bottom: 0.5rem;  /* mb-2 */
+}
+
+.auth-otpInfo {
+  color: #4b5563;         /* text-gray-600 */
+  margin: 0;
+}
+
+.auth-otpInfoHighlight {
+  font-weight: 600;       /* font-semibold */
+}
+
+/* Form spacing */
+.auth-otpForm > * + * {
+  margin-top: 1.5rem;     /* space-y-6 */
+
+}
+
+/* Label */
+.auth-otpLabel {
+  display: block;          /* block */
+  font-size: 0.875rem;     /* text-sm */
+  font-weight: 500;        /* font-medium */
+  color: #374151;          /* text-gray-700 */
+  margin-bottom: 0.75rem;  /* mb-3 */
+  text-align: center;      /* text-center */
+}
+
+/* OTP inputs container */
+.auth-otpInputs {
+  display: flex;           /* flex */
+  justify-content: space-between; /* justify-between */
+  gap: 0.5rem;             /* space-x-2 */
+
+}
+
+/* OTP input boxes */
+.auth-otpInput {
+  width: 3rem;             /* w-12 */
+  height: 3rem;            /* h-12 */
+  text-align: center;      /* text-center */
+  font-size: 1.25rem;      /* text-xl */
+  font-weight: 700;        /* font-bold */
+  border: 1px solid #d1d5db; /* border-gray-300 */
+  border-radius: 0.5rem;   /* rounded-lg */
+  transition: all 0.2s ease;
+   
+}
+
+.auth-otpInput:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.5); /* focus:ring-purple-500 */
+  border-color: transparent;                    /* focus:border-transparent */
+}
+
+/* Error text */
+.auth-errorTextCenter {
+  color: #ef4444;          /* text-red-500 */
+  font-size: 0.875rem;     /* text-sm */
+  margin-top: 0.5rem;      /* mt-2 */
+  text-align: center;
+}
+
+/* Primary OTP button */
+.auth-otpButton {
+  width: 100%; 
+  background: linear-gradient(
+    to right,
+    #7c3aed,  /* purple-600 */
+    #ec4899   /* pink-600 */
+  );
+  color: #ffffff;          /* text-white */
+  padding: 0.75rem 0;      /* py-3 */
+  border: none;
+  border-radius: 0.5rem;   /* rounded-lg */
+  font-weight: 600;        /* font-semibold */
+  box-shadow:
+    0 10px 15px -3px rgba(0,0,0,0.1),
+    0 4px 6px   -2px rgba(0,0,0,0.05); /* shadow-lg */
+  transition: all 0.2s ease-in-out;   /* transition-all duration-200 */
+}
+
+.auth-otpButton:hover {
+  background: linear-gradient(
+    to right,
+    #6b21a8,  /* purple-700 */
+    #db2777   /* pink-600 */
+  );
+  transform: scale(1.05);  /* hover:scale-105 */
+}
+
+.auth-otpButton:disabled {
+  opacity: 0.5;           /* disabled:opacity-50 */
+  cursor: not-allowed;    /* disabled:cursor-not-allowed */
+}
+
+/* Button content & spinner */
+.auth-buttonContent {
+  display: flex;          
+  align-items: center;    
+  justify-content: center; 
+}
+
+@keyframes auth-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.auth-spinner {
+  width: 1.25rem;          /* w-5 */
+  height: 1.25rem;         
+  border: 2px solid transparent;
+  border-bottom-color: #ffffff; /* border-b-2 border-white */
+  border-radius: 50%;      
+  animation: auth-spin 1s linear infinite; /* animate-spin */
+  margin-right: 0.5rem;    /* mr-2 */
+}
+
+/* Timer & Resend */
+.auth-otpTimer {
+  text-align: center;      
+  color: #4b5563;          /* text-gray-600 */
+}
+
+.auth-otpResend {
+  background: none;
+  border: none;
+  color: #7c3aed;          /* text-purple-600 */
+  font-weight: 600;        /* font-semibold */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.auth-otpResend:hover {
+  color: #a21caf;          /* hover:text-purple-700 */
+}
+
+/* Small icons */
+.auth-iconSmall {
+  width: 1rem;             /* w-4 */
+  height: 1rem;            /* h-4 */
+  margin-right: 0.25rem;   /* mr-1 */
+}
+
+/* Back-to-Login button */
+.auth-backButton {
+  background: none;
+  border: none;
+  color: #4b5563;          /* text-gray-600 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.auth-backButton:hover {
+  color: #374151;          /* hover:text-gray-700 */
+}
+
+
+@media only screen and (max-width:748px){
+
+
+
+  .auth-otpInput {
+  width: 2.2rem;             /* w-12 */
+  height: 2.2rem; 
+
+}
+}

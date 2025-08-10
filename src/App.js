@@ -8,11 +8,14 @@ import Chat from "./Components/Chat/Chat";
 import Disease from "./Components/Disease/Disease";
 import DiseaseExpand from "./Components/DiseaseExpand/DiseaseExpand";
 import QuickActions from "./Components/QuickActions/QuickActions";
-import Appointments from "./Components/Appointments/Appointments";
+import Appointments from "./Components/Appointments/Main/Appointments";
 import AppointmentsAdmin from "./Components/Admin/Appointments/AppointmentsAdmin";
 import HomepageAdmin from "./Components/Admin/Homepage/HomepageAdmin";
 import ChatAdminUserDetails from "./Components/Admin/Chat/ChatAdminUserDetails";
 import ChatAdmin from "./Components/Admin/Chat/ChatAdmin";
+import ScrollManager from "./Components/ScrollToTop/ScrollToTop";
+import Main from "./Components/Auth/Main/Main";
+import DoctorWebsite from "./Components/Records/Records";
 
 const diseaseData = [
   {
@@ -111,6 +114,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        
         <Routes>
           <Route
             path="/"
@@ -144,7 +148,7 @@ function App() {
             path="/login"
             element={
               <>
-                <Login />
+                <Main />
               </>
             }
           />
@@ -205,7 +209,16 @@ function App() {
               </>
             }
           />
+           <Route
+            path="/records"
+            element={
+              <>
+                <DoctorWebsite />
+              </>
+            }
+          />
         </Routes>
+         
       </BrowserRouter>
     </>
   );

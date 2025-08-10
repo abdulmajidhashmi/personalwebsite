@@ -40,7 +40,7 @@
   
   @media (min-width: 1024px) {
     .grid-layout {
-      grid-template-columns: repeat(3, 1fr); /* Tailwind lg:grid-cols-3 */
+      grid-template-columns: repeat(4, 1fr); /* Tailwind lg:grid-cols-3 */
     }
   }
   
