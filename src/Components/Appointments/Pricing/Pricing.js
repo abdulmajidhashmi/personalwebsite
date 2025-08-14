@@ -17,7 +17,7 @@ const Pricing = () => {
               For general check-ups and initial assessments.
             </p>
             <div className="pricing-price">
-              $150 <span>/session</span>
+            ₹300 <span>/session</span>
             </div>
             <ul className="pricing-features">
               <li>
@@ -70,7 +70,7 @@ const Pricing = () => {
               For detailed discussions and comprehensive care.
             </p>
             <div className="pricing-price">
-              $250 <span>/session</span>
+              ₹400 <span>/session</span>
             </div>
             <ul className="pricing-features">
               <li>
@@ -144,7 +144,7 @@ const Pricing = () => {
               For multiple family members or group therapy.
             </p>
             <div className="pricing-price">
-              $350 <span>/session</span>
+              ₹500 <span>/session</span>
             </div>
             <ul className="pricing-features">
               <li>

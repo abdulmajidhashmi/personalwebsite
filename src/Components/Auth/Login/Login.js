@@ -1,7 +1,7 @@
 import axiosInstance from '../../api/axiosInstance';
 import './Login.css';
 import { Phone, Stethoscope } from 'lucide-react';
-const Login = ({setAuthData,setErrors,setIsLoading,setUser,setCurrentView,setOtpTimer,isLoading,errors,authData,setIsNewUser}) => {
+const Login = ({ setAuthData, setErrors, setIsLoading, setUser, setCurrentView, setOtpTimer, isLoading, errors, authData, setIsNewUser }) => {
 
     const handleInputChange = (field, value) => {
         setAuthData(prev => ({ ...prev, [field]: value }));
@@ -21,25 +21,25 @@ const Login = ({setAuthData,setErrors,setIsLoading,setUser,setCurrentView,setOtp
             return false;
         }
         setErrors({});
-        console.log(authData)
 
-       const val = callLoginApi(authData.phone);
-       return val;
+
+
+        return true;
     };
 
 
-    const callLoginApi = async (phoneNumber)=>{
-console.log(phoneNumber)
-       try{
-       const loginData = await axiosInstance.post('/user/loginWithOtp',{number:phoneNumber},{withCredentials:true});
-       console.log(loginData);
-       return true;
+    const callLoginApi = async (phoneNumber) => {
+        console.log(phoneNumber)
+        try {
+            const loginData = await axiosInstance.post('/user/loginWithOtp', { number: phoneNumber }, { withCredentials: true });
+            console.log(loginData);
+            return true;
 
-       }catch(err){
+        } catch (err) {
 
-        console.log(err);
-        return false;
-       } 
+            console.log(err);
+            return false;
+        }
     }
 
     const formatPhoneNumber = (value) => {
@@ -53,6 +53,7 @@ console.log(phoneNumber)
 
     const handlePhoneAuth = async () => {
         if (!validatePhone()) return;
+        callLoginApi(authData.phone, 'phone');
         setIsLoading(true);
         setAuthData(prev => ({ ...prev, loginMethod: 'phone' }));
         // Simulate API call to send OTP

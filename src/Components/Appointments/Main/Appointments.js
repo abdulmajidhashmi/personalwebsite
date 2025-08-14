@@ -397,7 +397,7 @@ const Appointments = () => {
 
           {/* Time Slots Section */}
           <div className="section">
-            <h2 className="section-title">🕐 Available Times</h2>
+            <h2 className="section-title">🕐 Select in Available Times</h2>
             <div className="time-slots">
               {availableTimes.map((time) => (
                 <div
@@ -413,7 +413,7 @@ const Appointments = () => {
 
           {/* Appointment Type Section */}
           <div className="section">
-            <h2 className="section-title">💬 Appointment Type</h2>
+            <h2 className="section-title">💬 Select Appointment Type</h2>
             <div className="appointment-types">
               {[
                 {
