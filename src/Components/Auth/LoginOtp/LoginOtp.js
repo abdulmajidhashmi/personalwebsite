@@ -32,34 +32,36 @@ const LoginOtp = ({ setOtpTimer, setErrors, setCurrentView, setUser, authData, s
 
     setIsLoading(true);
     // Simulate OTP verification
-    setTimeout(() => {
-      if (isNewUser) {
+
+    const OTPresponse = await callLoginOtpApi(otpString);
+    console.log(OTPresponse);
+    if (OTPresponse.data.success === true) {
+      if (OTPresponse.data.data?.name === null || OTPresponse.data.data?.email === null  ) {
+        setAuthData(OTPresponse.data.data);
         setCurrentView('profile');
       } else {
-        const mockUser = {
-          name: 'Dr. Existing User',
-          email: 'existing@example.com',
-          phone: `+91 ${authData.phone}`,
-          avatar: 'https://ui-avatars.com/api/?name=Dr+User&background=10b981&color=fff'
-        };
-        setUser(mockUser);
+        
+        setUser(OTPresponse.data.data);
         setCurrentView('dashboard');
       }
-      setIsLoading(false);
-    }, 1500);
+    }
+    setIsLoading(false);
 
-    callLoginOtpApi();
   };
 
 
-  const callLoginOtpApi = async () => {
+  const callLoginOtpApi = async (otpString ) => {
     try {
-      const data = await axiosInstance.post('/user/loginVerifyWithOtp', authData, { withCredentials: true });
-      console.log(data);
+   
+      const response = await axiosInstance.post('/user/loginVerifyWithOtp', { phone: authData.phone, otp: otpString ,loginMethod :'phone'}, { withCredentials: true });
+      console.log(response);
+
+     return response;
 
     } catch (err) {
 
       console.log(err);
+      return false;
     }
 
   }

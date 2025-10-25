@@ -23,7 +23,7 @@ const ProfileDashboard = ({ user,authData,setIsNewUser,setErrors,setAuthData,set
         <div className="auth-dashboardHeader">
           <div className="auth-dashboardUser">
             <img
-              src={user.avatar}
+              src={user.picture}
               alt={user.name}
               className="auth-dashboardAvatar"
             />
@@ -50,7 +50,7 @@ const ProfileDashboard = ({ user,authData,setIsNewUser,setErrors,setAuthData,set
             <div className="auth-cardContent">
               <p className="auth-dashboard-value"><span className="auth-cardLabel">Name:</span> {user.name}</p>
               <p className="auth-dashboard-value"><span className="auth-cardLabel">Email:</span> {user.email}</p>
-              <p className="auth-dashboard-value"><span className="auth-cardLabel">Phone:</span> {user.phone}</p>
+              <p className="auth-dashboard-value"><span className="auth-cardLabel">Phone:</span> +91 {user.phone}</p>
             </div>
           </div>
 

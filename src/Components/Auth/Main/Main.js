@@ -1,4 +1,4 @@
-import {  useState } from 'react';
+import { useState } from 'react';
 import './Main.css'
 import Profile from '../Profile/Profile';
 import LoginOtp from '../LoginOtp/LoginOtp';
@@ -17,7 +17,8 @@ const Main = () => {
         otp: ['', '', '', '', '', ''],
         name: '',
         email: '',
-        loginMethod: '' // 'phone', 'google', 'facebook'
+        loginMethod: '' ,// 'phone', 'google', 'facebook'
+        picture:''
     });
 
 
