@@ -43,7 +43,10 @@ const Profile = ({ setOtpTimer, setCurrentView, currentView, setErrors, setAuthD
 
   const validateProfile = () => {
     const newErrors = {};
-    if (!validatePhone()) return false;
+    if(authData.loginMethod=='phone'){
+   if (!validatePhone()) return false;
+    }
+ 
     if (!authData.name.trim()) newErrors.name = 'Name is required';
     if (!authData.email.trim()) {
       newErrors.email = 'Email is required';
