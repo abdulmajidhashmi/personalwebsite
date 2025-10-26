@@ -43,7 +43,7 @@ const Profile = ({ setOtpTimer, setCurrentView, currentView, setErrors, setAuthD
 
   const validateProfile = () => {
     const newErrors = {};
-    if(authData.loginMethod=='phone'){
+    if(authData.loginMethod!='phone'){
    if (!validatePhone()) return false;
     }
  
