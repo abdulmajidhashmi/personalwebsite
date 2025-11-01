@@ -40,7 +40,6 @@ const LoginOtp = ({ setOtpTimer, setErrors, setCurrentView, setUser, authData, s
         setAuthData(OTPresponse.data.data);
         setCurrentView('profile');
       } else {
-        
         setUser(OTPresponse.data.data);
         setCurrentView('dashboard');
       }
@@ -65,10 +64,12 @@ const LoginOtp = ({ setOtpTimer, setErrors, setCurrentView, setUser, authData, s
     }
 
   }
-  const resendOtp = () => {
+  const resendOtp = async() => {
+    
+     const loginData = await axiosInstance.post('/user/loginWithOtp', { phone: authData.phone}, { withCredentials: true });
     setOtpTimer(60);
     setAuthData(prev => ({ ...prev, otp: ['', '', '', '', '', ''] }));
-  };
+    };
 
   const goBack = () => {
     if (currentView === 'otp') {

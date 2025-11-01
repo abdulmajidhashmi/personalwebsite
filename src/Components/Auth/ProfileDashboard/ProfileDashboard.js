@@ -1,9 +1,23 @@
+import axiosInstance from '../../api/axiosInstance';
 import './ProfileDashboard.css';
 import { Phone, Shield, Heart } from 'lucide-react';
-const ProfileDashboard = ({ user,authData,setIsNewUser,setErrors,setAuthData,setCurrentView,setUser}) => {
+const ProfileDashboard = ({ user, authData, setIsNewUser, setErrors, setAuthData, setCurrentView, setUser }) => {
+
+  const logoutcall = async () => {
+    try {
+
+      await axiosInstance.get('/user/delete-token', { withCredentials: true })
+    } catch (err) {
+
+      console.log(err);
+    }
 
 
+  }
   const logout = () => {
+
+
+    logoutcall();
     setUser(null);
     setCurrentView('auth');
     setAuthData({

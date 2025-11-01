@@ -1,27 +1,58 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Main.css'
 import Profile from '../Profile/Profile';
 import LoginOtp from '../LoginOtp/LoginOtp';
 import Login from '../Login/Login';
 import ProfileDashboard from '../ProfileDashboard/ProfileDashboard';
+import axiosInstance from '../../api/axiosInstance';
 
 const Main = () => {
     const [errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState(null);
     const [otpTimer, setOtpTimer] = useState(0);
-    const [currentView, setCurrentView] = useState('auth'); // 'auth', 'otp', 'profile', 'dashboard'
+    const [currentView, setCurrentView] = useState(''); // 'auth', 'otp', 'profile', 'dashboard'
     const [isNewUser, setIsNewUser] = useState(false);
     const [authData, setAuthData] = useState({
         phone: '',
         otp: ['', '', '', '', '', ''],
         name: '',
         email: '',
-        loginMethod: '' ,// 'phone', 'google', 'facebook'
-        picture:''
+        loginMethod: '',// 'phone', 'google', 'facebook'
+        picture: ''
     });
 
 
+    const getUserData = async () => {
+
+
+
+        try {
+
+            const response = await axiosInstance.get('/user/fetch-user-data', { withCredentials: true });
+         if (response.data.success === true) {
+            setAuthData(response.data.data);
+            setUser(response.data.data)
+            setCurrentView('dashboard');
+        }else{
+
+             setCurrentView('auth');
+        }
+        } catch (err) {
+            console.log(err);
+          setCurrentView('auth');
+        }
+
+
+    }
+
+    useEffect(() => {
+
+
+       getUserData();
+        
+       
+    }, [])
 
     return (
 
