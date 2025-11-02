@@ -57,6 +57,8 @@ const Main = () => {
     return (
 
         <div className="auth-page">
+
+            {currentView===''?<h1>Loading...</h1>:
             <div className="auth-wrapper">
                 <div
                     className={`auth-card ${currentView === 'dashboard' ? 'auth-card-full' : 'auth-card-md'
@@ -76,7 +78,7 @@ const Main = () => {
                         </p>
                     </div>
                 )}
-            </div>
+            </div>}
         </div>
 
     );
