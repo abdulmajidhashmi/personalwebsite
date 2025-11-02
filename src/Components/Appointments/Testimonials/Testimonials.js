@@ -1,30 +1,44 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Testimonials.css";
+import axiosInstance from "../../api/axiosInstance";
 
-const testimonials = [
-  {
-    img: "https://source.unsplash.com/random/100x100/?person,face,smiling",
-    text: `"Booking my appointment was incredibly simple and straightforward. The calendar design is very user-friendly, and I loved being able to add notes for my doctor. Highly recommend!"`,
-    name: "Sarah M.",
-  },
-  {
-    img: "https://source.unsplash.com/random/100x100/?man,face,happy",
-    text: `"The online booking system is a game-changer. It's so convenient to pick a time that fits my schedule without any hassle. The confirmation was instant, which was great."`,
-    name: "John D.",
-  },
-  {
-    img: "https://source.unsplash.com/random/100x100/?woman,face,professional",
-    text: `"I appreciate the ability to add specific details about my condition when booking. It makes me feel heard and ensures the doctor is prepared. A very thoughtful feature!"`,
-    name: "Emily R.",
-  },
-];
+// const testimonials = [
+//   {
+//     img: "https://source.unsplash.com/random/100x100/?person,face,smiling",
+//     text: `"Booking my appointment was incredibly simple and straightforward. The calendar design is very user-friendly, and I loved being able to add notes for my doctor. Highly recommend!"`,
+//     name: "Sarah M.",
+//   },
+//   {
+//     img: "https://source.unsplash.com/random/100x100/?man,face,happy",
+//     text: `"The online booking system is a game-changer. It's so convenient to pick a time that fits my schedule without any hassle. The confirmation was instant, which was great."`,
+//     name: "John D.",
+//   },
+//   {
+//     img: "https://source.unsplash.com/random/100x100/?woman,face,professional",
+//     text: `"I appreciate the ability to add specific details about my condition when booking. It makes me feel heard and ensures the doctor is prepared. A very thoughtful feature!"`,
+//     name: "Emily R.",
+//   },
+// ];
 
 const Testimonials = () => {
+  const [testimonials, setTestimonials] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false); // NEW lock state
   const carouselRef = useRef(null);
 
+  const fetchReviews = async () => {
+    try {
+      const response = await axiosInstance.get('/patient/review', { withCredentials: true });
+      setTestimonials(response.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+
+  }
+  useEffect(() => {
+    fetchReviews();
+  }, [])
   const extendedTestimonials = [
     testimonials[testimonials.length - 1],
     ...testimonials,
@@ -82,9 +96,9 @@ const Testimonials = () => {
             {extendedTestimonials.map((t, i) => (
               <div key={i} className="testimonial-card">
                 <div className="testimonial-content">
-                  <img src={t.img} alt={t.name} className="testimonial-avatar" />
-                  <p className="testimonial-text">{t.text}</p>
-                  <p className="testimonial-name">- {t.name}</p>
+                  <img src={t?.user?.picture} alt={t?.user?.name} className="testimonial-avatar" />
+                  <p className="testimonial-text">{t?.review}</p>
+                  <p className="testimonial-name">- {t?.user?.name}</p>
                   <div className="testimonial-stars">
                     {Array(5)
                       .fill()

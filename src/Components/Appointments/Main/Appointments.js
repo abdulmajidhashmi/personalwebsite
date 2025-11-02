@@ -169,11 +169,11 @@ import Testimonials from "../Testimonials/Testimonials";
 import Pricing from "../Pricing/Pricing";
 
 const Appointments = () => {
-  
+
   const [appointmentType, setAppointmentType] = useState(null);
   const [details, setDetails] = useState("");
   const [confirmed, setConfirmed] = useState(false);
- 
+
   const navigate = useNavigate();
   const [localData, setLocalData] = useState(null);
 
@@ -250,21 +250,41 @@ const Appointments = () => {
       return;
     }
 
-    const formattedDate = selectedDate.toLocaleDateString("en-US", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric"
-    });
 
-    alert(
-      `Appointment Confirmed!\n\nDate: ${formattedDate}\nTime: ${selectedTime}\nType: ${selectedType}\n\nYou will receive a confirmation email shortly.`
-    );
+
+
+
+
+    bookAppointment(selectedDate, selectedTime, selectedType, notes);
   };
 
 
+  const bookAppointment = async (date, time, type, description) => {
 
- 
+    try {
+      const response = await axiosInstance.post('/patient/appointments', { date, time, type, description }, { withCredentials: true })
+      console.log(response);
+      if (response.data.success === true) {
+        const formattedDate = selectedDate.toLocaleDateString("en-US", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric"
+        });
+        alert(
+          `Appointment Confirmed!\n\nDate: ${formattedDate}\nTime: ${selectedTime}\nType: ${selectedType}\n\nYou will receive a confirmation email shortly.`
+        );
+        setSelectedDate(null);
+        setSelectedTime(null);
+        setSelectedType(null);
+      }
+
+    } catch (err) {
+
+      console.log(err);
+    }
+  }
+
 
   const appointmentTypes = [
     {
@@ -284,7 +304,7 @@ const Appointments = () => {
     },
   ];
 
- 
+
 
   // const confirmAppointment = () => {
   //   if (selectedDate && selectedTime && appointmentType) {
@@ -319,7 +339,7 @@ const Appointments = () => {
     userDetails();
   }, [])
 
-  
+
 
   // const selectDate = (val) => {
   //   setCurrentDate(val.toDateString());
@@ -351,125 +371,125 @@ const Appointments = () => {
   // };
 
   return (
-<>
-    <div className="appointment-body">
-     <div className="appointment-container">
-      <div className="appointment-header">
-        <h1>Select Your Appointment</h1>
-        <p>Choose a convenient date and time that works best for you</p>
-      </div>
+    <>
+      <div className="appointment-body">
+        <div className="appointment-container">
+          <div className="appointment-header">
+            <h1>Select Your Appointment</h1>
+            <p>Choose a convenient date and time that works best for you</p>
+          </div>
 
-      <div className="appointment-content">
-        <div className="booking-grid">
-          {/* Calendar Section */}
-          <div className="appointment-section">
-            <h2 className="section-title">📅 Select Date</h2>
-            <div className="month-nav">
-              <button onClick={() => changeMonth(-1)}>‹</button>
-              <div className="current-month">
-                {months[currentDate.getMonth()]} {currentDate.getFullYear()}
-              </div>
-              <button onClick={() => changeMonth(1)}>›</button>
-            </div>
-            <div className="calendar">
-              {/* Day headers */}
-              {daysOfWeek.map((day) => (
-                <div key={day} className="calendar-header">{day}</div>
-              ))}
+          <div className="appointment-content">
+            <div className="booking-grid">
+              {/* Calendar Section */}
+              <div className="appointment-section">
+                <h2 className="section-title">📅 Select Date</h2>
+                <div className="month-nav">
+                  <button onClick={() => changeMonth(-1)}>‹</button>
+                  <div className="current-month">
+                    {months[currentDate.getMonth()]} {currentDate.getFullYear()}
+                  </div>
+                  <button onClick={() => changeMonth(1)}>›</button>
+                </div>
+                <div className="calendar">
+                  {/* Day headers */}
+                  {daysOfWeek.map((day) => (
+                    <div key={day} className="calendar-header">{day}</div>
+                  ))}
 
-              {/* Days */}
-              {calendarDays.map((dayObj, idx) => (
-                <div
-                  key={idx}
-                  className={`calendar-day 
+                  {/* Days */}
+                  {calendarDays.map((dayObj, idx) => (
+                    <div
+                      key={idx}
+                      className={`calendar-day 
                     ${dayObj.disabled ? "disabled" : ""} 
                     ${selectedDate &&
-                      dayObj.fullDate?.toDateString() === selectedDate.toDateString()
-                      ? "selected"
-                      : ""}`}
-                  onClick={() => !dayObj.disabled && selectDate(dayObj.fullDate)}
-                >
-                  {dayObj.day}
+                          dayObj.fullDate?.toDateString() === selectedDate.toDateString()
+                          ? "selected"
+                          : ""}`}
+                      onClick={() => !dayObj.disabled && selectDate(dayObj.fullDate)}
+                    >
+                      {dayObj.day}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
 
-          {/* Time Slots Section */}
-          <div className="section">
-            <h2 className="section-title">🕐 Select in Available Times</h2>
-            <div className="time-slots">
-              {availableTimes.map((time) => (
-                <div
-                  key={time}
-                  className={`time-slot ${selectedTime === time ? "selected" : ""}`}
-                  onClick={() => selectTime(time)}
-                >
-                  {time}
+              {/* Time Slots Section */}
+              <div className="section">
+                <h2 className="section-title">🕐 Select in Available Times</h2>
+                <div className="time-slots">
+                  {availableTimes.map((time) => (
+                    <div
+                      key={time}
+                      className={`time-slot ${selectedTime === time ? "selected" : ""}`}
+                      onClick={() => selectTime(time)}
+                    >
+                      {time}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
 
-          {/* Appointment Type Section */}
-          <div className="section">
-            <h2 className="section-title">💬 Select Appointment Type</h2>
-            <div className="appointment-types">
-              {[
-                {
-                  icon: "💬",
-                  title: "Chat Consultation",
-                  desc: "Text-based consultation via secure messaging",
-                },
-                {
-                  icon: "📹",
-                  title: "Video Call",
-                  desc: "Face-to-face virtual consultation",
-                },
-                {
-                  icon: "🏥",
-                  title: "In-Person",
-                  desc: "Traditional office visit consultation",
-                },
-              ].map((type) => (
-                <div
-                  key={type.title}
-                  className={`appointment-type ${selectedType === type.title ? "selected" : ""}`}
-                  onClick={() => selectType(type.title)}
-                >
-                  <div className="appointment-icon">{type.icon}</div>
-                  <div className="appointment-info">
-                    <h3>{type.title}</h3>
-                    <p>{type.desc}</p>
-                  </div>
+              {/* Appointment Type Section */}
+              <div className="section">
+                <h2 className="section-title">💬 Select Appointment Type</h2>
+                <div className="appointment-types">
+                  {[
+                    {
+                      icon: "💬",
+                      title: "Chat Consultation",
+                      desc: "Text-based consultation via secure messaging",
+                    },
+                    {
+                      icon: "📹",
+                      title: "Video Call",
+                      desc: "Face-to-face virtual consultation",
+                    },
+                    {
+                      icon: "🏥",
+                      title: "In-Person",
+                      desc: "Traditional office visit consultation",
+                    },
+                  ].map((type) => (
+                    <div
+                      key={type.title}
+                      className={`appointment-type ${selectedType === type.title ? "selected" : ""}`}
+                      onClick={() => selectType(type.title)}
+                    >
+                      <div className="appointment-icon">{type.icon}</div>
+                      <div className="appointment-info">
+                        <h3>{type.title}</h3>
+                        <p>{type.desc}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
+
+            {/* Notes Section */}
+            <div className="appointment-notes-section">
+              <h3>📝 Additional Information</h3>
+              <textarea
+                className="appointment-notes-textarea"
+                placeholder="Please describe your symptoms, concerns, or any additional information..."
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+              />
+            </div>
+
+            {/* Confirm Button */}
+            <button className="confirm-button" onClick={confirmAppointment}>
+              Confirm Appointment
+            </button>
           </div>
         </div>
-
-        {/* Notes Section */}
-        <div className="appointment-notes-section">
-          <h3>📝 Additional Information</h3>
-          <textarea
-            className="appointment-notes-textarea"
-            placeholder="Please describe your symptoms, concerns, or any additional information..."
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-          />
-        </div>
-
-        {/* Confirm Button */}
-        <button className="confirm-button" onClick={confirmAppointment}>
-          Confirm Appointment
-        </button>
       </div>
-    </div>
-        </div>
       <Features />
       <Testimonials />
       <Pricing />
-  </>
+    </>
   );
 };
 
