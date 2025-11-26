@@ -48,6 +48,7 @@ const Chat = () => {
       const selfData = await axiosInstance.get("/user/self-detail", {
         withCredentials: true,
       });
+      console.log(selfData);
       setUserData(selfData.data.data);
       setToUserId(selfData.data.data.number);
       setShow(false);

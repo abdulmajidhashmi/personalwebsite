@@ -277,6 +277,7 @@ const Appointments = () => {
         setSelectedDate(null);
         setSelectedTime(null);
         setSelectedType(null);
+        setNotes("");
       }
 
     } catch (err) {
