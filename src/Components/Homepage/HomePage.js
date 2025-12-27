@@ -264,7 +264,7 @@ const HomePage = () => {
 
           <div className="left-side-div">
             <h1 className="title_main_heading">Dr.Hashmi Abdul Wase</h1>
-            <h2 className="title_sub_heading">Neuro-pyschiatrist</h2>
+            <h3 className="title_sub_heading">Neuro-pyschiatrist</h3>
           </div>
 
 

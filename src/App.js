@@ -16,7 +16,8 @@ import ChatAdmin from "./Components/Admin/Chat/ChatAdmin";
 import ScrollManager from "./Components/ScrollToTop/ScrollToTop";
 import Main from "./Components/Auth/Main/Main";
 import DoctorWebsite from "./Components/Records/Records";
-
+import DoctorHomepage from './Components/Homepage/DoctorHomepage';
+import Footer from "./Components/Footer/Footer";
 const diseaseData = [
   {
     index: 1,
@@ -121,8 +122,10 @@ function App() {
             element={
               <>
                 <HomePage />
+                {/* <DoctorHomepage/> */}
                 <QuickActions />
                 <Disease />
+                <Footer/>
                
               </>
             }

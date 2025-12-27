@@ -31,7 +31,7 @@ const LoginOtp = ({ setOtpTimer, setErrors, setCurrentView, setUser, authData, s
     }
 
     setIsLoading(true);
-    // Simulate OTP verification
+    // Simulate OTP verification`
 
     const OTPresponse = await callLoginOtpApi(otpString);
     console.log(OTPresponse);

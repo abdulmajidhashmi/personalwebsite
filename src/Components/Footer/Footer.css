@@ -1,0 +1,168 @@
+:root {
+  --primary-blue: #2563eb;
+  --dark-blue: #1e40af;
+  --light-blue: #3b82f6;
+  --accent-cyan: #06b6d4;
+  --dark-bg: #062262;
+  --medium-bg: #1e293b;
+  --light-bg: #f8fafc;
+  --text-dark: #0f172a;
+  --text-light: #64748b;
+  --white: #ffffff;
+  --success: #10b981;
+  --warning: #f59e0b;
+}
+
+.footer {
+  background: var(--dark-bg);
+  color: var(--white);
+  padding: 4rem 2rem 2rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.footer-section h4 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--accent-cyan);
+}
+
+.footer-section p {
+  opacity: 0.8;
+  line-height: 1.7;
+}
+
+.footer-section a {
+  display: block;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  margin-bottom: 0.7rem;
+  transition: all 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: var(--accent-cyan);
+  margin-left: 5px;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .hero-left {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat-card {
+    border-right: none;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .stat-card:nth-child(2) {
+    border-right: 1px solid #e2e8f0;
+  }
+
+  .about-container {
+    grid-template-columns: 1fr;
+  }
+
+  .appointment-container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3rem;
+  }
+
+  .caduceus-icon {
+    width: 120px;
+    height: 200px;
+  }
+
+  .stats-container {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+
+  .stat-card {
+    border-right: none;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .stat-card:last-child {
+    border-bottom: none;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .specialties-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonial-card {
+    padding: 2rem;
+  }
+
+  .testimonial-text {
+    font-size: 1.1rem;
+  }
+}
