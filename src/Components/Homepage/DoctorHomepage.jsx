@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './DoctorHomepage.css';
+// import './DoctorHomepage.css';
 
 const DoctorHomepage = () => {
   const [scrolled, setScrolled] = useState(false);

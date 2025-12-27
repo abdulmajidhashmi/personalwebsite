@@ -28,6 +28,15 @@
 .left-side-div {
   color: white;
 }
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
 .right-side-div{
 
    animation: pulse 0.7s infinite ease-in-out;
@@ -90,7 +99,7 @@
     right: 0px;
     color: rgba(44, 83, 131, 1);
     font-size: 20px;
-    
+    z-index: 999;
     transform: translateX(250px);
     transition: 0.5s;
     overflow: hidden;
@@ -148,7 +157,6 @@
 .main-img {
     width: 250px;
     height: 150px;
-    transition: all 0.3s ease;
      
   }
   .title_main_heading{
