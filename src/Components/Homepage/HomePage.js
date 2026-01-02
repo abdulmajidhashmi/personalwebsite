@@ -265,11 +265,11 @@ const HomePage = () => {
 
 
           <div className="right-side-div">
-            <img alt="Image"
+            <img alt="logo"
               className="main-img"
               // src="https://www.freeiconspng.com/uploads/transparent-medical-doctor-background-logos-18.png"
   
-              src={logo}
+              src='/logo.png' loading="eager"
             />
 
             
