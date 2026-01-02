@@ -3,6 +3,7 @@ import { HashLink } from 'react-router-hash-link';
 import "./HomePage.css";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import logo from '../../assets/logo.png'
 const HomePage = () => {
   const [navbarstate, setnavbarstate] = useState(false);
   const closeRef = useRef();
@@ -266,8 +267,12 @@ const HomePage = () => {
           <div className="right-side-div">
             <img alt="Image"
               className="main-img"
-              src="https://www.freeiconspng.com/uploads/transparent-medical-doctor-background-logos-18.png"
+              // src="https://www.freeiconspng.com/uploads/transparent-medical-doctor-background-logos-18.png"
+  
+              src={logo}
             />
+
+            
           </div>
         </div>
       </div>
