@@ -46,7 +46,7 @@ const HomePage = () => {
         <i className="fa-solid fa-staff-snake snake"></i>
         <h1 className="head">Dr.Hashmi Abdul Wase</h1>
     </div>
- <div className="heading_1">
+ <div className="heading_1 head3">
         <div className="head2">
           <i class="fa-regular fa-address-book header_icon"></i>
           <p  className="head2_child"> call for appointment +91 999-999-9990  </p>
