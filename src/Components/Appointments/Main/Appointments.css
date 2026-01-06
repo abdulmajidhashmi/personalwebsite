@@ -23,7 +23,7 @@
 
 
   color: white;
-  padding: 40px;
+  padding: 30px;
   text-align: center;
 }
 
@@ -152,6 +152,16 @@
   color: white;
 }
 
+
+
+.time-slot.booked {
+  background-color: #ccc;
+  cursor: not-allowed;
+   border-color: #ccc;
+  color: #666;
+}
+
+
 .appointment-types {
   display: flex;
   flex-direction: column;
@@ -220,7 +230,7 @@
 
 .appointment-notes-textarea {
   width: 100%;
-  min-height: 120px;
+  min-height: 100px;
   padding: 16px;
   border: 2px solid #e2e8f0;
   border-radius: 12px;
@@ -291,6 +301,11 @@
   color: #1a202c;
 }
 
+.compulsary-star-mark{
+  color:rgb(255, 0, 0);
+}
+
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .booking-grid {
@@ -357,7 +372,8 @@
   }
 
   .time-slots {
-    grid-template-columns: 1fr;
+    /* grid-template-columns: 1fr; */
+      grid-template-columns: repeat(2, 1fr);
   }
 
   .calendar {

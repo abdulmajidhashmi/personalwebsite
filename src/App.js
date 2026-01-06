@@ -13,7 +13,7 @@ import AppointmentsAdmin from "./Components/Admin/Appointments/AppointmentsAdmin
 import HomepageAdmin from "./Components/Admin/Homepage/HomepageAdmin";
 import ChatAdminUserDetails from "./Components/Admin/Chat/ChatAdminUserDetails";
 import ChatAdmin from "./Components/Admin/Chat/ChatAdmin";
-import ScrollManager from "./Components/ScrollToTop/ScrollToTop";
+import ScrollMemoryRouter from "./Components/ScrollToTop/ScrollToTop";
 import Main from "./Components/Auth/Main/Main";
 import DoctorWebsite from "./Components/Records/Records";
 import DoctorHomepage from './Components/Homepage/DoctorHomepage';
@@ -115,113 +115,114 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <HomePage />
-                {/* <DoctorHomepage/> */}
-                <QuickActions />
-                <Disease />
-                <Footer/>
-               
-              </>
-            }
-          />
-          <Route
-            path="/videoCall"
-            element={
-              <>
-                <Video />
-              </>
-            }
-          />
-          <Route
-            path="book-appoinment"
-            element={
-              <>
-                <Appointments />
-              </>
-            }
-          />
-
-          <Route
-            path="/login"
-            element={
-              <>
-                <Main />
-              </>
-            }
-          />
-
-          <Route
-            path="/signup"
-            element={
-              <>
-                <Signup />
-              </>
-            }
-          />
-          <Route
-            path="/chat"
-            element={
-              <>
-                <Chat />
-              </>
-            }
-          />
-
-          {diseaseData.map((value, index) => (
+        <ScrollMemoryRouter>
+          <Routes>
             <Route
-              key={index}
-              path={`/${value.title.replace(/\s+/g, "")}`}
+              path="/"
               element={
                 <>
-                  <DiseaseExpand data={value} />
+                  <HomePage />
+                  {/* <DoctorHomepage/> */}
+                  <QuickActions />
+                  <Disease />
+                  <Footer />
+
                 </>
               }
             />
-          ))}
+            <Route
+              path="/videoCall"
+              element={
+                <>
+                  <Video />
+                </>
+              }
+            />
+            <Route
+              path="book-appoinment"
+              element={
+                <>
+                  <Appointments />
 
-          {/* admim Routes*/}
+                </>
+              }
+            />
 
-          <Route
-            path="/admin"
-            element={
-              <>
-                <HomepageAdmin />
-                <AppointmentsAdmin />
-              </>
-            }
-          />
-          <Route
-            path="/admin/chat-details"
-            element={
-              <>
-                <ChatAdminUserDetails />
-              </>
-            }
-          />
-          <Route
-            path="/admin/chat/:id"
-            element={
-              <>
-                <ChatAdmin />
-              </>
-            }
-          />
-           <Route
-            path="/records"
-            element={
-              <>
-                <DoctorWebsite />
-              </>
-            }
-          />
-        </Routes>
-         
+            <Route
+              path="/login"
+              element={
+                <>
+                  <Main />
+                </>
+              }
+            />
+
+            <Route
+              path="/signup"
+              element={
+                <>
+                  <Signup />
+                </>
+              }
+            />
+            <Route
+              path="/chat"
+              element={
+                <>
+                  <Chat />
+                </>
+              }
+            />
+
+            {diseaseData.map((value, index) => (
+              <Route
+                key={index}
+                path={`/${value.title.replace(/\s+/g, "")}`}
+                element={
+                  <>
+                    <DiseaseExpand data={value} />
+                  </>
+                }
+              />
+            ))}
+
+            {/* admim Routes*/}
+
+            <Route
+              path="/admin"
+              element={
+                <>
+                  <HomepageAdmin />
+                  <AppointmentsAdmin />
+                </>
+              }
+            />
+            <Route
+              path="/admin/chat-details"
+              element={
+                <>
+                  <ChatAdminUserDetails />
+                </>
+              }
+            />
+            <Route
+              path="/admin/chat/:id"
+              element={
+                <>
+                  <ChatAdmin />
+                </>
+              }
+            />
+            <Route
+              path="/records"
+              element={
+                <>
+                  <DoctorWebsite />
+                </>
+              }
+            />
+          </Routes>
+        </ScrollMemoryRouter>
       </BrowserRouter>
     </>
   );

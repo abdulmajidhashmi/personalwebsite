@@ -1,24 +1,58 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useRef } from 'react';
+import { useLocation, useNavigationType } from 'react-router-dom';
 
-const ScrollManager = () => {
+/**
+ * ScrollMemoryRouter Component
+ * 
+ * This component manages scroll positions:
+ * - Remembers scroll position when navigating BACK
+ * - Scrolls to top when navigating FORWARD or replacing routes
+ * 
+ * Wrap your routes with this component or use the hook in your layout
+ */
+
+// Custom hook for scroll restoration
+export const useScrollMemory = () => {
   const location = useLocation();
+  const navigationType = useNavigationType();
+  const scrollPositions = useRef({});
 
   useEffect(() => {
-    // Detect navigation type
-    const navEntries = performance.getEntriesByType("navigation");
-    const navigationType = navEntries.length > 0 ? navEntries[0].type : "navigate";
+    const currentPath = location.pathname + location.search;
 
-    if (navigationType === "back_forward") {
-      // Browser will handle restoring scroll automatically
-      return;
+    if (navigationType === 'POP') {
+      // Going backward - restore saved position
+      const savedPosition = scrollPositions.current[currentPath];
+      if (savedPosition !== undefined) {
+        // Use setTimeout to ensure DOM is ready
+        setTimeout(() => {
+          window.scrollTo(0, savedPosition);
+        }, 0);
+      }
+    } else {
+      // Going forward or replacing - scroll to top
+      window.scrollTo(0, 0);
     }
 
-    // Forward navigation → scroll to top
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, [location]);
+    // Save scroll position before leaving
+    const handleScroll = () => {
+      scrollPositions.current[currentPath] = window.scrollY;
+    };
 
-  return null;
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      // Save final position when unmounting
+      scrollPositions.current[currentPath] = window.scrollY;
+    };
+  }, [location, navigationType]);
 };
 
-export default ScrollManager;
+// Component wrapper version
+const ScrollMemoryRouter = ({ children }) => {
+  useScrollMemory();
+  return <>{children}</>;
+};
+
+export default ScrollMemoryRouter;

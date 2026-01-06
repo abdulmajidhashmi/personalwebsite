@@ -190,13 +190,24 @@ const Appointments = () => {
   const [selectedType, setSelectedType] = useState(null);
   const [calendarDays, setCalendarDays] = useState([]);
   const [notes, setNotes] = useState("");
-
+  const frequencyhs = new Set();
   const months = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const availableTimes = ["9:00 AM", "10:00 AM", "11:00 AM", "2:00 PM", "3:00 PM", "4:00 PM"];
+
+  const defaultTimes = [
+    { time: "10:00 AM", bookingStatus: false },
+    { time: "11:00 AM", bookingStatus: false },
+    { time: "12:00 PM", bookingStatus: false },
+    { time: "2:00 PM", bookingStatus: false },
+    { time: "3:00 PM", bookingStatus: false },
+    { time: "4:00 PM", bookingStatus: false },
+  ]
+
+
+  const [availableTimes, setAvailableTimes] = useState(defaultTimes);
 
   // Generate calendar whenever month changes
   useEffect(() => {
@@ -234,7 +245,48 @@ const Appointments = () => {
     if (!dayDate) return;
     setSelectedDate(dayDate);
     setSelectedTime(null); // reset time when date changes
+
+    setAvailableTimes(defaultTimes);
+
+    getAvailableTimeSlots(dayDate);
   };
+
+
+  const getAvailableTimeSlots = async (dayDate) => {
+
+
+    try {
+      const response = await axiosInstance.post('/patient/get-available-time-slots', { date: dayDate }, { withCredentials: true });
+
+      const responseValue = response.data.data;
+
+      responseValue.map((item) => {
+        frequencyhs.add(item.time);
+      })
+
+
+
+      const availableTimeSolts = defaultTimes.map((item) => {
+
+
+        if (frequencyhs.has(item.time) === true) {
+          item.bookingStatus = true;
+          return item;
+
+        } else {
+          return item;
+        }
+      })
+
+      frequencyhs.clear();
+
+      setAvailableTimes(availableTimeSolts);
+
+    } catch (err) {
+
+      console.log(err);
+    }
+  }
 
   const selectTime = (time) => {
     setSelectedTime(time);
@@ -245,15 +297,11 @@ const Appointments = () => {
   };
 
   const confirmAppointment = () => {
-    if (!selectedDate || !selectedTime || !selectedType) {
-      alert("Please select a date, time, and appointment type.");
+    if (!selectedDate || !selectedTime || !selectedType || !notes) {
+
+      alert(`Please select ${selectedDate ? '' : 'date, '}${selectedTime ? '' : 'time, '}${selectedType ? '' : 'appointment type, '}${notes ? '' : 'description'}`)
       return;
     }
-
-
-
-
-
 
     bookAppointment(selectedDate, selectedTime, selectedType, notes);
   };
@@ -263,7 +311,7 @@ const Appointments = () => {
 
     try {
       const response = await axiosInstance.post('/patient/appointments', { date, time, type, description }, { withCredentials: true })
-      console.log(response);
+
       if (response.data.success === true) {
         const formattedDate = selectedDate.toLocaleDateString("en-US", {
           weekday: "long",
@@ -384,7 +432,7 @@ const Appointments = () => {
             <div className="booking-grid">
               {/* Calendar Section */}
               <div className="appointment-section">
-                <h2 className="section-title">📅 Select Date</h2>
+                <h2 className="section-title">📅 Select Date<span className="compulsary-star-mark">*</span></h2>
                 <div className="month-nav">
                   <button onClick={() => changeMonth(-1)}>‹</button>
                   <div className="current-month">
@@ -418,15 +466,16 @@ const Appointments = () => {
 
               {/* Time Slots Section */}
               <div className="section">
-                <h2 className="section-title">🕐 Select in Available Times</h2>
+                <h2 className="section-title">🕐 Select in Available Times<span className="compulsary-star-mark">*</span></h2>
                 <div className="time-slots">
-                  {availableTimes.map((time) => (
+                  {availableTimes.map((item) => (
                     <div
-                      key={time}
-                      className={`time-slot ${selectedTime === time ? "selected" : ""}`}
-                      onClick={() => selectTime(time)}
+                      key={item.time}
+                      className={`time-slot ${selectedTime === item.time ? "selected" : ""} ${item.bookingStatus ? "booked" : ""}`}
+                      onClick={() => { if (!item.bookingStatus) selectTime(item.time) }}
+
                     >
-                      {time}
+                      {item.time}
                     </div>
                   ))}
                 </div>
@@ -434,7 +483,7 @@ const Appointments = () => {
 
               {/* Appointment Type Section */}
               <div className="section">
-                <h2 className="section-title">💬 Select Appointment Type</h2>
+                <h2 className="section-title">💬 Select Appointment Type<span className="compulsary-star-mark">*</span></h2>
                 <div className="appointment-types">
                   {[
                     {
@@ -471,7 +520,7 @@ const Appointments = () => {
 
             {/* Notes Section */}
             <div className="appointment-notes-section">
-              <h3>📝 Additional Information</h3>
+              <h3>📝 Add Information<span className="compulsary-star-mark">*</span></h3>
               <textarea
                 className="appointment-notes-textarea"
                 placeholder="Please describe your symptoms, concerns, or any additional information..."
