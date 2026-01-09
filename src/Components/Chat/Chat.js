@@ -50,7 +50,7 @@ const Chat = () => {
       });
       console.log(selfData);
       setUserData(selfData.data.data);
-      setToUserId(selfData.data.data.number);
+      setToUserId(selfData.data.data.phone);
       setShow(false);
       setloading(false);
     } catch (err) {
@@ -62,7 +62,7 @@ const Chat = () => {
   useEffect(() => {
     if (userData && userData?.role === "user") {
       socket.current = io(`${baseURL}`, {
-        query: { roomName: String(userData.number) },
+        query: { roomName: String(userData.phone) },
       });
 
       socket.current.on("recieveMessage", ({ message }) => {
@@ -79,7 +79,7 @@ const Chat = () => {
       return () => {
         if (socket.current?.connected) {
           socket.current.emit("leaveRoom", {
-            userData: userData.number,
+            userData: userData.phone,
             status: "offline",
           });
           socket.current.disconnect();
@@ -92,7 +92,7 @@ const Chat = () => {
     if (msg.trim() && userData?.role === "user" && socket.current) {
       setStoreMsg((prev) => [...prev, { place: "right", message: msg }]);
 
-      socket.current.emit("sendMessage", { use: String(userData.number), msg });
+      socket.current.emit("sendMessage", { use: String(userData.phone), msg });
       const notification = document.getElementById("send-notification");
       notification?.play().catch((err) => console.error(err));
       setMsg("");

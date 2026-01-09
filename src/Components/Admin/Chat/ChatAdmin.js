@@ -18,7 +18,7 @@ const ChatAdmin = () => {
   var {id:tempUserId} = useParams();
   tempUserId=tempUserId/11;
   
-  const obj = { number: tempUserId }
+  const obj = { phone: tempUserId }
 
   const socket = useRef(null);
 

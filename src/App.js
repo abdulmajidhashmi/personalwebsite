@@ -1,7 +1,7 @@
 import HomePage from "./Components/Homepage/HomePage";
 import "./App.css";
 import Video from "./Components/VideoCall/Video";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
 import Chat from "./Components/Chat/Chat";
@@ -18,6 +18,9 @@ import Main from "./Components/Auth/Main/Main";
 import DoctorWebsite from "./Components/Records/Records";
 import DoctorHomepage from './Components/Homepage/DoctorHomepage';
 import Footer from "./Components/Footer/Footer";
+import { useEffect, useState } from "react";
+import axiosInstance from "./Components/api/axiosInstance";
+import NotFound from "./Components/NotFound/NotFound";
 const diseaseData = [
   {
     index: 1,
@@ -112,6 +115,32 @@ const diseaseData = [
 ];
 
 function App() {
+  const [userData, setUserData] = useState();
+  const [loading, setLoading] = useState(false);
+  const [isToken,setIsToken] = useState(false);
+
+  useEffect(() => {
+
+
+    const calltoken = async () => {
+    const tokendata = await axiosInstance.get('/user/check-token', { withCredentials: true });
+    if (tokendata.data.success === true) {
+        setIsToken(true);
+    }
+  }
+
+    const checktoken = async () => {
+      const tokendata = await axiosInstance.get("/user/extract-token", {
+        withCredentials: true,
+      });
+      setUserData(tokendata.data.data.role);
+      setLoading(true);
+
+
+    };
+    calltoken();
+    checktoken();
+  }, [])
   return (
     <>
       <BrowserRouter>
@@ -119,60 +148,15 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={
-                <>
-                  <HomePage />
-                  {/* <DoctorHomepage/> */}
-                  <QuickActions />
-                  <Disease />
-                  <Footer />
+              element={<>
+                <HomePage />
+                {/* <DoctorHomepage/> */}
+                <QuickActions />
+                <Disease />
+                <Footer />
+              </>} />
 
-                </>
-              }
-            />
-            <Route
-              path="/videoCall"
-              element={
-                <>
-                  <Video />
-                </>
-              }
-            />
-            <Route
-              path="book-appoinment"
-              element={
-                <>
-                  <Appointments />
-
-                </>
-              }
-            />
-
-            <Route
-              path="/login"
-              element={
-                <>
-                  <Main />
-                </>
-              }
-            />
-
-            <Route
-              path="/signup"
-              element={
-                <>
-                  <Signup />
-                </>
-              }
-            />
-            <Route
-              path="/chat"
-              element={
-                <>
-                  <Chat />
-                </>
-              }
-            />
+            <Route path="/login" element={<><Main /></>} />
 
             {diseaseData.map((value, index) => (
               <Route
@@ -186,9 +170,31 @@ function App() {
               />
             ))}
 
-            {/* admim Routes*/}
+            {loading && userData === "user" ? <>
+              <Route
+                path="book-appoinment"
+                element={
+                  <>
+                    <Appointments />
 
-            <Route
+                  </>
+                }
+              />
+
+              <Route
+                path="/chat"
+                element={
+                  <>
+                    <Chat />
+                  </>
+                }
+              />
+
+            </> : null}
+
+   {/* admim Routes*/}
+
+            {loading && userData === "admin" ? <><Route
               path="/admin"
               element={
                 <>
@@ -197,23 +203,23 @@ function App() {
                 </>
               }
             />
-            <Route
-              path="/admin/chat-details"
-              element={
-                <>
-                  <ChatAdminUserDetails />
-                </>
-              }
-            />
-            <Route
-              path="/admin/chat/:id"
-              element={
-                <>
-                  <ChatAdmin />
-                </>
-              }
-            />
-            <Route
+              <Route
+                path="/admin/chat-details"
+                element={
+                  <>
+                    <ChatAdminUserDetails />
+                  </>
+                }
+              />
+              <Route
+                path="/admin/chat/:id"
+                element={
+                  <>
+                    <ChatAdmin />
+                  </>
+                }
+              />
+               <Route
               path="/records"
               element={
                 <>
@@ -221,9 +227,39 @@ function App() {
                 </>
               }
             />
+              </> : null}
+
+
+ <Route
+              path="/videoCall"
+              element={
+                <>
+                  <Video />
+                </>
+              }
+            />
+            {/* <Route
+            path="/signup"
+            element={
+              <>
+                <Signup />
+              </>
+            }
+          /> */}
+
+
+
+         
+
+
+
+    {loading  ?<Route path="*" element={<NotFound />} /> :null}
+           
+
+              
           </Routes>
         </ScrollMemoryRouter>
-      </BrowserRouter>
+      </BrowserRouter >
     </>
   );
 }

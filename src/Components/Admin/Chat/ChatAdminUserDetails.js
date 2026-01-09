@@ -45,6 +45,7 @@ const ChatAdminUserDetails = ()=>{
             // setShow(false);
           } else {
             setUpdateData(response.data.data);
+            console.log(response.data.data);
           }
           setloading(false);
         } catch (err) {
@@ -100,13 +101,13 @@ const ChatAdminUserDetails = ()=>{
                  (
                     <div
                       key={index}
-                      onClick={() => handleUserClick(user.number)}
+                      onClick={() => handleUserClick(user.phone)}
                       class={
                         index === 0 ? "conversation active" : "conversation"
                       }
                     >
                       <img
-                        src="https://avatar.iran.liara.run/public"
+                        src={user.picture}
                         alt="Contact"
                         class="conversation-avatar"
                       />

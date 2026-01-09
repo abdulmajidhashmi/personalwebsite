@@ -15,13 +15,15 @@ const HomepageAdmin = () => {
 
   useEffect(() => {
     const checktoken = async () => {
-      const tokendata = await axiosInstance.get("/user/check-token", {
+      const tokendata = await axiosInstance.get("/user/check-admin-token", {
         withCredentials: true,
       });
 
       if (tokendata.data.success === false) {
         navigate("/login");
       }
+
+      console.log(".......................",tokendata.data);
     };
     checktoken();
 
