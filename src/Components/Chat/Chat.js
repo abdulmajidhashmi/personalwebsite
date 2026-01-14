@@ -4,7 +4,7 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { io } from "socket.io-client";
 import axiosInstance from "../api/axiosInstance";
 import "./Chat.css";
-import baseURL from "../api/BaseURL";
+import chatSocketBaseURL from '../api/SocketURL'
 import { Alert, Flex, Spin } from "antd";
 
 const Chat = () => {
@@ -15,7 +15,7 @@ const Chat = () => {
   const [storemsg, setStoreMsg] = useState([]);
   const [msg, setMsg] = useState(null);
   const [updatedata, setUpdateData] = useState([]);
-  const [touserId, setToUserId] = useState(null);
+  const [userDbId, setUserDbId] = useState(null);
   const [show, setShow] = useState(true);
   const [adminData, setAdminData] = useState(null);
   const [userData, setUserData] = useState(null);
@@ -50,7 +50,7 @@ const Chat = () => {
       });
       console.log(selfData);
       setUserData(selfData.data.data);
-      setToUserId(selfData.data.data.phone);
+      setUserDbId(selfData.data.data._id);
       setShow(false);
       setloading(false);
     } catch (err) {
@@ -61,8 +61,9 @@ const Chat = () => {
 
   useEffect(() => {
     if (userData && userData?.role === "user") {
-      socket.current = io(`${baseURL}`, {
+      socket.current = io(`${chatSocketBaseURL}`, {
         query: { roomName: String(userData.phone) },
+        withCredentials: true,
       });
 
       socket.current.on("recieveMessage", ({ message }) => {
@@ -92,7 +93,7 @@ const Chat = () => {
     if (msg.trim() && userData?.role === "user" && socket.current) {
       setStoreMsg((prev) => [...prev, { place: "right", message: msg }]);
 
-      socket.current.emit("sendMessage", { use: String(userData.phone), msg });
+      socket.current.emit("sendMessage", { use: String(userData.phone), msg ,userType:'user',userDbId});
       const notification = document.getElementById("send-notification");
       notification?.play().catch((err) => console.error(err));
       setMsg("");

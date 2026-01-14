@@ -4,21 +4,33 @@
   background-image: linear-gradient(109.6deg,
       rgba(44, 83, 131, 1) 18.9%,
       rgba(95, 175, 201, 1) 91.1%);
+  border-radius: 1.8rem 1.8rem 0 0;
+
+
 }
 
+.content-wrapper-div {
+
+  padding: 0.6rem;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+
+}
 
 
 .headings {
   height: 60px;
   display: flex;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
 }
-.heading_1{
+
+.heading_1 {
 
   display: flex;
-   align-items: center;
-  justify-content:space-between;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .head {
@@ -26,30 +38,33 @@
   color: rgb(0, 10, 193);
   font-size: 25px;
 }
-.head2{
+
+.head2 {
   display: flex;
   font-size: 1.1rem;
   font-weight: 900;
   align-items: center;
-  margin-right:0.4rem ;
+  margin-right: 0.4rem;
 
 
 }
-.head2_child{
+
+.head2_child {
 
   color: rgb(0, 10, 193);
   font-size: 1rem;
   font-weight: 700;
-word-break: break-all;
+  word-break: break-all;
 
 }
 
-.header_icon{
- margin-left: 1.2rem;
+.header_icon {
+  margin-left: 1.2rem;
   margin-right: 5px;
   color: rgb(5, 5, 140);
 
 }
+
 .snake {
   font-size: 25px;
   margin-left: 0.5rem;
@@ -148,8 +163,8 @@ word-break: break-all;
   color: white;
   font-size: 30px;
   position: absolute;
-  right: 10px;
-  margin-top: 10px;
+  right: 1.5rem;
+  margin-top: 0.9rem;
 }
 
 .nav-bar-div {
@@ -205,8 +220,8 @@ word-break: break-all;
   height: 35px;
   width: 35px;
   position: absolute;
-  right: 20px;
-  top: 75px;
+  right: 1.3rem;
+  top: 4.9rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -242,28 +257,30 @@ word-break: break-all;
 
 @media only screen and (max-width: 700px) {
 
-  .head3{
-flex-direction: column;
-align-items: start;
+  .head3 {
+    flex-direction: column;
+    align-items: start;
   }
-  .head2{
+
+  .head2 {
 
     margin-top: 0.4rem;
   }
 
-.head{
-  font-size: 1rem;
-}
-  .head2_child{
+  .head {
+    font-size: 1rem;
+  }
+
+  .head2_child {
     font-size: 0.55rem;
   }
 
-  .header_icon{
- margin-left: 0.1rem;
-  margin-right: 0.3rem;
-font-size: 0.45rem;
+  .header_icon {
+    margin-left: 0.1rem;
+    margin-right: 0.3rem;
+    font-size: 0.45rem;
 
-}
+  }
 
   .title_main_heading {
 

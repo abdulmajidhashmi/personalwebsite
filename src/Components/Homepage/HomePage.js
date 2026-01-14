@@ -43,22 +43,23 @@ const HomePage = () => {
       <div className="headings">
 
         <div className="heading_1">
-        <i className="fa-solid fa-staff-snake snake"></i>
-        <h1 className="head">Dr.Hashmi Abdul Wase</h1>
-    </div>
- <div className="heading_1 head3">
-        <div className="head2">
-          <i class="fa-regular fa-address-book header_icon"></i>
-          <p  className="head2_child"> call for appointment +91 999-999-9990  </p>
+          <i className="fa-solid fa-staff-snake snake"></i>
+          <h1 className="head">Dr.Hashmi Abdul Wase</h1>
         </div>
+        <div className="heading_1 head3">
+          <div className="head2">
+            <i class="fa-regular fa-address-book header_icon"></i>
+            <p className="head2_child"> call for appointment +91 999-999-9990  </p>
+          </div>
 
-        <div className="head2">
-          <i className="fa-regular fa-message header_icon" ></i>
-          <p className="head2_child">abdul_wase@gmail.com</p>
-        </div>
+          <div className="head2">
+            <i className="fa-regular fa-message header_icon" ></i>
+            <p className="head2_child">abdul_wase@gmail.com</p>
+          </div>
         </div>
 
       </div>
+      <div className="content-wrapper-div">
       <div className="content-div">
 
         <ul className="ul-li-div">
@@ -286,6 +287,7 @@ const HomePage = () => {
 
           </div>
         </div>
+      </div>
       </div>
 
     </div>

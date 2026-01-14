@@ -10,6 +10,7 @@ const ChatAdmin = () => {
   const navigate = useNavigate();
   const chatsubdivRef = useRef();
   const [username, setUsername] = useState("");
+  const [userDbId, setUserDbId] = useState("");
   const [msg, setMsg] = useState("");
   const [isOnline, setIsOnline] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -44,8 +45,9 @@ const ChatAdmin = () => {
 
       
       if (userInfo?.data.data.role==='admin' && tempUserId) {
-        socket.current = io(`${baseURL}`, {
+        socket.current = io(`${baseURL}/chats`, {
           query: { roomName: String(tempUserId) },
+          withCredentials: true,
         });
 
         socket.current.on("status", ({ status }) => {
@@ -87,7 +89,8 @@ const ChatAdmin = () => {
           obj,
           { withCredentials: true }
         );
-        setUsername(data?.data);
+        setUsername(data?.data?.name);
+        setUserDbId(data?.data?._id)
         setloading(false);
       } catch (err) {
         console.error(err);
@@ -128,7 +131,8 @@ const ChatAdmin = () => {
     
     if (socket.current) {
       setMessages((prev) => [...prev, { place: "right", message: msg }]);
-      socket.current.emit("sendMessage", { use: String(tempUserId), msg });
+      socket.current.emit("sendMessage", { use: String(tempUserId), msg ,userType:'admin',userDbId});
+
       playAudio("send-notification");
       setMsg("");
       console.log("msg sent");

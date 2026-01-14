@@ -131,7 +131,7 @@ const LoginOtp = ({ setOtpTimer, setErrors, setCurrentView, setUser, authData, s
               <input
                 key={index}
                 id={`otp-${index}`}
-                type="text"
+                type="tel"
                 value={digit}
                 onChange={(e) => handleOtpChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e.target.value, e)}
