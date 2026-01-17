@@ -1,7 +1,7 @@
 import HomePage from "./Components/Homepage/HomePage";
 import "./App.css";
 import Video from "./Components/VideoCall/Video";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
 import Chat from "./Components/Chat/Chat";
@@ -117,16 +117,21 @@ const diseaseData = [
 function App() {
   const [userData, setUserData] = useState();
   const [loading, setLoading] = useState(false);
-  const [isToken,setIsToken] = useState(false);
+  const navigate = useNavigate();
+  const location =useLocation();
 
   useEffect(() => {
 
 
     const calltoken = async () => {
     const tokendata = await axiosInstance.get('/user/check-token', { withCredentials: true });
-    if (tokendata.data.success === true) {
-        setIsToken(true);
-    }
+  
+
+if(tokendata.data.success === false && ["/book-appoinment","/chat"].includes(location.pathname)){
+
+navigate("/login");
+}
+
   }
 
     const checktoken = async () => {
@@ -139,11 +144,12 @@ function App() {
 
     };
     calltoken();
-    checktoken();
-  }, [])
+      checktoken();
+    
+  }, [navigate,location.pathname])
   return (
     <>
-      <BrowserRouter>
+     
         <ScrollMemoryRouter>
           <Routes>
             <Route
@@ -259,7 +265,7 @@ function App() {
               
           </Routes>
         </ScrollMemoryRouter>
-      </BrowserRouter >
+
     </>
   );
 }

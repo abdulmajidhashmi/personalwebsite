@@ -19,7 +19,21 @@ const Chat = () => {
   const [show, setShow] = useState(true);
   const [adminData, setAdminData] = useState(null);
   const [userData, setUserData] = useState(null);
+  const [isOnline, setIsOnline] = useState(false);
   const socket = useRef(null);
+
+
+  const transformTime = (value) =>
+    new Date(value).toLocaleTimeString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    }).toLowerCase();
+
+  const getCurrentDateAndTime = () => {
+
+    return new Date();
+  }
 
   useEffect(() => {
     const checktoken = async () => {
@@ -51,6 +65,12 @@ const Chat = () => {
       console.log(selfData);
       setUserData(selfData.data.data);
       setUserDbId(selfData.data.data._id);
+
+
+      const chatMessages = await axiosInstance.post('/chat/userChat', { userId: selfData.data.data._id }, { withCredentials: true })
+      console.log(chatMessages);
+      console.log(chatMessages.data.data.messages)
+      setStoreMsg(chatMessages.data.data.messages)
       setShow(false);
       setloading(false);
     } catch (err) {
@@ -62,14 +82,38 @@ const Chat = () => {
   useEffect(() => {
     if (userData && userData?.role === "user") {
       socket.current = io(`${chatSocketBaseURL}`, {
-        query: { roomName: String(userData.phone) },
+        query: { roomName: userData._id, userId: userData._id },
         withCredentials: true,
       });
+      // socket.current.emit("status",{use: String(userData.phone),status:true})
 
-      socket.current.on("recieveMessage", ({ message }) => {
-        if (message) {
-          const msg = message;
-          setStoreMsg((prev) => [...prev, { place: "left", message: msg }]);
+      socket.current.on("status", ({ user, status }) => {
+
+        // setIsOnline(status);
+      });
+      socket.current.on("user-status-change", (statusData) => {
+        console.log(statusData.userId, statusData.status)
+
+        if (statusData.userId !== userData?._id) {
+          setIsOnline(statusData.status);
+        }
+
+      })
+
+      socket.current.on('online-users', (onlineUsersList) => {
+        if (onlineUsersList.includes('695f958a5d6c2bb4b868bec3')) {
+          setIsOnline(true);
+        } else {
+          setIsOnline(false);
+        }
+
+      })
+
+
+      socket.current.on("recieveMessage", ({ text, sentAt }) => {
+        if (text) {
+
+          setStoreMsg((prev) => [...prev, { userType: "admin", text, sentAt }]);
           const notification = document.getElementById("message-notification");
           notification
             ?.play()
@@ -81,8 +125,10 @@ const Chat = () => {
         if (socket.current?.connected) {
           socket.current.emit("leaveRoom", {
             userData: userData.phone,
-            status: "offline",
+            // status: "offline",
           });
+
+
           socket.current.disconnect();
         }
       };
@@ -90,10 +136,11 @@ const Chat = () => {
   }, [userData]);
 
   const handleSendMessage = () => {
+    const sentAt = getCurrentDateAndTime();
     if (msg.trim() && userData?.role === "user" && socket.current) {
-      setStoreMsg((prev) => [...prev, { place: "right", message: msg }]);
+      setStoreMsg((prev) => [...prev, { userType: "user", text: msg, sentAt }]);
 
-      socket.current.emit("sendMessage", { use: String(userData.phone), msg ,userType:'user',userDbId});
+      socket.current.emit("sendMessage", { use: userData._id, msg, userType: 'user', userDbId, sentAt });
       const notification = document.getElementById("send-notification");
       notification?.play().catch((err) => console.error(err));
       setMsg("");
@@ -113,6 +160,7 @@ const Chat = () => {
       document.body.classList.remove("no-scroll");
     }
   }, [location]);
+
 
   return loading ? (
     <Flex className="loader" gap="middle">
@@ -142,7 +190,7 @@ const Chat = () => {
               />
               <div class="chat-user">
                 <h2 class="chat-username">DR. Abdul Wase Hashmi</h2>
-                <p class="chat-status">{true ? "Online" : "Offline"}</p>
+                <p class="chat-status">{isOnline === true ? "Online" : "Offline"}</p>
               </div>
             </div>
             <div class="header-actions">
@@ -184,15 +232,15 @@ const Chat = () => {
           </div>
 
           <div class="chat-messages" ref={chatsubdivRef}>
-            {storemsg.map(({ place, message }, index) => (
+            {storemsg.map(({ userType, text, sentAt }, index) => (
               <>
                 <div
                   key={index}
                   className={
-                    place === "right" ? "message sent" : "message received"
+                    userType === "right" || userType === "user" ? "message sent" : "message received"
                   }
                 >
-                  {place === "right" ? null : (
+                  {userType === "right" ? null : (
                     <img
                       src="https://avatar.iran.liara.run/public"
                       alt="Contact"
@@ -202,9 +250,9 @@ const Chat = () => {
 
                   <div class="message-content">
                     <div class="message-bubble">
-                      <p>{message}</p>
+                      <p>{text}</p>
                     </div>
-                    <span class="message-timestamp">10:30 AM</span>
+                    <span class="message-timestamp">{transformTime(sentAt)}</span>
                   </div>
                 </div>
               </>

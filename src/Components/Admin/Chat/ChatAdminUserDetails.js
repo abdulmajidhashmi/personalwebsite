@@ -33,7 +33,7 @@ const ChatAdminUserDetails = ()=>{
 
       const handleUserClick = (userId) => {
         // setToUserId(userId);
-        navigate(`/admin/chat/${userId *11}`);
+        navigate(`/admin/chat/${userId}`);
       };
       const fetchUserData = async () => {
         try {
@@ -101,7 +101,7 @@ const ChatAdminUserDetails = ()=>{
                  (
                     <div
                       key={index}
-                      onClick={() => handleUserClick(user.phone)}
+                      onClick={() => handleUserClick(user._id)}
                       class={
                         index === 0 ? "conversation active" : "conversation"
                       }

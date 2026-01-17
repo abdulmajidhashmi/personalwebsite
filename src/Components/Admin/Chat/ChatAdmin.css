@@ -115,7 +115,8 @@
   }
   
   .message.sent .message-bubble {
-    background-color: #2563eb; /* Tailwind's bg-blue-600 */
+    /* background-color: #2563eb; Tailwind's bg-blue-600 */
+     background-color: #3072ff;
     color: #ffffff; /* Tailwind's text-white */
   }
   
@@ -161,14 +162,17 @@
     border: none;
     
     padding: 0.5rem; /* Tailwind's p-2 */
-    background-color: #2563eb; /* Tailwind's bg-blue-600 */
+    /* background-color: #2563eb; Tailwind's bg-blue-600 */
+      background-color: #3072ff;
     color: #ffffff; /* Tailwind's text-white */
     border-radius: 0.5rem; /* Tailwind's rounded-lg */
     transition: background-color 0.3s ease; /* Tailwind's transition-colors */
   }
   
   .send-button:hover {
-    background-color: #1e40af; /* Tailwind's hover:bg-blue-700 */
+   
+    background-color: #376ce0;
+  cursor: pointer;
   }
   
   /* Sidebar Container */

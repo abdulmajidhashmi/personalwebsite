@@ -12,14 +12,28 @@ const ChatAdmin = () => {
   const [username, setUsername] = useState("");
   const [userDbId, setUserDbId] = useState("");
   const [msg, setMsg] = useState("");
-  const [isOnline, setIsOnline] = useState(false);
+  const [isOnline, setIsOnline] = useState(null);
   const [messages, setMessages] = useState([]);
   const [loading, setloading] = useState(true);
 
-  var {id:tempUserId} = useParams();
-  tempUserId=tempUserId/11;
-  
-  const obj = { phone: tempUserId }
+
+
+  const transformTime = (value) =>
+    new Date(value).toLocaleTimeString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    }).toLowerCase();
+
+  const getCurrentDateAndTime = () => {
+
+    return new Date();
+  }
+
+  var { id: tempUserId } = useParams();
+
+
+  const obj = { id: tempUserId }
 
   const socket = useRef(null);
 
@@ -39,25 +53,41 @@ const ChatAdmin = () => {
 
   useEffect(() => {
     const initializeSocket = async () => {
-      const userInfo = await axiosInstance.get("/user/self-detail",{
+      const userInfo = await axiosInstance.get("/user/self-detail", {
         withCredentials: true,
       });
 
-      
-      if (userInfo?.data.data.role==='admin' && tempUserId) {
+
+      if (userInfo?.data.data.role === 'admin' && tempUserId) {
         socket.current = io(`${baseURL}/chats`, {
-          query: { roomName: String(tempUserId) },
+          query: { roomName: tempUserId, userId: userInfo.data.data._id },
           withCredentials: true,
         });
 
-        socket.current.on("status", ({ status }) => {
-          setIsOnline(status === "online");
-        });
 
-        socket.current.on("recieveMessage", ({ message }) => {
-          if (message) {
+        socket.current.on("user-status-change", (statusData) => {
+
+          if (statusData.userId !== userInfo?.data.data._id) {
+            setIsOnline(statusData.status);
+          }
+
+        })
+
+        socket.current.on('online-users', (onlineUsersList) => {
+          if (onlineUsersList.includes(tempUserId)) {
+            setIsOnline(true);
+          } else {
+            setIsOnline(false);
+          }
+
+        })
+
+        socket.current.on("recieveMessage", ({ text, sentAt }) => {
+
+          console.log(text)
+          if (text) {
             playAudio("message-notification");
-            setMessages((prev) => [...prev, { place: "left", message }]);
+            setMessages((prev) => [...prev, { place: "left", text, sentAt }]);
           }
         });
 
@@ -69,6 +99,7 @@ const ChatAdmin = () => {
 
     return () => {
       if (socket.current) {
+
         socket.current.disconnect();
       }
     };
@@ -91,6 +122,13 @@ const ChatAdmin = () => {
         );
         setUsername(data?.data?.name);
         setUserDbId(data?.data?._id)
+
+        const chatMessages = await axiosInstance.post('/chat/userChat', { userId: data?.data?._id }, { withCredentials: true })
+        console.log(".................", chatMessages);
+        console.log(chatMessages.data.data.messages)
+        setMessages(chatMessages.data.data.messages)
+
+
         setloading(false);
       } catch (err) {
         console.error(err);
@@ -98,7 +136,7 @@ const ChatAdmin = () => {
       }
     };
 
-  
+
 
     if (tempUserId) {
       fetchUserDetails();
@@ -117,7 +155,7 @@ const ChatAdmin = () => {
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && msg.trim()) {
       sendMessage();
-         
+
     }
   };
 
@@ -128,15 +166,16 @@ const ChatAdmin = () => {
   };
 
   const sendMessage = () => {
-    
+    const sentAt = getCurrentDateAndTime();
+
     if (socket.current) {
-      setMessages((prev) => [...prev, { place: "right", message: msg }]);
-      socket.current.emit("sendMessage", { use: String(tempUserId), msg ,userType:'admin',userDbId});
+      setMessages((prev) => [...prev, { userType: "admin", text: msg, sentAt }]);
+      socket.current.emit("sendMessage", { use: tempUserId, msg, userType: "admin", userDbId, sentAt });
 
       playAudio("send-notification");
       setMsg("");
       console.log("msg sent");
-     
+
     }
   };
 
@@ -157,7 +196,7 @@ const ChatAdmin = () => {
         preload="auto"
       ></audio>
 
-     
+
 
       <div class="chat-container">
         <div class="chat-header">
@@ -169,7 +208,7 @@ const ChatAdmin = () => {
             />
             <div class="chat-user">
               <h2 class="chat-username">{username}</h2>
-              <p class="chat-status">{isOnline ? "Online" : "Offline"}</p>
+              <p class="chat-status">{isOnline === true ? "Online" : "Offline"}</p>
             </div>
           </div>
           <div class="header-actions">
@@ -212,15 +251,15 @@ const ChatAdmin = () => {
         </div>
 
         <div class="chat-messages" ref={chatsubdivRef}>
-          {messages.map(({ place, message }, index) => (
+          {messages.map(({ userType, text, sentAt }, index) => (
             <>
               <div
                 key={index}
                 className={
-                  place === "right" ? "message sent" : "message received"
+                  userType === "right" || userType === "admin" ? "message sent" : "message received"
                 }
               >
-                {place === "right" ? null : (
+                {userType === "right" || userType === "admin" ? null : (
                   <img
                     src="https://avatar.iran.liara.run/public"
                     alt="Contact"
@@ -230,9 +269,9 @@ const ChatAdmin = () => {
 
                 <div class="message-content">
                   <div class="message-bubble">
-                    <p>{message}</p>
+                    <p>{text}</p>
                   </div>
-                  <span class="message-timestamp">10:30 AM</span>
+                  <span class="message-timestamp">{transformTime(sentAt)}</span>
                 </div>
               </div>
             </>
